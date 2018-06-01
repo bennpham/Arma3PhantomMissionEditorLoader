@@ -23,7 +23,7 @@ namespace Arma3PhantomMissionEditorLoader
 			fbd.Description = "Select the folder of your new and empty Arma 3 mission that contains only the mission.sqm";
 			if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 			{
-				MessageBox.Show(fbd.SelectedPath);
+				directory.Text = fbd.SelectedPath;
 			}
 		}
 	}
