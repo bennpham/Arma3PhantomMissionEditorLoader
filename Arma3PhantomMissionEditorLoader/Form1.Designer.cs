@@ -75,6 +75,7 @@
 			this.new_button.TabIndex = 3;
 			this.new_button.Text = "NEW";
 			this.new_button.UseVisualStyleBackColor = true;
+			this.new_button.Click += new System.EventHandler(this.new_button_Click);
 			// 
 			// directory_button
 			// 
