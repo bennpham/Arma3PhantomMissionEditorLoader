@@ -13,6 +13,7 @@ namespace Arma3PhantomMissionEditorLoader
     public partial class Arma3Form : Form
     {
 		private const String ERROR_1_FILE = "ERROR! There should only be 1 unbinarize mission.sqm in your mission folder in order for this program to generate scripts for your mission!";
+		private const String TEMP_SQM = "temp.sqm";
 
         public Arma3Form()
         {
@@ -45,8 +46,30 @@ namespace Arma3PhantomMissionEditorLoader
 				return;
 			}
 
+			String missionSqm = directories[0];
+
 			// #2 Setup mission.sqm settings (General -> Multiplayer). 
-			// TODO
+			String line = null;
+			using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.File.OpenWrite(missionSqm)))
+			{
+				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(TEMP_SQM))
+				{
+					while ((line = sr.ReadLine()) != null)
+					{
+						// TODO IF ELSE STATEMENT 
+						if (line.Contains("TODO"))
+						{
+							// TODO
+						}
+						else
+						{
+							// TODO
+						}
+					}
+				}
+			}
+
+			// TODO RENAME OLD FILE AND REPLACE WITH NEW FILE
 
 			// #1 Setup mission.sqm settings (General -> Multiplayer)
 			//		Author, overviewText, LoadMission message, aiKills, respawnType (always side)
