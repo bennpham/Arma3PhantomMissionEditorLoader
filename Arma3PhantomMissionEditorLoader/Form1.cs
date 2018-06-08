@@ -46,9 +46,14 @@ namespace Arma3PhantomMissionEditorLoader
 				return;
 			}
 
-			String missionSqm = directories[0];
+			// #2 Setup mission.sqm settings 
+			this.Hide();
+			Form2_MissionSqmSettings form2_missionsqm = new Form2_MissionSqmSettings();
+			form2_missionsqm.ShowDialog();
+			// TODO move all the other code below to the new form
 
-			// #2 Setup mission.sqm settings (General -> Multiplayer). 
+			String missionSqm = directories[0];
+			// #3 Setup mission.sqm settings from extracted settings above 
 			String line = null;
 			using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.File.OpenWrite(missionSqm)))
 			{
@@ -70,16 +75,7 @@ namespace Arma3PhantomMissionEditorLoader
 			}
 
 			// TODO RENAME OLD FILE AND REPLACE WITH NEW FILE
-
-			// #1 Setup mission.sqm settings (General -> Multiplayer)
-			//		Author, overviewText, LoadMission message, aiKills, respawnType (always side)
-			//		Header type always Coop (pick min and max player)
-			//		Maybe autogen CustomAttributes?
-			// #2 Mission.sqm part 2 (Class Mission Class Intel)
-			//		overviewText (Multiplayer -> Summary)
-			//		Day and Time
-			//		Weather
-			// #3 Generate infotext
+			// #4 Generate infotext
 			//		Pick Name of Mission to Display (already have date and Author)
 
 		}
