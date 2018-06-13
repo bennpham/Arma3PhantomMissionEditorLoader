@@ -54,10 +54,62 @@
 			this.checkBox_mp_manual_respawn = new System.Windows.Forms.CheckBox();
 			this.checkBox_mp_enable_team_switch = new System.Windows.Forms.CheckBox();
 			this.checkBox_mp_allow_ai_score = new System.Windows.Forms.CheckBox();
+			this.title_weather = new System.Windows.Forms.Label();
+			this.label_date = new System.Windows.Forms.Label();
+			this.date = new System.Windows.Forms.DateTimePicker();
+			this.label_time = new System.Windows.Forms.Label();
+			this.hour = new System.Windows.Forms.NumericUpDown();
+			this.minute = new System.Windows.Forms.NumericUpDown();
+			this.label_hour = new System.Windows.Forms.Label();
+			this.label_minutes = new System.Windows.Forms.Label();
+			this.subtitle_weather_forecase = new System.Windows.Forms.Label();
+			this.label_timeOfChanges = new System.Windows.Forms.Label();
+			this.toc_minutes = new System.Windows.Forms.NumericUpDown();
+			this.toc_hour = new System.Windows.Forms.NumericUpDown();
+			this.toc_seconds = new System.Windows.Forms.NumericUpDown();
+			this.label_minutes2 = new System.Windows.Forms.Label();
+			this.label_hour2 = new System.Windows.Forms.Label();
+			this.label_seconds2 = new System.Windows.Forms.Label();
+			this.subtitle_overcast = new System.Windows.Forms.Label();
+			this.subtitle_fog = new System.Windows.Forms.Label();
+			this.label_overcastStart = new System.Windows.Forms.Label();
+			this.label_overcastForecast = new System.Windows.Forms.Label();
+			this.overcastStart = new System.Windows.Forms.NumericUpDown();
+			this.overcastForecast = new System.Windows.Forms.NumericUpDown();
+			this.fogStartBase = new System.Windows.Forms.NumericUpDown();
+			this.fogStartDecay = new System.Windows.Forms.NumericUpDown();
+			this.fogStart = new System.Windows.Forms.NumericUpDown();
+			this.label_fogStartBase = new System.Windows.Forms.Label();
+			this.label_fogStartDecay = new System.Windows.Forms.Label();
+			this.label_fogStart = new System.Windows.Forms.Label();
+			this.fogForecastBase = new System.Windows.Forms.NumericUpDown();
+			this.fogForecastDecay = new System.Windows.Forms.NumericUpDown();
+			this.fogForecast = new System.Windows.Forms.NumericUpDown();
+			this.label_fogForecastBase = new System.Windows.Forms.Label();
+			this.label_fogForecastDecay = new System.Windows.Forms.Label();
+			this.label_fogForecast = new System.Windows.Forms.Label();
+			this.title_description = new System.Windows.Forms.Label();
+			this.label_onLoadName = new System.Windows.Forms.Label();
+			this.textBox_onLoadName = new System.Windows.Forms.TextBox();
+			this.label_onLoadMission = new System.Windows.Forms.Label();
+			this.textBox_onLoadMission = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.min_players)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.max_players)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.respawn_delay)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.hour)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.minute)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.toc_minutes)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.toc_hour)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.toc_seconds)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.overcastStart)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.overcastForecast)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogStartBase)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogStartDecay)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogStart)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogForecastBase)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogForecastDecay)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogForecast)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// title_general
@@ -297,11 +349,423 @@
 			this.checkBox_mp_allow_ai_score.Text = "Allow AI Score";
 			this.checkBox_mp_allow_ai_score.UseVisualStyleBackColor = true;
 			// 
+			// title_weather
+			// 
+			this.title_weather.AutoSize = true;
+			this.title_weather.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.title_weather.Location = new System.Drawing.Point(460, 9);
+			this.title_weather.Name = "title_weather";
+			this.title_weather.Size = new System.Drawing.Size(110, 29);
+			this.title_weather.TabIndex = 27;
+			this.title_weather.Text = "Weather";
+			this.title_weather.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
+			// label_date
+			// 
+			this.label_date.AutoSize = true;
+			this.label_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_date.Location = new System.Drawing.Point(461, 44);
+			this.label_date.Name = "label_date";
+			this.label_date.Size = new System.Drawing.Size(48, 20);
+			this.label_date.TabIndex = 28;
+			this.label_date.Text = "Date";
+			// 
+			// date
+			// 
+			this.date.Location = new System.Drawing.Point(532, 44);
+			this.date.Name = "date";
+			this.date.Size = new System.Drawing.Size(200, 20);
+			this.date.TabIndex = 29;
+			// 
+			// label_time
+			// 
+			this.label_time.AutoSize = true;
+			this.label_time.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_time.Location = new System.Drawing.Point(461, 75);
+			this.label_time.Name = "label_time";
+			this.label_time.Size = new System.Drawing.Size(47, 20);
+			this.label_time.TabIndex = 30;
+			this.label_time.Text = "Time";
+			// 
+			// hour
+			// 
+			this.hour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.hour.Location = new System.Drawing.Point(532, 73);
+			this.hour.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+			this.hour.Name = "hour";
+			this.hour.Size = new System.Drawing.Size(44, 22);
+			this.hour.TabIndex = 31;
+			// 
+			// minute
+			// 
+			this.minute.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.minute.Location = new System.Drawing.Point(582, 73);
+			this.minute.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+			this.minute.Name = "minute";
+			this.minute.Size = new System.Drawing.Size(44, 22);
+			this.minute.TabIndex = 32;
+			// 
+			// label_hour
+			// 
+			this.label_hour.AutoSize = true;
+			this.label_hour.Location = new System.Drawing.Point(532, 102);
+			this.label_hour.Name = "label_hour";
+			this.label_hour.Size = new System.Drawing.Size(30, 13);
+			this.label_hour.TabIndex = 33;
+			this.label_hour.Text = "Hour";
+			// 
+			// label_minutes
+			// 
+			this.label_minutes.AutoSize = true;
+			this.label_minutes.Location = new System.Drawing.Point(582, 102);
+			this.label_minutes.Name = "label_minutes";
+			this.label_minutes.Size = new System.Drawing.Size(44, 13);
+			this.label_minutes.TabIndex = 34;
+			this.label_minutes.Text = "Minutes";
+			// 
+			// subtitle_weather_forecase
+			// 
+			this.subtitle_weather_forecase.AutoSize = true;
+			this.subtitle_weather_forecase.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.subtitle_weather_forecase.Location = new System.Drawing.Point(461, 137);
+			this.subtitle_weather_forecase.Name = "subtitle_weather_forecase";
+			this.subtitle_weather_forecase.Size = new System.Drawing.Size(175, 24);
+			this.subtitle_weather_forecase.TabIndex = 35;
+			this.subtitle_weather_forecase.Text = "Weather Forecast";
+			this.subtitle_weather_forecase.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
+			// label_timeOfChanges
+			// 
+			this.label_timeOfChanges.AutoSize = true;
+			this.label_timeOfChanges.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_timeOfChanges.Location = new System.Drawing.Point(466, 168);
+			this.label_timeOfChanges.Name = "label_timeOfChanges";
+			this.label_timeOfChanges.Size = new System.Drawing.Size(144, 20);
+			this.label_timeOfChanges.TabIndex = 36;
+			this.label_timeOfChanges.Text = "Time of Changes";
+			// 
+			// toc_minutes
+			// 
+			this.toc_minutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.toc_minutes.Location = new System.Drawing.Point(666, 168);
+			this.toc_minutes.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+			this.toc_minutes.Name = "toc_minutes";
+			this.toc_minutes.Size = new System.Drawing.Size(44, 22);
+			this.toc_minutes.TabIndex = 38;
+			// 
+			// toc_hour
+			// 
+			this.toc_hour.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.toc_hour.Location = new System.Drawing.Point(616, 168);
+			this.toc_hour.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+			this.toc_hour.Name = "toc_hour";
+			this.toc_hour.Size = new System.Drawing.Size(44, 22);
+			this.toc_hour.TabIndex = 37;
+			// 
+			// toc_seconds
+			// 
+			this.toc_seconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.toc_seconds.Location = new System.Drawing.Point(716, 168);
+			this.toc_seconds.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+			this.toc_seconds.Name = "toc_seconds";
+			this.toc_seconds.Size = new System.Drawing.Size(44, 22);
+			this.toc_seconds.TabIndex = 39;
+			// 
+			// label_minutes2
+			// 
+			this.label_minutes2.AutoSize = true;
+			this.label_minutes2.Location = new System.Drawing.Point(663, 193);
+			this.label_minutes2.Name = "label_minutes2";
+			this.label_minutes2.Size = new System.Drawing.Size(44, 13);
+			this.label_minutes2.TabIndex = 41;
+			this.label_minutes2.Text = "Minutes";
+			// 
+			// label_hour2
+			// 
+			this.label_hour2.AutoSize = true;
+			this.label_hour2.Location = new System.Drawing.Point(613, 193);
+			this.label_hour2.Name = "label_hour2";
+			this.label_hour2.Size = new System.Drawing.Size(30, 13);
+			this.label_hour2.TabIndex = 40;
+			this.label_hour2.Text = "Hour";
+			// 
+			// label_seconds2
+			// 
+			this.label_seconds2.AutoSize = true;
+			this.label_seconds2.Location = new System.Drawing.Point(713, 193);
+			this.label_seconds2.Name = "label_seconds2";
+			this.label_seconds2.Size = new System.Drawing.Size(49, 13);
+			this.label_seconds2.TabIndex = 42;
+			this.label_seconds2.Text = "Seconds";
+			// 
+			// subtitle_overcast
+			// 
+			this.subtitle_overcast.AutoSize = true;
+			this.subtitle_overcast.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.subtitle_overcast.Location = new System.Drawing.Point(461, 227);
+			this.subtitle_overcast.Name = "subtitle_overcast";
+			this.subtitle_overcast.Size = new System.Drawing.Size(92, 24);
+			this.subtitle_overcast.TabIndex = 43;
+			this.subtitle_overcast.Text = "Overcast";
+			this.subtitle_overcast.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
+			// subtitle_fog
+			// 
+			this.subtitle_fog.AutoSize = true;
+			this.subtitle_fog.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.subtitle_fog.Location = new System.Drawing.Point(461, 294);
+			this.subtitle_fog.Name = "subtitle_fog";
+			this.subtitle_fog.Size = new System.Drawing.Size(47, 24);
+			this.subtitle_fog.TabIndex = 44;
+			this.subtitle_fog.Text = "Fog";
+			this.subtitle_fog.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
+			// label_overcastStart
+			// 
+			this.label_overcastStart.AutoSize = true;
+			this.label_overcastStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_overcastStart.Location = new System.Drawing.Point(463, 254);
+			this.label_overcastStart.Name = "label_overcastStart";
+			this.label_overcastStart.Size = new System.Drawing.Size(44, 20);
+			this.label_overcastStart.TabIndex = 45;
+			this.label_overcastStart.Text = "Start";
+			// 
+			// label_overcastForecast
+			// 
+			this.label_overcastForecast.AutoSize = true;
+			this.label_overcastForecast.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_overcastForecast.Location = new System.Drawing.Point(581, 254);
+			this.label_overcastForecast.Name = "label_overcastForecast";
+			this.label_overcastForecast.Size = new System.Drawing.Size(72, 20);
+			this.label_overcastForecast.TabIndex = 46;
+			this.label_overcastForecast.Text = "Forecast";
+			// 
+			// overcastStart
+			// 
+			this.overcastStart.Location = new System.Drawing.Point(513, 254);
+			this.overcastStart.Name = "overcastStart";
+			this.overcastStart.Size = new System.Drawing.Size(44, 20);
+			this.overcastStart.TabIndex = 47;
+			// 
+			// overcastForecast
+			// 
+			this.overcastForecast.Location = new System.Drawing.Point(659, 254);
+			this.overcastForecast.Name = "overcastForecast";
+			this.overcastForecast.Size = new System.Drawing.Size(44, 20);
+			this.overcastForecast.TabIndex = 48;
+			// 
+			// fogStartBase
+			// 
+			this.fogStartBase.Location = new System.Drawing.Point(570, 368);
+			this.fogStartBase.Name = "fogStartBase";
+			this.fogStartBase.Size = new System.Drawing.Size(44, 20);
+			this.fogStartBase.TabIndex = 60;
+			// 
+			// fogStartDecay
+			// 
+			this.fogStartDecay.Location = new System.Drawing.Point(570, 348);
+			this.fogStartDecay.Name = "fogStartDecay";
+			this.fogStartDecay.Size = new System.Drawing.Size(44, 20);
+			this.fogStartDecay.TabIndex = 59;
+			// 
+			// fogStart
+			// 
+			this.fogStart.Location = new System.Drawing.Point(570, 328);
+			this.fogStart.Name = "fogStart";
+			this.fogStart.Size = new System.Drawing.Size(44, 20);
+			this.fogStart.TabIndex = 58;
+			// 
+			// label_fogStartBase
+			// 
+			this.label_fogStartBase.AutoSize = true;
+			this.label_fogStartBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_fogStartBase.Location = new System.Drawing.Point(467, 368);
+			this.label_fogStartBase.Name = "label_fogStartBase";
+			this.label_fogStartBase.Size = new System.Drawing.Size(85, 20);
+			this.label_fogStartBase.TabIndex = 57;
+			this.label_fogStartBase.Text = "Start Base";
+			// 
+			// label_fogStartDecay
+			// 
+			this.label_fogStartDecay.AutoSize = true;
+			this.label_fogStartDecay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_fogStartDecay.Location = new System.Drawing.Point(465, 348);
+			this.label_fogStartDecay.Name = "label_fogStartDecay";
+			this.label_fogStartDecay.Size = new System.Drawing.Size(93, 20);
+			this.label_fogStartDecay.TabIndex = 56;
+			this.label_fogStartDecay.Text = "Start Decay";
+			// 
+			// label_fogStart
+			// 
+			this.label_fogStart.AutoSize = true;
+			this.label_fogStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_fogStart.Location = new System.Drawing.Point(508, 328);
+			this.label_fogStart.Name = "label_fogStart";
+			this.label_fogStart.Size = new System.Drawing.Size(44, 20);
+			this.label_fogStart.TabIndex = 55;
+			this.label_fogStart.Text = "Start";
+			// 
+			// fogForecastBase
+			// 
+			this.fogForecastBase.Location = new System.Drawing.Point(763, 370);
+			this.fogForecastBase.Name = "fogForecastBase";
+			this.fogForecastBase.Size = new System.Drawing.Size(44, 20);
+			this.fogForecastBase.TabIndex = 66;
+			// 
+			// fogForecastDecay
+			// 
+			this.fogForecastDecay.Location = new System.Drawing.Point(763, 350);
+			this.fogForecastDecay.Name = "fogForecastDecay";
+			this.fogForecastDecay.Size = new System.Drawing.Size(44, 20);
+			this.fogForecastDecay.TabIndex = 65;
+			// 
+			// fogForecast
+			// 
+			this.fogForecast.Location = new System.Drawing.Point(763, 330);
+			this.fogForecast.Name = "fogForecast";
+			this.fogForecast.Size = new System.Drawing.Size(44, 20);
+			this.fogForecast.TabIndex = 64;
+			// 
+			// label_fogForecastBase
+			// 
+			this.label_fogForecastBase.AutoSize = true;
+			this.label_fogForecastBase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_fogForecastBase.Location = new System.Drawing.Point(641, 370);
+			this.label_fogForecastBase.Name = "label_fogForecastBase";
+			this.label_fogForecastBase.Size = new System.Drawing.Size(113, 20);
+			this.label_fogForecastBase.TabIndex = 63;
+			this.label_fogForecastBase.Text = "Forecast Base";
+			// 
+			// label_fogForecastDecay
+			// 
+			this.label_fogForecastDecay.AutoSize = true;
+			this.label_fogForecastDecay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_fogForecastDecay.Location = new System.Drawing.Point(639, 350);
+			this.label_fogForecastDecay.Name = "label_fogForecastDecay";
+			this.label_fogForecastDecay.Size = new System.Drawing.Size(121, 20);
+			this.label_fogForecastDecay.TabIndex = 62;
+			this.label_fogForecastDecay.Text = "Forecast Decay";
+			// 
+			// label_fogForecast
+			// 
+			this.label_fogForecast.AutoSize = true;
+			this.label_fogForecast.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_fogForecast.Location = new System.Drawing.Point(682, 330);
+			this.label_fogForecast.Name = "label_fogForecast";
+			this.label_fogForecast.Size = new System.Drawing.Size(72, 20);
+			this.label_fogForecast.TabIndex = 61;
+			this.label_fogForecast.Text = "Forecast";
+			// 
+			// title_description
+			// 
+			this.title_description.AutoSize = true;
+			this.title_description.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.title_description.Location = new System.Drawing.Point(460, 405);
+			this.title_description.Name = "title_description";
+			this.title_description.Size = new System.Drawing.Size(319, 29);
+			this.title_description.TabIndex = 67;
+			this.title_description.Text = "Description.ext Remaining";
+			this.title_description.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			// 
+			// label_onLoadName
+			// 
+			this.label_onLoadName.AutoSize = true;
+			this.label_onLoadName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_onLoadName.Location = new System.Drawing.Point(461, 441);
+			this.label_onLoadName.Name = "label_onLoadName";
+			this.label_onLoadName.Size = new System.Drawing.Size(128, 20);
+			this.label_onLoadName.TabIndex = 68;
+			this.label_onLoadName.Text = "On Load Name";
+			// 
+			// textBox_onLoadName
+			// 
+			this.textBox_onLoadName.Location = new System.Drawing.Point(595, 441);
+			this.textBox_onLoadName.Name = "textBox_onLoadName";
+			this.textBox_onLoadName.Size = new System.Drawing.Size(217, 20);
+			this.textBox_onLoadName.TabIndex = 69;
+			// 
+			// label_onLoadMission
+			// 
+			this.label_onLoadMission.AutoSize = true;
+			this.label_onLoadMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label_onLoadMission.Location = new System.Drawing.Point(461, 470);
+			this.label_onLoadMission.Name = "label_onLoadMission";
+			this.label_onLoadMission.Size = new System.Drawing.Size(142, 20);
+			this.label_onLoadMission.TabIndex = 70;
+			this.label_onLoadMission.Text = "On Load Mission";
+			// 
+			// textBox_onLoadMission
+			// 
+			this.textBox_onLoadMission.Location = new System.Drawing.Point(465, 493);
+			this.textBox_onLoadMission.Multiline = true;
+			this.textBox_onLoadMission.Name = "textBox_onLoadMission";
+			this.textBox_onLoadMission.Size = new System.Drawing.Size(347, 127);
+			this.textBox_onLoadMission.TabIndex = 71;
+			// 
 			// Form2_MissionSqmSettings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(824, 681);
+			this.Controls.Add(this.textBox_onLoadMission);
+			this.Controls.Add(this.label_onLoadMission);
+			this.Controls.Add(this.textBox_onLoadName);
+			this.Controls.Add(this.label_onLoadName);
+			this.Controls.Add(this.title_description);
+			this.Controls.Add(this.fogForecastBase);
+			this.Controls.Add(this.fogForecastDecay);
+			this.Controls.Add(this.fogForecast);
+			this.Controls.Add(this.label_fogForecastBase);
+			this.Controls.Add(this.label_fogForecastDecay);
+			this.Controls.Add(this.label_fogForecast);
+			this.Controls.Add(this.fogStartBase);
+			this.Controls.Add(this.fogStartDecay);
+			this.Controls.Add(this.fogStart);
+			this.Controls.Add(this.label_fogStartBase);
+			this.Controls.Add(this.label_fogStartDecay);
+			this.Controls.Add(this.label_fogStart);
+			this.Controls.Add(this.overcastForecast);
+			this.Controls.Add(this.overcastStart);
+			this.Controls.Add(this.label_overcastForecast);
+			this.Controls.Add(this.label_overcastStart);
+			this.Controls.Add(this.subtitle_fog);
+			this.Controls.Add(this.subtitle_overcast);
+			this.Controls.Add(this.label_seconds2);
+			this.Controls.Add(this.label_minutes2);
+			this.Controls.Add(this.label_hour2);
+			this.Controls.Add(this.toc_seconds);
+			this.Controls.Add(this.toc_minutes);
+			this.Controls.Add(this.toc_hour);
+			this.Controls.Add(this.label_timeOfChanges);
+			this.Controls.Add(this.subtitle_weather_forecase);
+			this.Controls.Add(this.label_minutes);
+			this.Controls.Add(this.label_hour);
+			this.Controls.Add(this.minute);
+			this.Controls.Add(this.hour);
+			this.Controls.Add(this.label_time);
+			this.Controls.Add(this.date);
+			this.Controls.Add(this.label_date);
+			this.Controls.Add(this.title_weather);
 			this.Controls.Add(this.checkBox_mp_allow_ai_score);
 			this.Controls.Add(this.checkBox_mp_enable_team_switch);
 			this.Controls.Add(this.checkBox_mp_manual_respawn);
@@ -334,6 +798,19 @@
 			((System.ComponentModel.ISupportInitialize)(this.min_players)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.max_players)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.respawn_delay)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.hour)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.minute)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.toc_minutes)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.toc_hour)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.toc_seconds)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.overcastStart)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.overcastForecast)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogStartBase)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogStartDecay)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogStart)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogForecastBase)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogForecastDecay)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.fogForecast)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -366,5 +843,44 @@
 		private System.Windows.Forms.CheckBox checkBox_mp_manual_respawn;
 		private System.Windows.Forms.CheckBox checkBox_mp_enable_team_switch;
 		private System.Windows.Forms.CheckBox checkBox_mp_allow_ai_score;
+		private System.Windows.Forms.Label title_weather;
+		private System.Windows.Forms.Label label_date;
+		private System.Windows.Forms.DateTimePicker date;
+		private System.Windows.Forms.Label label_time;
+		private System.Windows.Forms.NumericUpDown hour;
+		private System.Windows.Forms.NumericUpDown minute;
+		private System.Windows.Forms.Label label_hour;
+		private System.Windows.Forms.Label label_minutes;
+		private System.Windows.Forms.Label subtitle_weather_forecase;
+		private System.Windows.Forms.Label label_timeOfChanges;
+		private System.Windows.Forms.NumericUpDown toc_minutes;
+		private System.Windows.Forms.NumericUpDown toc_hour;
+		private System.Windows.Forms.NumericUpDown toc_seconds;
+		private System.Windows.Forms.Label label_minutes2;
+		private System.Windows.Forms.Label label_hour2;
+		private System.Windows.Forms.Label label_seconds2;
+		private System.Windows.Forms.Label subtitle_overcast;
+		private System.Windows.Forms.Label subtitle_fog;
+		private System.Windows.Forms.Label label_overcastStart;
+		private System.Windows.Forms.Label label_overcastForecast;
+		private System.Windows.Forms.NumericUpDown overcastStart;
+		private System.Windows.Forms.NumericUpDown overcastForecast;
+		private System.Windows.Forms.NumericUpDown fogStartBase;
+		private System.Windows.Forms.NumericUpDown fogStartDecay;
+		private System.Windows.Forms.NumericUpDown fogStart;
+		private System.Windows.Forms.Label label_fogStartBase;
+		private System.Windows.Forms.Label label_fogStartDecay;
+		private System.Windows.Forms.Label label_fogStart;
+		private System.Windows.Forms.NumericUpDown fogForecastBase;
+		private System.Windows.Forms.NumericUpDown fogForecastDecay;
+		private System.Windows.Forms.NumericUpDown fogForecast;
+		private System.Windows.Forms.Label label_fogForecastBase;
+		private System.Windows.Forms.Label label_fogForecastDecay;
+		private System.Windows.Forms.Label label_fogForecast;
+		private System.Windows.Forms.Label title_description;
+		private System.Windows.Forms.Label label_onLoadName;
+		private System.Windows.Forms.TextBox textBox_onLoadName;
+		private System.Windows.Forms.Label label_onLoadMission;
+		private System.Windows.Forms.TextBox textBox_onLoadMission;
 	}
 }
