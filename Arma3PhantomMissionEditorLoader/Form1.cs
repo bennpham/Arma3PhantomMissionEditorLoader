@@ -33,7 +33,7 @@ namespace Arma3PhantomMissionEditorLoader
 		{
 			// #1 Check to make sure there's only a mission.sqm and its not binarize
 			//		Might still work unbinarize, but your mission.sqm might break
-			String[] directories = System.IO.Directory.GetFiles(directory.Text);
+			String[] directories = System.IO.Directory.GetFiles(directory.Text); // TODO crash on blank
 			if (directories.Length != 1)
 			{
 				MessageBox.Show(ERROR_1_FILE); 

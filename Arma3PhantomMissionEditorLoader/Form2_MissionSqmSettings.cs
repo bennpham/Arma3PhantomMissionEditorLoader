@@ -23,6 +23,8 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void missionsqm_button_Click(object sender, EventArgs e)
 		{
+			// TODO need to load missionSQM string properly so it won't be null
+
 			// #3 Setup mission.sqm settings from extracted settings above 
 			String line = null;
 			using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.File.OpenWrite(this.missionSQM)))
