@@ -26,14 +26,16 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void missionsqm_button_Click(object sender, EventArgs e)
 		{
+			String oldMissionSqm = System.IO.Path.Combine(this.missionDirectory, MISSION_SQM_BACKUP);
+
 			// Rename old mission.sqm to mission.sqm.old in case file gets corrupted
-			System.IO.File.Move(this.missionSQM, System.IO.Path.Combine(this.missionDirectory, MISSION_SQM_BACKUP));
+			System.IO.File.Move(this.missionSQM, oldMissionSqm);
 			
-			// #3 Setup mission.sqm settings from extracted settings above 
+			// Setup mission.sqm settings from extracted settings above 
 			String line = null;
-			using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.File.OpenWrite(this.missionSQM)))
+			using (System.IO.StreamReader sr = new System.IO.StreamReader(oldMissionSqm))
 			{
-				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(MISSION_SQM_BACKUP))
+				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(this.missionSQM))
 				{
 					while ((line = sr.ReadLine()) != null)
 					{
@@ -50,8 +52,7 @@ namespace Arma3PhantomMissionEditorLoader
 				}
 			}
 
-			// TODO RENAME OLD FILE AND REPLACE WITH NEW FILE
-			// #4 Generate infotext
+			// GoTo Generate infotext Form
 			//		Pick Name of Mission to Display (already have date and Author)
 
 		}
