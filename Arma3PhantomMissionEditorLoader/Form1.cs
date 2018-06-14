@@ -13,6 +13,7 @@ namespace Arma3PhantomMissionEditorLoader
     public partial class Arma3Form : Form
     {
 		private const String ERROR_1_FILE = "ERROR! There should only be 1 unbinarize mission.sqm in your mission folder in order for this program to generate scripts for your mission!";
+		private const String ERROR_2_EMPTY = "Please select an empty Arma 3 mission folder.";
 
         public Arma3Form()
         {
@@ -33,7 +34,12 @@ namespace Arma3PhantomMissionEditorLoader
 		{
 			// #1 Check to make sure there's only a mission.sqm and its not binarize
 			//		Might still work unbinarize, but your mission.sqm might break
-			String[] directories = System.IO.Directory.GetFiles(directory.Text); // TODO crash on blank
+			if (string.IsNullOrWhiteSpace(directory.Text))
+			{
+				MessageBox.Show(ERROR_2_EMPTY);
+				return;
+			}
+			String[] directories = System.IO.Directory.GetFiles(directory.Text); 
 			if (directories.Length != 1)
 			{
 				MessageBox.Show(ERROR_1_FILE); 
