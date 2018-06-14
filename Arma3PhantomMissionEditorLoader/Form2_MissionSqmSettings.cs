@@ -12,24 +12,28 @@ namespace Arma3PhantomMissionEditorLoader
 {
 	public partial class Form2_MissionSqmSettings : Form
 	{
-		private const String TEMP_SQM = "temp.sqm";
+		private const String MISSION_SQM_BACKUP = "mission.sqm.old";
 
 		public String missionSQM;
+		public String missionDirectory;
 
-		public Form2_MissionSqmSettings()
+		public Form2_MissionSqmSettings(String missionSQM, String missionDirectory)
 		{
 			InitializeComponent();
+			this.missionSQM = missionSQM;
+			this.missionDirectory = missionDirectory;
 		}
 
 		private void missionsqm_button_Click(object sender, EventArgs e)
 		{
-			// TODO need to load missionSQM string properly so it won't be null
-
+			// Rename old mission.sqm to mission.sqm.old in case file gets corrupted
+			System.IO.File.Move(this.missionSQM, System.IO.Path.Combine(this.missionDirectory, MISSION_SQM_BACKUP));
+			
 			// #3 Setup mission.sqm settings from extracted settings above 
 			String line = null;
 			using (System.IO.StreamReader sr = new System.IO.StreamReader(System.IO.File.OpenWrite(this.missionSQM)))
 			{
-				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(TEMP_SQM))
+				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(MISSION_SQM_BACKUP))
 				{
 					while ((line = sr.ReadLine()) != null)
 					{

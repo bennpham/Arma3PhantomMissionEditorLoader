@@ -53,11 +53,8 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// #2 Setup mission.sqm settings 
 			this.Hide();
-			Form2_MissionSqmSettings form2_missionsqm = new Form2_MissionSqmSettings();
-			if (form2_missionsqm.ShowDialog() == DialogResult.OK)
-			{
-				form2_missionsqm.missionSQM = directories[0];
-			}
+			Form2_MissionSqmSettings form2_missionsqm = new Form2_MissionSqmSettings(directories[0], directory.Text);
+			form2_missionsqm.ShowDialog();
 		}
 	}
 }
