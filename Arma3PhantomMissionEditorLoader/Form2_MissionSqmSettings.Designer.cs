@@ -184,6 +184,8 @@
 			// west_checkbox
 			// 
 			this.west_checkbox.AutoSize = true;
+			this.west_checkbox.Checked = true;
+			this.west_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.west_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.west_checkbox.Location = new System.Drawing.Point(137, 198);
 			this.west_checkbox.Name = "west_checkbox";
@@ -286,6 +288,8 @@
 			// checkBox_mp_mission_fail
 			// 
 			this.checkBox_mp_mission_fail.AutoSize = true;
+			this.checkBox_mp_mission_fail.Checked = true;
+			this.checkBox_mp_mission_fail.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox_mp_mission_fail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.checkBox_mp_mission_fail.Location = new System.Drawing.Point(21, 536);
 			this.checkBox_mp_mission_fail.Name = "checkBox_mp_mission_fail";
@@ -308,6 +312,8 @@
 			// checkBox_mp_switch_char
 			// 
 			this.checkBox_mp_switch_char.AutoSize = true;
+			this.checkBox_mp_switch_char.Checked = true;
+			this.checkBox_mp_switch_char.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox_mp_switch_char.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.checkBox_mp_switch_char.Location = new System.Drawing.Point(21, 596);
 			this.checkBox_mp_switch_char.Name = "checkBox_mp_switch_char";
@@ -319,6 +325,8 @@
 			// checkBox_mp_manual_respawn
 			// 
 			this.checkBox_mp_manual_respawn.AutoSize = true;
+			this.checkBox_mp_manual_respawn.Checked = true;
+			this.checkBox_mp_manual_respawn.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox_mp_manual_respawn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.checkBox_mp_manual_respawn.Location = new System.Drawing.Point(250, 536);
 			this.checkBox_mp_manual_respawn.Name = "checkBox_mp_manual_respawn";
@@ -330,6 +338,8 @@
 			// checkBox_mp_enable_team_switch
 			// 
 			this.checkBox_mp_enable_team_switch.AutoSize = true;
+			this.checkBox_mp_enable_team_switch.Checked = true;
+			this.checkBox_mp_enable_team_switch.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox_mp_enable_team_switch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.checkBox_mp_enable_team_switch.Location = new System.Drawing.Point(250, 566);
 			this.checkBox_mp_enable_team_switch.Name = "checkBox_mp_enable_team_switch";
@@ -341,6 +351,8 @@
 			// checkBox_mp_allow_ai_score
 			// 
 			this.checkBox_mp_allow_ai_score.AutoSize = true;
+			this.checkBox_mp_allow_ai_score.Checked = true;
+			this.checkBox_mp_allow_ai_score.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox_mp_allow_ai_score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.checkBox_mp_allow_ai_score.Location = new System.Drawing.Point(250, 596);
 			this.checkBox_mp_allow_ai_score.Name = "checkBox_mp_allow_ai_score";
@@ -399,6 +411,11 @@
 			this.hour.Name = "hour";
 			this.hour.Size = new System.Drawing.Size(44, 22);
 			this.hour.TabIndex = 31;
+			this.hour.Value = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
 			// 
 			// minute
 			// 
@@ -464,6 +481,11 @@
 			this.toc_minutes.Name = "toc_minutes";
 			this.toc_minutes.Size = new System.Drawing.Size(44, 22);
 			this.toc_minutes.TabIndex = 38;
+			this.toc_minutes.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
 			// 
 			// toc_hour
 			// 
@@ -577,6 +599,16 @@
 			// fogStartBase
 			// 
 			this.fogStartBase.Location = new System.Drawing.Point(570, 368);
+			this.fogStartBase.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.fogStartBase.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
 			this.fogStartBase.Name = "fogStartBase";
 			this.fogStartBase.Size = new System.Drawing.Size(44, 20);
 			this.fogStartBase.TabIndex = 60;
@@ -628,6 +660,16 @@
 			// fogForecastBase
 			// 
 			this.fogForecastBase.Location = new System.Drawing.Point(763, 370);
+			this.fogForecastBase.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.fogForecastBase.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
 			this.fogForecastBase.Name = "fogForecastBase";
 			this.fogForecastBase.Size = new System.Drawing.Size(44, 20);
 			this.fogForecastBase.TabIndex = 66;
