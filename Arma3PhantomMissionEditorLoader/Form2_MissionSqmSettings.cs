@@ -13,6 +13,7 @@ namespace Arma3PhantomMissionEditorLoader
 	public partial class Form2_MissionSqmSettings : Form
 	{
 		private const String MISSION_SQM_BACKUP = "mission.sqm.old";
+
 		private readonly String[] LIST_SCENARIO_DATA = {
 			"author", "overviewText", "overViewPicture", "onLoadMission", "loadScreen", "class Header"
 		}; 
@@ -73,14 +74,112 @@ namespace Arma3PhantomMissionEditorLoader
 							while (editingScenarioData && (line = sr.ReadLine()) != null)
 							{
 								isHandledScenarioData = true;
+
+								bool cmdNotAvail = true;
+								foreach (String cmd in LIST_SCENARIO_DATA)
+								{
+									if (line.Contains(cmd))
+									{
+										cmdNotAvail = false;
+										switch (cmd)
+										{
+											case "author":
+												break;
+											case "overviewText":
+												break;
+											case "overViewPicture":
+												break;
+											case "onLoadMission":
+												break;
+											case "loadScreen":
+												break;
+											case "class Header":
+												break;
+										}
+									}
+								}
+								if (cmdNotAvail)
+								{
+									sw.WriteLine(line);
+								}
 							}
 							while (editingCustomAttributes && (line = sr.ReadLine()) != null)
 							{
 								isHandledCustomAttributes = true;
+
+								bool cmdNotAvail = true;
+								foreach (String cmd in LIST_CUSTOM_ATTRIBUTES)
+								{
+									if (line.Contains(cmd))
+									{
+										cmdNotAvail = false;
+										switch (cmd)
+										{ 
+											case "class Category":
+												break;
+											case "name=\"Multiplayer\";":
+												break;
+											case "property=\"RespawnTemplates\";":
+												break;
+										}
+									}
+								}
+								if (cmdNotAvail)
+								{
+									sw.WriteLine(line);
+								}
 							}
 							while (editingIntel && (line = sr.ReadLine()) != null)
 							{
 								isHandledIntel = true;
+
+								bool cmdNotAvail = true;
+								foreach (String cmd in LIST_INTEL)
+								{
+									if (line.Contains(cmd))
+									{
+										cmdNotAvail = false;
+										switch (cmd)
+										{
+											case "overviewText":
+												break;
+											case "resistanceWest":
+												break;
+											case "resistanceEast":
+												break;
+											case "timeOfChanges":
+												break;
+											case "startWeather":
+												break;
+											case "startFog":
+												break;
+											case "forecastWeather":
+												break;
+											case "forecastFog":
+												break;
+											case "startFogBase":
+												break;
+											case "forecastFogBase":
+												break;
+											case "startFogDecay":
+												break;
+											case "forecastFogDecay":
+												break;
+											case "year":
+												break;
+											case "day":
+												break;
+											case "hour":
+												break;
+											case "minute":
+												break;
+										}
+									}
+								}
+								if (cmdNotAvail)
+								{
+									sw.WriteLine(line);
+								}
 							}
 						}
 						else if (line.Contains("class ScenarioData"))
