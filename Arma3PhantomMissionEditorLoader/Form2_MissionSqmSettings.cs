@@ -14,21 +14,6 @@ namespace Arma3PhantomMissionEditorLoader
 	{
 		private const String MISSION_SQM_BACKUP = "mission.sqm.old";
 
-		private readonly String[] LIST_SCENARIO_DATA = {
-			"author", "overviewText", "overViewPicture", "onLoadMission", "loadScreen", "class Header"
-		}; 
-		private readonly String[] LIST_CUSTOM_ATTRIBUTES = {
-			"class Category", "name=\"Multiplayer\";", "property=\"RespawnTemplates\";"
-		}; 
-		private readonly String[] LIST_INTEL = {
-			"overviewText",
-			"resistanceWest", "resistanceEast",
-			"timeOfChanges",
-			"startWeather", "startFog", "forecastWeather", "forecastFog",
-			"year", "day", "hour", "minute", 
-			"startFogBase", "forecastFogBase", "startFogDecay", "forecastFogDecay"
-		}; 
-
 		private String missionSQM;
 		private String missionDirectory;
 
@@ -36,6 +21,12 @@ namespace Arma3PhantomMissionEditorLoader
 		private bool isHandledScenarioData;
 		private bool isHandledCustomAttributes;
 		private bool isHandledIntel;
+
+		// Parameters for each sections of the mission.sqm (ScenarioData, CustomAttributes, Intel)
+		//	If there are still any parameters that are not set, fill them in.
+		private Dictionary<string, bool> scenarioDataDict;
+		private Dictionary<string, bool> customAttributesDict;
+		private Dictionary<string, bool> intelDict;
 
 		public Form2_MissionSqmSettings(String missionSQM, String missionDirectory)
 		{
@@ -46,6 +37,23 @@ namespace Arma3PhantomMissionEditorLoader
 			isHandledScenarioData = false;
 			isHandledCustomAttributes = false;
 			isHandledIntel = false;
+
+			scenarioDataDict = new Dictionary<string, bool>()
+			{
+				{"author", false }, {"overviewText", false }, {"overViewPicture", false }, {"onLoadMission", false },
+				{"loadScreen", false }, {"aIKills", false }, {"respawn", false }, {"class Header", false }
+			};
+			customAttributesDict = new Dictionary<string, bool>()
+			{
+				{"class Category" , false}, {"name=\"Multiplayer\";" , false}, {"property=\"RespawnTemplates\";", false}
+			};
+			intelDict = new Dictionary<string, bool>()
+			{
+				{"overviewText", false}, {"resistanceWest", false}, {"resistanceEast", false}, {"timeOfChanges", false},
+				{"startWeather", false}, {"startFog", false}, {"forecastWeather", false}, {"forecastFog", false},
+				{"year", false}, {"day", false}, {"hour", false}, {"minute", false},
+				{"startFogBase", false}, {"forecastFogBase", false}, {"startFogDecay", false}, {"forecastFogDecay", false},
+			};
 		}
 
 		private void missionsqm_button_Click(object sender, EventArgs e)
@@ -76,7 +84,7 @@ namespace Arma3PhantomMissionEditorLoader
 								isHandledScenarioData = true;
 
 								bool cmdNotAvail = true;
-								foreach (String cmd in LIST_SCENARIO_DATA)
+								foreach (String cmd in scenarioDataDict.Keys)
 								{
 									if (line.Contains(cmd))
 									{
@@ -84,14 +92,20 @@ namespace Arma3PhantomMissionEditorLoader
 										switch (cmd)
 										{
 											case "author":
+												sw.WriteLine("	author=\"" + textbox_author.Text.Replace("\"", "\"\"") + "\";");
 												break;
 											case "overviewText":
+												sw.WriteLine("	overviewText=\"" + textbox_overview_text.Text.Replace("\"", "\"\"") + "\";");
 												break;
 											case "overViewPicture":
 												break;
 											case "onLoadMission":
 												break;
 											case "loadScreen":
+												break;
+											case "aIKills":
+												break;
+											case "respawn":
 												break;
 											case "class Header":
 												break;
@@ -108,7 +122,7 @@ namespace Arma3PhantomMissionEditorLoader
 								isHandledCustomAttributes = true;
 
 								bool cmdNotAvail = true;
-								foreach (String cmd in LIST_CUSTOM_ATTRIBUTES)
+								foreach (String cmd in customAttributesDict.Keys)
 								{
 									if (line.Contains(cmd))
 									{
@@ -134,7 +148,7 @@ namespace Arma3PhantomMissionEditorLoader
 								isHandledIntel = true;
 
 								bool cmdNotAvail = true;
-								foreach (String cmd in LIST_INTEL)
+								foreach (String cmd in intelDict.Keys)
 								{
 									if (line.Contains(cmd))
 									{
