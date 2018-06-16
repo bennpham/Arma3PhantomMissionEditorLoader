@@ -92,7 +92,8 @@ namespace Arma3PhantomMissionEditorLoader
 								isHandledScenarioData = true;
 
 								bool cmdNotAvail = true;
-								foreach (String cmd in scenarioDataDict.Keys)
+								List<string> keys = new List<string>(scenarioDataDict.Keys);
+								foreach (String cmd in keys)
 								{
 									if (line.Contains(cmd))
 									{
@@ -141,7 +142,8 @@ namespace Arma3PhantomMissionEditorLoader
 													isHandledScenarioDataHeader = true;
 
 													bool cmd2NotAvail = true;
-													foreach (String cmd2 in scenarioDataHeaderDict.Keys)
+													List<string> keys2 = new List<string>(scenarioDataHeaderDict.Keys);
+													foreach (String cmd2 in keys2)
 													{
 														if (line.Contains(cmd2))
 														{
@@ -183,7 +185,8 @@ namespace Arma3PhantomMissionEditorLoader
 								isHandledCustomAttributes = true;
 
 								bool cmdNotAvail = true;
-								foreach (String cmd in customAttributesDict.Keys)
+								List<string> keys = new List<string>(customAttributesDict.Keys);
+								foreach (String cmd in keys)
 								{
 									if (line.Contains(cmd))
 									{
@@ -212,7 +215,8 @@ namespace Arma3PhantomMissionEditorLoader
 								isHandledIntel = true;
 
 								bool cmdNotAvail = true;
-								foreach (String cmd in intelDict.Keys)
+								List<string> keys = new List<string>(intelDict.Keys);
+								foreach (String cmd in keys)
 								{
 									if (line.Contains(cmd))
 									{
