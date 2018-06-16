@@ -165,6 +165,35 @@ namespace Arma3PhantomMissionEditorLoader
 															}
 														}
 													}
+													// Checks unmarked ScenarioData Header items, fill them in, then exit the loop
+													if (line.Equals("	};"))
+													{
+														cmd2NotAvail = false;
+														List<string> unusedKeys2 = new List<string>(scenarioDataHeaderDict.Keys);
+														foreach (String unusedCmd in unusedKeys2)
+														{
+															if (!scenarioDataHeaderDict[unusedCmd])
+															{
+																switch(unusedCmd)
+																{
+																	case "gameType":
+																		sw.WriteLine("		gameType=\"Coop\";");
+																		this.scenarioDataHeaderDict["gameType"] = true;
+																		break;
+																	case "minPlayers":
+																		sw.WriteLine("		minPlayer=" + min_players.Value.ToString() + ";");
+																		this.scenarioDataHeaderDict["minPlayers"] = true;
+																		break;
+																	case "maxPlayers":
+																		sw.WriteLine("		maxPlayer=" + max_players.Value.ToString() + ";");
+																		this.scenarioDataHeaderDict["maxPlayers"] = true;
+																		break;
+																}
+															}
+														}
+														sw.WriteLine("	};");
+													}
+
 													if (cmd2NotAvail)
 													{
 														sw.WriteLine(line);
@@ -301,6 +330,11 @@ namespace Arma3PhantomMissionEditorLoader
 			// GoTo Generate infotext Form
 			//		Pick Name of Mission to Display (already have date and Author)
 			Environment.Exit(0); // TODO placeholder
+		}
+
+		private void test(System.IO.StreamWriter sw)
+		{
+
 		}
 	}
 }
