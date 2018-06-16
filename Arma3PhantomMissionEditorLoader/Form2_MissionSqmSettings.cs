@@ -19,12 +19,14 @@ namespace Arma3PhantomMissionEditorLoader
 
 		// Check to see if all sections of mission.sqm is handled (ScenarioData, CustomAttributes, Intel)
 		private bool isHandledScenarioData;
+		private bool isHandledScenarioDataHeader;
 		private bool isHandledCustomAttributes;
 		private bool isHandledIntel;
 
 		// Parameters for each sections of the mission.sqm (ScenarioData, CustomAttributes, Intel)
 		//	If there are still any parameters that are not set, fill them in.
 		private Dictionary<string, bool> scenarioDataDict;
+		private Dictionary<string, bool> scenarioDataHeaderDict;
 		private Dictionary<string, bool> customAttributesDict;
 		private Dictionary<string, bool> intelDict;
 
@@ -35,6 +37,7 @@ namespace Arma3PhantomMissionEditorLoader
 			this.missionDirectory = missionDirectory;
 
 			isHandledScenarioData = false;
+			isHandledScenarioDataHeader = false;
 			isHandledCustomAttributes = false;
 			isHandledIntel = false;
 
@@ -42,6 +45,10 @@ namespace Arma3PhantomMissionEditorLoader
 			{
 				{"author", false }, {"overviewText", false }, {"overViewPicture", false }, {"onLoadMission", false },
 				{"loadScreen", false }, {"aIKills", false }, {"respawn", false }, {"class Header", false }
+			};
+			scenarioDataHeaderDict = new Dictionary<string, bool>()
+			{
+				{"gameType", false }, {"minPlayers", false }, {"maxPlayers", false }
 			};
 			customAttributesDict = new Dictionary<string, bool>()
 			{
@@ -70,6 +77,7 @@ namespace Arma3PhantomMissionEditorLoader
 				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(this.missionSQM))
 				{
 					bool editingScenarioData = false;
+					bool editingScenarioHeaderData = false;
 					bool editingCustomAttributes = false;
 					bool editingIntel = false;
 
@@ -93,21 +101,74 @@ namespace Arma3PhantomMissionEditorLoader
 										{
 											case "author":
 												sw.WriteLine("	author=\"" + textbox_author.Text.Replace("\"", "\"\"") + "\";");
+												this.scenarioDataDict["author"] = true;
 												break;
 											case "overviewText":
 												sw.WriteLine("	overviewText=\"" + textbox_overview_text.Text.Replace("\"", "\"\"") + "\";");
+												this.scenarioDataDict["overviewText"] = true;
 												break;
 											case "overViewPicture":
+												sw.WriteLine("	overViewPicture=\"images\\loadscreen.jpg\";");
+												this.scenarioDataDict["overViewPicture"] = true;
 												break;
 											case "onLoadMission":
+												sw.WriteLine("	onLoadMission=\"" + textBox_onLoadMission.Text.Replace("\"", "\"\"") + "\";");
+												this.scenarioDataDict["onLoadMission"] = true;
 												break;
 											case "loadScreen":
+												sw.WriteLine("	loadScreen=\"images\\loadscreen.jpg\";");
+												this.scenarioDataDict["loadScreen"] = true;
 												break;
 											case "aIKills":
+												if (checkBox_mp_allow_ai_score.Checked)
+												{
+													sw.WriteLine("	aIKills=1;");
+												}
+												this.scenarioDataDict["aIKills"] = true;
 												break;
 											case "respawn":
+												sw.WriteLine("	respawn=5;");
+												this.scenarioDataDict["respawn"] = true;
 												break;
 											case "class Header":
+												sw.WriteLine(line);
+												editingScenarioHeaderData = true;
+
+												// Loop through Header for ScenarioData and fill out gameType to Coop
+												//	then fill out minplayer and maxplayer
+												while (editingScenarioHeaderData && (line = sr.ReadLine()) != null)
+												{
+													isHandledScenarioDataHeader = true;
+
+													bool cmd2NotAvail = true;
+													foreach (String cmd2 in scenarioDataHeaderDict.Keys)
+													{
+														if (line.Contains(cmd2))
+														{
+															cmd2NotAvail = false;
+															switch (cmd)
+															{
+																case "gameType":
+																	sw.WriteLine("		gameType=\"Coop\";");
+																	this.scenarioDataHeaderDict["gameType"] = true;
+																	break;
+																case "minPlayers":
+																	sw.WriteLine("		minPlayer=" + min_players.Value.ToString() + ";");
+																	this.scenarioDataHeaderDict["minPlayers"] = true;
+																	break;
+																case "maxPlayers":
+																	sw.WriteLine("		maxPlayer=" + max_players.Value.ToString() + ";");
+																	this.scenarioDataHeaderDict["maxPlayers"] = true;
+																	break;
+															}
+														}
+													}
+													if (cmd2NotAvail)
+													{
+														sw.WriteLine(line);
+													}
+												}
+												this.scenarioDataDict["class Header"] = true;
 												break;
 										}
 									}
@@ -130,10 +191,13 @@ namespace Arma3PhantomMissionEditorLoader
 										switch (cmd)
 										{ 
 											case "class Category":
+												this.customAttributesDict["class Category"] = true;
 												break;
 											case "name=\"Multiplayer\";":
+												this.customAttributesDict["name=\"Multiplayer\";"] = true;
 												break;
 											case "property=\"RespawnTemplates\";":
+												this.customAttributesDict["property=\"RespawnTemplates\";"] = true;
 												break;
 										}
 									}
@@ -156,36 +220,52 @@ namespace Arma3PhantomMissionEditorLoader
 										switch (cmd)
 										{
 											case "overviewText":
+												this.intelDict["overviewText"] = true;
 												break;
 											case "resistanceWest":
+												this.intelDict["resistanceWest"] = true;
 												break;
 											case "resistanceEast":
+												this.intelDict["resistanceEast"] = true;
 												break;
 											case "timeOfChanges":
+												this.intelDict["timeOfChanges"] = true;
 												break;
 											case "startWeather":
+												this.intelDict["startWeather"] = true;
 												break;
 											case "startFog":
+												this.intelDict["startFog"] = true;
 												break;
 											case "forecastWeather":
+												this.intelDict["forecastWeather"] = true;
 												break;
 											case "forecastFog":
+												this.intelDict["forecastFog"] = true;
 												break;
 											case "startFogBase":
+												this.intelDict["startFogBase"] = true;
 												break;
 											case "forecastFogBase":
+												this.intelDict["forecastFogBase"] = true;
 												break;
 											case "startFogDecay":
+												this.intelDict["stateFogDecay"] = true;
 												break;
 											case "forecastFogDecay":
+												this.intelDict["forecastFogDecay"] = true;
 												break;
 											case "year":
+												this.intelDict["year"] = true;
 												break;
 											case "day":
+												this.intelDict["day"] = true;
 												break;
 											case "hour":
+												this.intelDict["hour"] = true;
 												break;
 											case "minute":
+												this.intelDict["minute"] = true;
 												break;
 										}
 									}
