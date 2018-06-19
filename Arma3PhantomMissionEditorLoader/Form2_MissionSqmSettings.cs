@@ -77,7 +77,6 @@ namespace Arma3PhantomMissionEditorLoader
 				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(this.missionSQM))
 				{
 					bool editingScenarioData = false;
-					bool editingScenarioHeaderData = false;
 					bool editingCustomAttributes = false;
 					bool editingIntel = false;
 
@@ -133,45 +132,9 @@ namespace Arma3PhantomMissionEditorLoader
 												break;
 											case "class Header":
 												sw.WriteLine(line);
-												editingScenarioHeaderData = true;
-
 												// Loop through Header for ScenarioData and fill out gameType to Coop
 												//	then fill out minplayer and maxplayer
-												while (editingScenarioHeaderData && (line = sr.ReadLine()) != null)
-												{
-													isHandledScenarioDataHeader = true;
-
-													bool cmd2NotAvail = true;
-													List<string> keys2 = new List<string>(scenarioDataHeaderDict.Keys);
-													foreach (String cmd2 in keys2)
-													{
-														if (line.Contains(cmd2))
-														{
-															cmd2NotAvail = false;
-															writeScenarioDataHeader(sw, cmd2);
-														}
-													}
-													// Checks unmarked ScenarioData Header items, fill them in, then exit the loop
-													if (line.Equals("	};"))
-													{
-														cmd2NotAvail = false;
-														List<string> unusedKeys2 = new List<string>(scenarioDataHeaderDict.Keys);
-														foreach (String unusedCmd in unusedKeys2)
-														{
-															if (!scenarioDataHeaderDict[unusedCmd])
-															{
-																writeScenarioDataHeader(sw, unusedCmd);
-															}
-														}
-														sw.WriteLine("	};");
-														editingScenarioHeaderData = false;
-													}
-
-													if (cmd2NotAvail)
-													{
-														sw.WriteLine(line);
-													}
-												}
+												handleScenarioDataHeader(sr, sw);
 												this.scenarioDataDict["class Header"] = true;
 												break;
 										}
@@ -303,6 +266,49 @@ namespace Arma3PhantomMissionEditorLoader
 			// GoTo Generate infotext Form
 			//		Pick Name of Mission to Display (already have date and Author)
 			Environment.Exit(0); // TODO placeholder
+		}
+
+		// Handles calling functions for ScenarioData Header section
+		private void handleScenarioDataHeader(System.IO.StreamReader sr, System.IO.StreamWriter sw)
+		{
+			String line = null;
+			bool editingScenarioHeaderData = true; 
+
+			while (editingScenarioHeaderData && (line = sr.ReadLine()) != null)
+			{
+				isHandledScenarioDataHeader = true;
+
+				bool cmd2NotAvail = true;
+				List<string> keys2 = new List<string>(scenarioDataHeaderDict.Keys);
+				foreach (String cmd2 in keys2)
+				{
+					if (line.Contains(cmd2))
+					{
+						cmd2NotAvail = false;
+						writeScenarioDataHeader(sw, cmd2);
+					}
+				}
+				// Checks unmarked ScenarioData Header items, fill them in, then exit the loop
+				if (line.Equals("	};"))
+				{
+					cmd2NotAvail = false;
+					List<string> unusedKeys2 = new List<string>(scenarioDataHeaderDict.Keys);
+					foreach (String unusedCmd in unusedKeys2)
+					{
+						if (!scenarioDataHeaderDict[unusedCmd])
+						{
+							writeScenarioDataHeader(sw, unusedCmd);
+						}
+					}
+					sw.WriteLine("	};");
+					editingScenarioHeaderData = false;
+				}
+
+				if (cmd2NotAvail)
+				{
+					sw.WriteLine(line);
+				}
+			}
 		}
 
 		// Helper function to write scenarioData Header information to mission.sqm
