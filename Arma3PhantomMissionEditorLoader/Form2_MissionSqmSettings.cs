@@ -69,7 +69,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// Rename old mission.sqm to mission.sqm.old in case file gets corrupted
 			System.IO.File.Move(this.missionSQM, oldMissionSqm);
-			
+
 			// Setup mission.sqm settings from extracted settings above 
 			String line = null;
 			using (System.IO.StreamReader sr = new System.IO.StreamReader(oldMissionSqm))
@@ -148,21 +148,7 @@ namespace Arma3PhantomMissionEditorLoader
 														if (line.Contains(cmd2))
 														{
 															cmd2NotAvail = false;
-															switch (cmd)
-															{
-																case "gameType":
-																	sw.WriteLine("		gameType=\"Coop\";");
-																	this.scenarioDataHeaderDict["gameType"] = true;
-																	break;
-																case "minPlayers":
-																	sw.WriteLine("		minPlayer=" + min_players.Value.ToString() + ";");
-																	this.scenarioDataHeaderDict["minPlayers"] = true;
-																	break;
-																case "maxPlayers":
-																	sw.WriteLine("		maxPlayer=" + max_players.Value.ToString() + ";");
-																	this.scenarioDataHeaderDict["maxPlayers"] = true;
-																	break;
-															}
+															writeScenarioDataHeader(sw, cmd2);
 														}
 													}
 													// Checks unmarked ScenarioData Header items, fill them in, then exit the loop
@@ -174,21 +160,7 @@ namespace Arma3PhantomMissionEditorLoader
 														{
 															if (!scenarioDataHeaderDict[unusedCmd])
 															{
-																switch(unusedCmd)
-																{
-																	case "gameType":
-																		sw.WriteLine("		gameType=\"Coop\";");
-																		this.scenarioDataHeaderDict["gameType"] = true;
-																		break;
-																	case "minPlayers":
-																		sw.WriteLine("		minPlayer=" + min_players.Value.ToString() + ";");
-																		this.scenarioDataHeaderDict["minPlayers"] = true;
-																		break;
-																	case "maxPlayers":
-																		sw.WriteLine("		maxPlayer=" + max_players.Value.ToString() + ";");
-																		this.scenarioDataHeaderDict["maxPlayers"] = true;
-																		break;
-																}
+																writeScenarioDataHeader(sw, unusedCmd);
 															}
 														}
 														sw.WriteLine("	};");
@@ -221,7 +193,7 @@ namespace Arma3PhantomMissionEditorLoader
 									{
 										cmdNotAvail = false;
 										switch (cmd)
-										{ 
+										{
 											case "class Category":
 												this.customAttributesDict["class Category"] = true;
 												break;
@@ -322,7 +294,7 @@ namespace Arma3PhantomMissionEditorLoader
 							editingIntel = true;
 						}
 
-						sw.WriteLine(line);	
+						sw.WriteLine(line);
 					}
 				}
 			}
@@ -332,9 +304,24 @@ namespace Arma3PhantomMissionEditorLoader
 			Environment.Exit(0); // TODO placeholder
 		}
 
-		private void test(System.IO.StreamWriter sw)
+		// Helper function to write scenarioData Header information to mission.sqm
+		private void writeScenarioDataHeader(System.IO.StreamWriter sw, String cmd)
 		{
-
+			switch (cmd)
+			{
+				case "gameType":
+					sw.WriteLine("		gameType=\"Coop\";");
+					this.scenarioDataHeaderDict["gameType"] = true;
+					break;
+				case "minPlayers":
+					sw.WriteLine("		minPlayer=" + min_players.Value.ToString() + ";");
+					this.scenarioDataHeaderDict["minPlayers"] = true;
+					break;
+				case "maxPlayers":
+					sw.WriteLine("		maxPlayer=" + max_players.Value.ToString() + ";");
+					this.scenarioDataHeaderDict["maxPlayers"] = true;
+					break;
+			}
 		}
 	}
 }
