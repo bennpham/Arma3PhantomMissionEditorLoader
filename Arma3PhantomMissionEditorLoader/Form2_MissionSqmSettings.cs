@@ -164,6 +164,7 @@ namespace Arma3PhantomMissionEditorLoader
 															}
 														}
 														sw.WriteLine("	};");
+														editingScenarioHeaderData = false;
 													}
 
 													if (cmd2NotAvail)
