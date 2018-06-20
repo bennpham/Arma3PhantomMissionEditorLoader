@@ -86,41 +86,8 @@ namespace Arma3PhantomMissionEditorLoader
 						{
 							sw.WriteLine(line); // Writes open bracket to mission.sqm
 
-							while (editingScenarioData && (line = sr.ReadLine()) != null)
-							{
-								isHandledScenarioData = true;
+							editingScenarioData = handleScenarioData(sr, sw, editingScenarioData);
 
-								bool cmdNotAvail = true;
-								List<string> keys = new List<string>(scenarioDataDict.Keys);
-								foreach (String cmd in keys)
-								{
-									if (line.Contains(cmd))
-									{
-										cmdNotAvail = false;
-										writeScenarioData(sr, sw, cmd);
-									}
-								}
-								// Checks unmarked ScenarioData items, fill them in, then exit the loop
-								if (line.Equals("};"))
-								{
-									cmdNotAvail = false;
-									List<string> unusedKeys = new List<string>(scenarioDataDict.Keys);
-									foreach (String unusedCmd in unusedKeys)
-									{
-										if (!scenarioDataHeaderDict[unusedCmd])
-										{
-											writeScenarioData(sr, sw, unusedCmd);
-										}
-									}
-									sw.WriteLine("};");
-									editingScenarioData = false;
-								}
-
-								if (cmdNotAvail)
-								{
-									sw.WriteLine(line);
-								}
-							}
 							while (editingCustomAttributes && (line = sr.ReadLine()) != null)
 							{
 								isHandledCustomAttributes = true;
@@ -245,9 +212,45 @@ namespace Arma3PhantomMissionEditorLoader
 		}
 
 		// Handles calling functions for ScenarioData section
-		private void handleScenarioData(System.IO.StreamReader sr, System.IO.StreamWriter sw)
+		private bool handleScenarioData(System.IO.StreamReader sr, System.IO.StreamWriter sw, bool editingScenarioData)
 		{
-			// TODO
+			String line = null;
+			while (editingScenarioData && (line = sr.ReadLine()) != null)
+			{
+				isHandledScenarioData = true;
+
+				bool cmdNotAvail = true;
+				List<string> keys = new List<string>(scenarioDataDict.Keys);
+				foreach (String cmd in keys)
+				{
+					if (line.Contains(cmd))
+					{
+						cmdNotAvail = false;
+						writeScenarioData(sr, sw, cmd);
+					}
+				}
+				// Checks unmarked ScenarioData items, fill them in, then exit the loop
+				if (line.Equals("};"))
+				{
+					cmdNotAvail = false;
+					List<string> unusedKeys = new List<string>(scenarioDataDict.Keys);
+					foreach (String unusedCmd in unusedKeys)
+					{
+						if (!scenarioDataHeaderDict[unusedCmd])
+						{
+							writeScenarioData(sr, sw, unusedCmd);
+						}
+					}
+					sw.WriteLine("};");
+					editingScenarioData = false;
+				}
+
+				if (cmdNotAvail)
+				{
+					sw.WriteLine(line);
+				}
+			}
+			return false;
 		}
 
 		// Helper function to write scenarioData information to mission.sqm
