@@ -100,6 +100,22 @@ namespace Arma3PhantomMissionEditorLoader
 										writeScenarioData(sr, sw, cmd);
 									}
 								}
+								// Checks unmarked ScenarioData items, fill them in, then exit the loop
+								if (line.Equals("};"))
+								{
+									cmdNotAvail = false;
+									List<string> unusedKeys = new List<string>(scenarioDataDict.Keys);
+									foreach (String unusedCmd in unusedKeys)
+									{
+										if (!scenarioDataHeaderDict[unusedCmd])
+										{
+											writeScenarioData(sr, sw, unusedCmd);
+										}
+									}
+									sw.WriteLine("};");
+									editingScenarioData = false;
+								}
+
 								if (cmdNotAvail)
 								{
 									sw.WriteLine(line);
