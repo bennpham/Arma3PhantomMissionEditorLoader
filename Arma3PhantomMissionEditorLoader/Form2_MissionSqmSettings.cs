@@ -97,47 +97,7 @@ namespace Arma3PhantomMissionEditorLoader
 									if (line.Contains(cmd))
 									{
 										cmdNotAvail = false;
-										switch (cmd)
-										{
-											case "author":
-												sw.WriteLine("	author=\"" + textbox_author.Text.Replace("\"", "\"\"") + "\";");
-												this.scenarioDataDict["author"] = true;
-												break;
-											case "overviewText":
-												sw.WriteLine("	overviewText=\"" + textbox_overview_text.Text.Replace("\"", "\"\"") + "\";");
-												this.scenarioDataDict["overviewText"] = true;
-												break;
-											case "overViewPicture":
-												sw.WriteLine("	overViewPicture=\"images\\loadscreen.jpg\";");
-												this.scenarioDataDict["overViewPicture"] = true;
-												break;
-											case "onLoadMission":
-												sw.WriteLine("	onLoadMission=\"" + textBox_onLoadMission.Text.Replace("\"", "\"\"") + "\";");
-												this.scenarioDataDict["onLoadMission"] = true;
-												break;
-											case "loadScreen":
-												sw.WriteLine("	loadScreen=\"images\\loadscreen.jpg\";");
-												this.scenarioDataDict["loadScreen"] = true;
-												break;
-											case "aIKills":
-												if (checkBox_mp_allow_ai_score.Checked)
-												{
-													sw.WriteLine("	aIKills=1;");
-												}
-												this.scenarioDataDict["aIKills"] = true;
-												break;
-											case "respawn":
-												sw.WriteLine("	respawn=5;");
-												this.scenarioDataDict["respawn"] = true;
-												break;
-											case "class Header":
-												sw.WriteLine(line);
-												// Loop through Header for ScenarioData and fill out gameType to Coop
-												//	then fill out minplayer and maxplayer
-												handleScenarioDataHeader(sr, sw);
-												this.scenarioDataDict["class Header"] = true;
-												break;
-										}
+										writeScenarioData(sr, sw, cmd);
 									}
 								}
 								if (cmdNotAvail)
