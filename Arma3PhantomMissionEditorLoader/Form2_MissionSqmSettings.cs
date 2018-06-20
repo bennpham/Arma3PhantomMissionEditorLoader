@@ -268,6 +268,58 @@ namespace Arma3PhantomMissionEditorLoader
 			Environment.Exit(0); // TODO placeholder
 		}
 
+		// Handles calling functions for ScenarioData section
+		private void handleScenarioData(System.IO.StreamReader sr, System.IO.StreamWriter sw)
+		{
+			// TODO
+		}
+
+		// Helper function to write scenarioData information to mission.sqm
+		private void writeScenarioData(System.IO.StreamReader sr, System.IO.StreamWriter sw, String cmd)
+		{
+			switch (cmd)
+			{
+				case "author":
+					sw.WriteLine("	author=\"" + textbox_author.Text.Replace("\"", "\"\"") + "\";");
+					this.scenarioDataDict["author"] = true;
+					break;
+				case "overviewText":
+					sw.WriteLine("	overviewText=\"" + textbox_overview_text.Text.Replace("\"", "\"\"") + "\";");
+					this.scenarioDataDict["overviewText"] = true;
+					break;
+				case "overViewPicture":
+					sw.WriteLine("	overViewPicture=\"images\\loadscreen.jpg\";");
+					this.scenarioDataDict["overViewPicture"] = true;
+					break;
+				case "onLoadMission":
+					sw.WriteLine("	onLoadMission=\"" + textBox_onLoadMission.Text.Replace("\"", "\"\"") + "\";");
+					this.scenarioDataDict["onLoadMission"] = true;
+					break;
+				case "loadScreen":
+					sw.WriteLine("	loadScreen=\"images\\loadscreen.jpg\";");
+					this.scenarioDataDict["loadScreen"] = true;
+					break;
+				case "aIKills":
+					if (checkBox_mp_allow_ai_score.Checked)
+					{
+						sw.WriteLine("	aIKills=1;");
+					}
+					this.scenarioDataDict["aIKills"] = true;
+					break;
+				case "respawn":
+					sw.WriteLine("	respawn=5;");
+					this.scenarioDataDict["respawn"] = true;
+					break;
+				case "class Header":
+					sw.WriteLine(cmd);
+					// Loop through Header for ScenarioData and fill out gameType to Coop
+					//	then fill out minplayer and maxplayer
+					handleScenarioDataHeader(sr, sw);
+					this.scenarioDataDict["class Header"] = true;
+					break;
+			}
+		}
+
 		// Handles calling functions for ScenarioData Header section
 		private void handleScenarioDataHeader(System.IO.StreamReader sr, System.IO.StreamWriter sw)
 		{
