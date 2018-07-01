@@ -290,7 +290,7 @@ namespace Arma3PhantomMissionEditorLoader
 					this.scenarioDataDict["respawn"] = true;
 					break;
 				case "class Header":
-					sw.WriteLine(cmd);
+					sw.WriteLine("	class Header");
 					// Loop through Header for ScenarioData and fill out gameType to Coop
 					//	then fill out minplayer and maxplayer
 					handleScenarioDataHeader(sr, sw);
@@ -352,11 +352,11 @@ namespace Arma3PhantomMissionEditorLoader
 					this.scenarioDataHeaderDict["gameType"] = true;
 					break;
 				case "minPlayers":
-					sw.WriteLine("		minPlayer=" + min_players.Value.ToString() + ";");
+					sw.WriteLine("		minPlayers=" + min_players.Value.ToString() + ";");
 					this.scenarioDataHeaderDict["minPlayers"] = true;
 					break;
 				case "maxPlayers":
-					sw.WriteLine("		maxPlayer=" + max_players.Value.ToString() + ";");
+					sw.WriteLine("		maxPlayers=" + max_players.Value.ToString() + ";");
 					this.scenarioDataHeaderDict["maxPlayers"] = true;
 					break;
 			}
