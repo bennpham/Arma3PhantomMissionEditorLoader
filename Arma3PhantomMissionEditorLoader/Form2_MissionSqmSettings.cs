@@ -99,6 +99,7 @@ namespace Arma3PhantomMissionEditorLoader
 									if (line.Contains(cmd))
 									{
 										cmdNotAvail = false;
+										sw.WriteLine(line);
 										switch (cmd)
 										{
 											case "class Category":
