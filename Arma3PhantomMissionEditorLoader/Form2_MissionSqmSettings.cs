@@ -236,7 +236,7 @@ namespace Arma3PhantomMissionEditorLoader
 					List<string> unusedKeys = new List<string>(scenarioDataDict.Keys);
 					foreach (String unusedCmd in unusedKeys)
 					{
-						if (!scenarioDataHeaderDict[unusedCmd])
+						if (!scenarioDataDict[unusedCmd])
 						{
 							writeScenarioData(sr, sw, unusedCmd);
 						}
