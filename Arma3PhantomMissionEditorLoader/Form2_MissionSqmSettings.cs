@@ -87,38 +87,8 @@ namespace Arma3PhantomMissionEditorLoader
 							sw.WriteLine(line); // Writes open bracket to mission.sqm
 
 							editingScenarioData = handleScenarioData(sr, sw, editingScenarioData);
+							editingCustomAttributes = handleCustomAttributes(sr, sw, editingCustomAttributes);
 
-							while (editingCustomAttributes && (line = sr.ReadLine()) != null)
-							{
-								isHandledCustomAttributes = true;
-
-								bool cmdNotAvail = true;
-								List<string> keys = new List<string>(customAttributesDict.Keys);
-								foreach (String cmd in keys)
-								{
-									if (line.Contains(cmd))
-									{
-										cmdNotAvail = false;
-										sw.WriteLine(line);
-										switch (cmd)
-										{
-											case "class Category":
-												this.customAttributesDict["class Category"] = true;
-												break;
-											case "name=\"Multiplayer\";":
-												this.customAttributesDict["name=\"Multiplayer\";"] = true;
-												break;
-											case "property=\"RespawnTemplates\";":
-												this.customAttributesDict["property=\"RespawnTemplates\";"] = true;
-												break;
-										}
-									}
-								}
-								if (cmdNotAvail)
-								{
-									sw.WriteLine(line);
-								}
-							}
 							while (editingIntel && (line = sr.ReadLine()) != null)
 							{
 								isHandledIntel = true;
@@ -359,6 +329,51 @@ namespace Arma3PhantomMissionEditorLoader
 				case "maxPlayers":
 					sw.WriteLine("		maxPlayers=" + max_players.Value.ToString() + ";");
 					this.scenarioDataHeaderDict["maxPlayers"] = true;
+					break;
+			}
+		}
+
+		// Handles calling fucntions for CustomAttributes
+		private bool handleCustomAttributes(System.IO.StreamReader sr, System.IO.StreamWriter sw, bool editingCustomAttributes)
+		{
+			String line = null;
+			while (editingCustomAttributes && (line = sr.ReadLine()) != null)
+			{
+				isHandledCustomAttributes = true;
+
+				bool cmdNotAvail = true;
+				List<string> keys = new List<string>(customAttributesDict.Keys);
+				foreach (String cmd in keys)
+				{
+					if (line.Contains(cmd))
+					{
+						cmdNotAvail = false;
+						sw.WriteLine(line);
+						writeCustomAttributes(sr, sw, cmd);
+					}
+				}
+				if (cmdNotAvail)
+				{
+					sw.WriteLine(line);
+				}
+			}
+
+			return false;
+		}
+
+		// Helper function to write CustomAttributes information to mission.sqm
+		private void writeCustomAttributes(System.IO.StreamReader sr, System.IO.StreamWriter sw, String cmd)
+		{
+			switch (cmd)
+			{
+				case "class Category":
+					this.customAttributesDict["class Category"] = true;
+					break;
+				case "name=\"Multiplayer\";":
+					this.customAttributesDict["name=\"Multiplayer\";"] = true;
+					break;
+				case "property=\"RespawnTemplates\";":
+					this.customAttributesDict["property=\"RespawnTemplates\";"] = true;
 					break;
 			}
 		}
