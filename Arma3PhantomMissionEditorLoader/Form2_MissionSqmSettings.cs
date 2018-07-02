@@ -82,6 +82,8 @@ namespace Arma3PhantomMissionEditorLoader
 
 					while ((line = sr.ReadLine()) != null)
 					{
+						/* Check to see whether we're editing mission.sqm or if not, just copy the mission.sqm 
+						 *	line as is, otherwise, modify that attribute for the mission.sqm */
 						if (editingScenarioData || editingCustomAttributes || editingIntel)
 						{
 							sw.WriteLine(line); // Writes open bracket to mission.sqm
@@ -90,7 +92,15 @@ namespace Arma3PhantomMissionEditorLoader
 							editingCustomAttributes = handleCustomAttributes(sr, sw, editingCustomAttributes);
 							editingIntel = handleIntel(sr, sw, editingIntel);
 						}
-						else if (line.Contains("class ScenarioData"))
+						else
+						{
+							sw.WriteLine(line);
+						}
+
+						/* If line contains either class ScenarioData, class CustomAttributes, or 
+						 *  class Intel, enable editing for them and modify their parameters based on 
+						 *  whatever the user set them to be. */
+						if (line.Contains("class ScenarioData"))
 						{
 							editingScenarioData = true;
 						}
@@ -102,8 +112,6 @@ namespace Arma3PhantomMissionEditorLoader
 						{
 							editingIntel = true;
 						}
-
-						sw.WriteLine(line);
 					}
 				}
 			}
