@@ -88,76 +88,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 							editingScenarioData = handleScenarioData(sr, sw, editingScenarioData);
 							editingCustomAttributes = handleCustomAttributes(sr, sw, editingCustomAttributes);
-
-							while (editingIntel && (line = sr.ReadLine()) != null)
-							{
-								isHandledIntel = true;
-
-								bool cmdNotAvail = true;
-								List<string> keys = new List<string>(intelDict.Keys);
-								foreach (String cmd in keys)
-								{
-									if (line.Contains(cmd))
-									{
-										cmdNotAvail = false;
-										switch (cmd)
-										{
-											case "overviewText":
-												this.intelDict["overviewText"] = true;
-												break;
-											case "resistanceWest":
-												this.intelDict["resistanceWest"] = true;
-												break;
-											case "resistanceEast":
-												this.intelDict["resistanceEast"] = true;
-												break;
-											case "timeOfChanges":
-												this.intelDict["timeOfChanges"] = true;
-												break;
-											case "startWeather":
-												this.intelDict["startWeather"] = true;
-												break;
-											case "startFog":
-												this.intelDict["startFog"] = true;
-												break;
-											case "forecastWeather":
-												this.intelDict["forecastWeather"] = true;
-												break;
-											case "forecastFog":
-												this.intelDict["forecastFog"] = true;
-												break;
-											case "startFogBase":
-												this.intelDict["startFogBase"] = true;
-												break;
-											case "forecastFogBase":
-												this.intelDict["forecastFogBase"] = true;
-												break;
-											case "startFogDecay":
-												this.intelDict["stateFogDecay"] = true;
-												break;
-											case "forecastFogDecay":
-												this.intelDict["forecastFogDecay"] = true;
-												break;
-											case "year":
-												this.intelDict["year"] = true;
-												break;
-											case "day":
-												this.intelDict["day"] = true;
-												break;
-											case "hour":
-												this.intelDict["hour"] = true;
-												break;
-											case "minute":
-												this.intelDict["minute"] = true;
-												break;
-										}
-									}
-								}
-								if (cmdNotAvail)
-								{
-									sw.WriteLine(line);
-								}
-							}
+							editingIntel = handleIntel(sr, sw, editingIntel);
 						}
 						else if (line.Contains("class ScenarioData"))
 						{
@@ -333,7 +264,7 @@ namespace Arma3PhantomMissionEditorLoader
 			}
 		}
 
-		// Handles calling fucntions for CustomAttributes
+		// Handles calling functions for CustomAttributes
 		private bool handleCustomAttributes(System.IO.StreamReader sr, System.IO.StreamWriter sw, bool editingCustomAttributes)
 		{
 			String line = null;
@@ -374,6 +305,89 @@ namespace Arma3PhantomMissionEditorLoader
 					break;
 				case "property=\"RespawnTemplates\";":
 					this.customAttributesDict["property=\"RespawnTemplates\";"] = true;
+					break;
+			}
+		}
+
+		// Handle calling functions for Intel section
+		private bool handleIntel(System.IO.StreamReader sr, System.IO.StreamWriter sw, bool editingIntel)
+		{
+			String line = null;
+			while (editingIntel && (line = sr.ReadLine()) != null)
+			{
+				isHandledIntel = true;
+
+				bool cmdNotAvail = true;
+				List<string> keys = new List<string>(intelDict.Keys);
+				foreach (String cmd in keys)
+				{
+					if (line.Contains(cmd))
+					{
+						cmdNotAvail = false;
+						writeIntel(sr, sw, cmd);
+					}
+				}
+				if (cmdNotAvail)
+				{
+					sw.WriteLine(line);
+				}
+			}
+
+			return false;
+		}
+
+		// Helper function to write Intel information to mission.sqm
+		private void writeIntel(System.IO.StreamReader sr, System.IO.StreamWriter sw, String cmd)
+		{
+			switch (cmd)
+			{
+				case "overviewText":
+					this.intelDict["overviewText"] = true;
+					break;
+				case "resistanceWest":
+					this.intelDict["resistanceWest"] = true;
+					break;
+				case "resistanceEast":
+					this.intelDict["resistanceEast"] = true;
+					break;
+				case "timeOfChanges":
+					this.intelDict["timeOfChanges"] = true;
+					break;
+				case "startWeather":
+					this.intelDict["startWeather"] = true;
+					break;
+				case "startFog":
+					this.intelDict["startFog"] = true;
+					break;
+				case "forecastWeather":
+					this.intelDict["forecastWeather"] = true;
+					break;
+				case "forecastFog":
+					this.intelDict["forecastFog"] = true;
+					break;
+				case "startFogBase":
+					this.intelDict["startFogBase"] = true;
+					break;
+				case "forecastFogBase":
+					this.intelDict["forecastFogBase"] = true;
+					break;
+				case "startFogDecay":
+					this.intelDict["stateFogDecay"] = true;
+					break;
+				case "forecastFogDecay":
+					this.intelDict["forecastFogDecay"] = true;
+					break;
+				case "year":
+					this.intelDict["year"] = true;
+					break;
+				case "day":
+					this.intelDict["day"] = true;
+					break;
+				case "hour":
+					this.intelDict["hour"] = true;
+					break;
+				case "minute":
+					this.intelDict["minute"] = true;
 					break;
 			}
 		}
