@@ -44,7 +44,7 @@ namespace Arma3PhantomMissionEditorLoader
 			scenarioDataDict = new Dictionary<string, bool>()
 			{
 				{"author", false }, {"overviewText", false }, {"overViewPicture", false }, {"onLoadMission", false },
-				{"loadScreen", false }, {"aIKills", false }, {"respawn", false }, {"class Header", false }
+				{"loadScreen", false }, {"aIKills", false }, {"respawn", false }, {"enableTeamSwitch", false}, {"class Header", false }
 			};
 			scenarioDataHeaderDict = new Dictionary<string, bool>()
 			{
@@ -198,6 +198,13 @@ namespace Arma3PhantomMissionEditorLoader
 				case "respawn":
 					sw.WriteLine("	respawn=5;");
 					this.scenarioDataDict["respawn"] = true;
+					break;
+				case "enableTeamSwitch":
+					if (!checkBox_mp_enable_team_switch.Checked)
+					{
+						sw.WriteLine("	enableTeamSwitch=0;");
+					}
+					this.scenarioDataDict["enableTeamSwitch"] = true;
 					break;
 				case "class Header":
 					sw.WriteLine("	class Header");
