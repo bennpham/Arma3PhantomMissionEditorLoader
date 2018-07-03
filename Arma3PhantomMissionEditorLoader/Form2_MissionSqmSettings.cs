@@ -50,10 +50,6 @@ namespace Arma3PhantomMissionEditorLoader
 			{
 				{"gameType", false }, {"minPlayers", false }, {"maxPlayers", false }
 			};
-			customAttributesDict = new Dictionary<string, bool>()
-			{
-				{"class Category" , false}, {"name=\"Multiplayer\";" , false}, {"property=\"RespawnTemplates\";", false}
-			};
 			intelDict = new Dictionary<string, bool>()
 			{
 				{"overviewText", false}, {"resistanceWest", false}, {"resistanceEast", false}, {"timeOfChanges", false},
@@ -121,6 +117,9 @@ namespace Arma3PhantomMissionEditorLoader
 			Environment.Exit(0); // TODO placeholder
 		}
 
+		/*===========================================================
+		 *  SCENARIO DATA
+		 *===========================================================*/
 		// Handles calling functions for ScenarioData section
 		private bool handleScenarioData(System.IO.StreamReader sr, System.IO.StreamWriter sw, bool editingScenarioData)
 		{
@@ -279,51 +278,136 @@ namespace Arma3PhantomMissionEditorLoader
 			}
 		}
 
+		/*===========================================================
+		 *  CUSTOM ATTRIBUTES
+		 *===========================================================*/
 		// Handles calling functions for CustomAttributes
+		/* WARNING! If you previous have other CustomAttributes values, they'll be removed and overwritten by the ones 
+		 *	generated in this file
+		 */
 		private bool handleCustomAttributes(System.IO.StreamReader sr, System.IO.StreamWriter sw, bool editingCustomAttributes)
 		{
-			String line = null;
-			while (editingCustomAttributes && (line = sr.ReadLine()) != null)
+			if (editingCustomAttributes)
 			{
 				isHandledCustomAttributes = true;
-
-				bool cmdNotAvail = true;
-				List<string> keys = new List<string>(customAttributesDict.Keys);
-				foreach (String cmd in keys)
-				{
-					if (line.Contains(cmd))
-					{
-						cmdNotAvail = false;
-						sw.WriteLine(line);
-						writeCustomAttributes(sr, sw, cmd);
-					}
-				}
-				if (cmdNotAvail)
-				{
-					sw.WriteLine(line);
-				}
+				sw.WriteLine("	class Category0");
+				sw.WriteLine("	{");
+				sw.WriteLine("		name=\"Multiplayer\";");
+				sw.WriteLine("		class Attribute0");
+				sw.WriteLine("		{");
+				sw.WriteLine("			property=\"RespawnButton\";");
+				sw.WriteLine("			expression=\"true\";");
+				sw.WriteLine("			class Value");
+				sw.WriteLine("			{");
+				sw.WriteLine("				class data");
+				sw.WriteLine("				{");
+				sw.WriteLine("					class type");
+				sw.WriteLine("					{");
+				sw.WriteLine("						type[]=");
+				sw.WriteLine("						{");
+				sw.WriteLine("							\"SCALAR\"");
+				sw.WriteLine("						};");
+				sw.WriteLine("					};");
+				allowManualRespawn(sw);
+				sw.WriteLine("				};");
+				sw.WriteLine("			};");
+				sw.WriteLine("		};");
+				sw.WriteLine("		class Attribute1");
+				sw.WriteLine("		{");
+				sw.WriteLine("			property=\"RespawnTemplates\";");
+				sw.WriteLine("			expression=\"true\";");
+				sw.WriteLine("			class Value");
+				sw.WriteLine("			{");
+				sw.WriteLine("				class data");
+				sw.WriteLine("				{");
+				sw.WriteLine("					class type");
+				sw.WriteLine("					{");
+				sw.WriteLine("						type[]=");
+				sw.WriteLine("						{");
+				sw.WriteLine("							\"ARRAY\"");
+				sw.WriteLine("						};");
+				sw.WriteLine("					};");
+				handleMPTemplatesRuleSets(sw);
+				sw.WriteLine("				};");
+				sw.WriteLine("			};");
+				sw.WriteLine("		};");
+				sw.WriteLine("		nAttributes=2;");
+				sw.WriteLine("	};");
+				sw.WriteLine("};");
+				while (sr.ReadLine() != "};") { } // move StreamReader after CustomAttributes class
 			}
 
 			return false;
 		}
 
-		// Helper function to write CustomAttributes information to mission.sqm
-		private void writeCustomAttributes(System.IO.StreamReader sr, System.IO.StreamWriter sw, String cmd)
+		// Check checkbox for Allow Manual Respawn is on or off then print the corresponding value
+		private void allowManualRespawn(System.IO.StreamWriter sw)
 		{
-			switch (cmd)
+			if (checkBox_mp_manual_respawn.Checked)
 			{
-				case "class Category":
-					this.customAttributesDict["class Category"] = true;
-					break;
-				case "name=\"Multiplayer\";":
-					this.customAttributesDict["name=\"Multiplayer\";"] = true;
-					break;
-				case "property=\"RespawnTemplates\";":
-					this.customAttributesDict["property=\"RespawnTemplates\";"] = true;
-					break;
+				sw.WriteLine("					value=1;");
+			}
+			else
+			{
+				sw.WriteLine("					value=0;");
 			}
 		}
 
+		// Handle checkboxes for MP Templates RuleSets (Mission Fail Everyone Dead, SinglePlayer Death Screen, SwitchPlayer on Death
+		private void handleMPTemplatesRuleSets(System.IO.StreamWriter sw)
+		{
+			bool[] checkBoxMPArr = new bool[] { checkBox_mp_mission_fail.Checked, checkBox_mp_sp_death_screen.Checked, checkBox_mp_switch_char.Checked }; 
+			int itemsCount = checkBoxMPArr.Count(c => c == true);
+
+			if (checkBox_mp_mission_fail.Checked || checkBox_mp_sp_death_screen.Checked || checkBox_mp_switch_char.Checked)
+			{
+				sw.WriteLine("					class value");
+				sw.WriteLine("					{");
+				sw.WriteLine("						items=" + itemsCount.ToString() + ";");
+				printMPTemplatesRuleSet(sw, itemsCount);
+				sw.WriteLine("					};");
+			}
+		}
+
+		// Pass itemCount & StreamWriter of how many MP Templates Rule Sets & print each checked MP Template Rule Set
+		private void printMPTemplatesRuleSet(System.IO.StreamWriter sw, int itemsCount)
+		{
+			List<string> ruleSetList = new List<string>();
+			if (checkBox_mp_mission_fail.Checked)
+			{
+				ruleSetList.Add("EndMission");
+			}
+			if (checkBox_mp_sp_death_screen.Checked)
+			{
+				ruleSetList.Add("None");
+			}
+			if (checkBox_mp_switch_char.Checked)
+			{
+				ruleSetList.Add("SwitchPlayer");
+			}
+
+			for (int i = 0; i < itemsCount; i++)
+			{
+				sw.WriteLine("						class Item" + i.ToString());
+				sw.WriteLine("						{");
+				sw.WriteLine("							class data");
+				sw.WriteLine("							{");
+				sw.WriteLine("								class type");
+				sw.WriteLine("								{");
+				sw.WriteLine("									type[]=");
+				sw.WriteLine("									{");
+				sw.WriteLine("										\"STRING\"");
+				sw.WriteLine("									};");
+				sw.WriteLine("								};");
+				sw.WriteLine("								value=\"" + ruleSetList[i] + "\";"); 
+				sw.WriteLine("							};");
+				sw.WriteLine("						};");
+			}
+		}
+
+		/*===========================================================
+		 *  INTEL
+		 *===========================================================*/
 		// Handle calling functions for Intel section
 		private bool handleIntel(System.IO.StreamReader sr, System.IO.StreamWriter sw, bool editingIntel)
 		{
