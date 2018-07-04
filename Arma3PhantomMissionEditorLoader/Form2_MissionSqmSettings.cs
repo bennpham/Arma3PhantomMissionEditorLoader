@@ -172,7 +172,7 @@ namespace Arma3PhantomMissionEditorLoader
 					this.scenarioDataDict["author"] = true;
 					break;
 				case "overviewText":
-					sw.WriteLine("	overviewText=\"" + textbox_overview_text.Text.Replace("\"", "\"\"") + "\";");
+					sw.WriteLine("	overviewText=\"" + textbox_overview_text.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, "\" \\n \"") + "\";");
 					this.scenarioDataDict["overviewText"] = true;
 					break;
 				case "overViewPicture":
@@ -180,7 +180,7 @@ namespace Arma3PhantomMissionEditorLoader
 					this.scenarioDataDict["overViewPicture"] = true;
 					break;
 				case "onLoadMission":
-					sw.WriteLine("	onLoadMission=\"" + textBox_onLoadMission.Text.Replace("\"", "\"\"") + "\";");
+					sw.WriteLine("	onLoadMission=\"" + textBox_onLoadMission.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, " ") + "\";");
 					this.scenarioDataDict["onLoadMission"] = true;
 					break;
 				case "loadScreen":
