@@ -420,12 +420,28 @@ namespace Arma3PhantomMissionEditorLoader
 				List<string> keys = new List<string>(intelDict.Keys);
 				foreach (String cmd in keys)
 				{
-					if (line.Contains(cmd))
+					if (cmd.Equals((line.Trim().Split('='))[0]))
 					{
 						cmdNotAvail = false;
 						writeIntel(sr, sw, cmd);
 					}
 				}
+				// Checks unmarked Intel items, fill them in, then exit the loop
+				if (line.Equals("	};"))
+				{
+					cmdNotAvail = false;
+					List<string> unusedKeys = new List<string>(intelDict.Keys);
+					foreach (String unusedCmd in unusedKeys)
+					{
+						if (!intelDict[unusedCmd])
+						{
+							writeIntel(sr, sw, unusedCmd);
+						}
+					}
+					sw.WriteLine("	};");
+					editingIntel = false;
+				}
+
 				if (cmdNotAvail)
 				{
 					sw.WriteLine(line);
@@ -438,54 +454,87 @@ namespace Arma3PhantomMissionEditorLoader
 		// Helper function to write Intel information to mission.sqm
 		private void writeIntel(System.IO.StreamReader sr, System.IO.StreamWriter sw, String cmd)
 		{
+			string[] dateTimeArr = date.Value.ToString("yyyy-M-d").Split('-');
 			switch (cmd)
 			{
 				case "overviewText":
+					sw.WriteLine("		overviewText=\"" + summary.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, " ") + "\"");
 					this.intelDict["overviewText"] = true;
 					break;
 				case "resistanceWest":
+					String resistanceWest = west_checkbox.Checked ? "resistanceWest=1;" : "resistanceWest=0;";
+					sw.WriteLine("		" + resistanceWest);
 					this.intelDict["resistanceWest"] = true;
 					break;
 				case "resistanceEast":
+					String resistanceEast = east_checkbox.Checked ? "resistanceEast=1;" : "resistanceEast=0;";
+					sw.WriteLine("		" + resistanceEast);
 					this.intelDict["resistanceEast"] = true;
 					break;
 				case "timeOfChanges":
+					decimal toc = (toc_hour.Value * 3600) + (toc_minutes.Value * 60) + (toc_seconds.Value);
+					toc = toc > 28800 ? 28800 : toc;
+					sw.WriteLine("		timeOfChanges=" + toc.ToString() + ";");
 					this.intelDict["timeOfChanges"] = true;
 					break;
 				case "startWeather":
+					decimal startWeather = overcastStart.Value / 100;
+					sw.WriteLine("		startWeather=" + startWeather.ToString() + ";");
 					this.intelDict["startWeather"] = true;
 					break;
 				case "startFog":
+					decimal startFog = fogStart.Value / 100;
+					sw.WriteLine("		startFog=" + startFog.ToString() + ";");
 					this.intelDict["startFog"] = true;
 					break;
 				case "forecastWeather":
+					decimal forecastWeather = overcastForecast.Value / 100;
+					sw.WriteLine("		forecastWeather=" + forecastWeather.ToString() + ";");
 					this.intelDict["forecastWeather"] = true;
 					break;
 				case "forecastFog":
+					decimal forecastFog = fogForecast.Value / 100;
+					sw.WriteLine("		forecastFog=" + forecastFog.ToString() + ";");
 					this.intelDict["forecastFog"] = true;
 					break;
 				case "startFogBase":
+					decimal startFogBase = fogStartBase.Value;
+					sw.WriteLine("		startFogBase=" + startFogBase.ToString() + ";");
 					this.intelDict["startFogBase"] = true;
 					break;
 				case "forecastFogBase":
+					decimal forecastFogBase = fogForecastBase.Value;
+					sw.WriteLine("		forecastFogBase=" + forecastFogBase.ToString() + ";");
 					this.intelDict["forecastFogBase"] = true;
 					break;
 				case "startFogDecay":
-					this.intelDict["stateFogDecay"] = true;
+					decimal startFogDecay = fogStartDecay.Value / 100;
+					sw.WriteLine("		startFogDecay=" + startFogDecay.ToString() + ";");
+					this.intelDict["startFogDecay"] = true;
 					break;
 				case "forecastFogDecay":
+					decimal forecastFogDecay = fogForecastDecay.Value / 100;
+					sw.WriteLine("		forecastFogDecay=" + forecastFogDecay.ToString() + ";");
 					this.intelDict["forecastFogDecay"] = true;
 					break;
 				case "year":
+					sw.WriteLine("		year=" + dateTimeArr[0] + ";");
 					this.intelDict["year"] = true;
 					break;
+				case "month":
+					sw.WriteLine("		month=" + dateTimeArr[1] + ";");
+					this.intelDict["month"] = true;
+					break;
 				case "day":
+					sw.WriteLine("		day=" + dateTimeArr[2] + ";");
 					this.intelDict["day"] = true;
 					break;
 				case "hour":
+					sw.WriteLine("		hour=" + hour.Value.ToString() + ";");
 					this.intelDict["hour"] = true;
 					break;
 				case "minute":
+					sw.WriteLine("		minute=" + minute.Value.ToString() + ";");
 					this.intelDict["minute"] = true;
 					break;
 			}
