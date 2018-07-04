@@ -132,7 +132,7 @@ namespace Arma3PhantomMissionEditorLoader
 				List<string> keys = new List<string>(scenarioDataDict.Keys);
 				foreach (String cmd in keys)
 				{
-					if (line.Contains(cmd))
+					if (cmd.Equals((line.Trim().Split('='))[0]))
 					{
 						cmdNotAvail = false;
 						writeScenarioData(sr, sw, cmd);
@@ -229,7 +229,7 @@ namespace Arma3PhantomMissionEditorLoader
 				List<string> keys2 = new List<string>(scenarioDataHeaderDict.Keys);
 				foreach (String cmd2 in keys2)
 				{
-					if (line.Contains(cmd2))
+					if (cmd2.Equals((line.Trim().Split('='))[0]))
 					{
 						cmd2NotAvail = false;
 						writeScenarioDataHeader(sw, cmd2);
