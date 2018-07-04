@@ -54,7 +54,7 @@ namespace Arma3PhantomMissionEditorLoader
 			{
 				{"overviewText", false}, {"resistanceWest", false}, {"resistanceEast", false}, {"timeOfChanges", false},
 				{"startWeather", false}, {"startFog", false}, {"forecastWeather", false}, {"forecastFog", false},
-				{"year", false}, {"day", false}, {"hour", false}, {"minute", false},
+				{"year", false}, {"month", false}, {"day", false}, {"hour", false}, {"minute", false},
 				{"startFogBase", false}, {"forecastFogBase", false}, {"startFogDecay", false}, {"forecastFogDecay", false},
 			};
 		}
