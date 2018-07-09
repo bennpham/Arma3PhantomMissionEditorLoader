@@ -407,9 +407,9 @@ namespace Arma3PhantomMissionEditorLoader
 				// move StreamReader after CustomAttributes class or end if null
 				{
 					String readLine = sr.ReadLine();
-					if (readLine != "};" || readLine == null)
+					if (readLine == null || readLine.Equals("};"))
 					{
-						break;
+						return false;
 					}
 				} 
 			}
