@@ -95,22 +95,22 @@ namespace Arma3PhantomMissionEditorLoader
 						/* If line contains either class ScenarioData, class CustomAttributes, or 
 						 *  class Intel, enable editing for them and modify their parameters based on 
 						 *  whatever the user set them to be. */
-						if (line.Contains("class ScenarioData"))
+						if (line.Equals("class ScenarioData"))
 						{
 							editingScenarioData = true;
 						}
-						else if (line.Contains("class CustomAttributes"))
+						else if (line.Equals("class CustomAttributes"))
 						{
 							editingCustomAttributes = true;
 						}
-						else if (line.Contains("	class Intel"))
+						else if (line.Equals("	class Intel"))
 						{
 							editingIntel = true;
 						}
 
 						/* If mission header is found, prepare to check for Intel. 
 						 * If it doesn't exist, create it. */
-						if (line.Contains("class Mission"))
+						if (line.Equals("class Mission"))
 						{
 							isCheckIntel = true;
 						}
