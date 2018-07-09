@@ -27,7 +27,6 @@ namespace Arma3PhantomMissionEditorLoader
 		//	If there are still any parameters that are not set, fill them in.
 		private Dictionary<string, bool> scenarioDataDict;
 		private Dictionary<string, bool> scenarioDataHeaderDict;
-		private Dictionary<string, bool> customAttributesDict;
 		private Dictionary<string, bool> intelDict;
 
 		public Form2_MissionSqmSettings(String missionSQM, String missionDirectory)
