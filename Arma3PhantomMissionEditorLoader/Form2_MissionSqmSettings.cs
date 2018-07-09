@@ -19,9 +19,9 @@ namespace Arma3PhantomMissionEditorLoader
 
 		// Check to see if all sections of mission.sqm is handled (ScenarioData, CustomAttributes, Intel)
 		private bool isHandledScenarioData;
-		private bool isHandledScenarioDataHeader;
 		private bool isHandledCustomAttributes;
 		private bool isHandledIntel;
+		private bool isCheckIntel;
 
 		// Parameters for each sections of the mission.sqm (ScenarioData, CustomAttributes, Intel)
 		//	If there are still any parameters that are not set, fill them in.
@@ -37,9 +37,9 @@ namespace Arma3PhantomMissionEditorLoader
 			this.missionDirectory = missionDirectory;
 
 			isHandledScenarioData = false;
-			isHandledScenarioDataHeader = false;
 			isHandledCustomAttributes = false;
 			isHandledIntel = false;
+			isCheckIntel = false;
 
 			scenarioDataDict = new Dictionary<string, bool>()
 			{
@@ -108,6 +108,78 @@ namespace Arma3PhantomMissionEditorLoader
 						{
 							editingIntel = true;
 						}
+
+						/* If mission header is found, prepare to check for Intel. 
+						 * If it doesn't exist, create it. */
+						if (line.Contains("class Mission"))
+						{
+							isCheckIntel = true;
+						}
+						if (isCheckIntel && !isHandledIntel && line == "};")
+						{
+							sw.WriteLine("	class Intel");
+							sw.WriteLine("	{");
+							List<string> unusedKeys = new List<string>(intelDict.Keys);
+							foreach (String unusedCmd in unusedKeys)
+							{
+								if (!intelDict[unusedCmd])
+								{
+									writeIntel(sr, sw, unusedCmd);
+								}
+							}
+							sw.WriteLine("	};");
+						}
+					}
+
+					if (!isHandledScenarioData)
+					{
+						sw.WriteLine("class ScenarioData");
+						sw.WriteLine("{");
+						List<string> unusedKeys = new List<string>(scenarioDataDict.Keys);
+						foreach (String unusedCmd in unusedKeys)
+						{
+							if (!scenarioDataDict[unusedCmd])
+							{
+								writeScenarioData(sr, sw, unusedCmd);
+								if (unusedCmd.Equals("class Header"))
+								{
+									sw.WriteLine("	{");
+									List<string> unusedKeys2 = new List<string>(scenarioDataHeaderDict.Keys);
+									foreach (String unusedCmd2 in unusedKeys2)
+									{
+										if (!scenarioDataHeaderDict[unusedCmd2])
+										{
+											writeScenarioDataHeader(sw, unusedCmd2);
+										}
+									}
+									sw.WriteLine("	};");
+								}
+							}
+						}
+						sw.WriteLine("};");
+					}
+					if (!isHandledCustomAttributes)
+					{
+						sw.WriteLine("class CustomAttributes");
+						sw.WriteLine("{");
+						handleCustomAttributes(sr, sw, true);
+					}
+					if (!isHandledIntel)
+					{
+						sw.WriteLine("class Mission");
+						sw.WriteLine("{");
+						sw.WriteLine("	class Intel");
+						sw.WriteLine("	{");
+						List<string> unusedKeys = new List<string>(intelDict.Keys);
+						foreach (String unusedCmd in unusedKeys)
+						{
+							if (!intelDict[unusedCmd])
+							{
+								writeIntel(sr, sw, unusedCmd);
+							}
+						}
+						sw.WriteLine("	};");
+						sw.WriteLine("};");
 					}
 				}
 			}
@@ -223,8 +295,6 @@ namespace Arma3PhantomMissionEditorLoader
 
 			while (editingScenarioHeaderData && (line = sr.ReadLine()) != null)
 			{
-				isHandledScenarioDataHeader = true;
-
 				bool cmd2NotAvail = true;
 				List<string> keys2 = new List<string>(scenarioDataHeaderDict.Keys);
 				foreach (String cmd2 in keys2)
@@ -334,7 +404,15 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("		nAttributes=2;");
 				sw.WriteLine("	};");
 				sw.WriteLine("};");
-				while (sr.ReadLine() != "};") { } // move StreamReader after CustomAttributes class
+				while (true)
+				// move StreamReader after CustomAttributes class or end if null
+				{
+					String readLine = sr.ReadLine();
+					if (readLine != "};" || readLine == null)
+					{
+						break;
+					}
+				} 
 			}
 
 			return false;
