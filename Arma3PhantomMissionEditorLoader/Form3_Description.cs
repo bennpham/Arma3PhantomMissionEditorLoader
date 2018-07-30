@@ -53,6 +53,12 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void description_button_Click(object sender, EventArgs e)
 		{
+			// Write description.ext
+			writeDescriptionExt();
+
+			// Create scripts folder 
+			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS));
+
 			Environment.Exit(0); // TODO Placeholder
 		}
 
@@ -61,6 +67,54 @@ namespace Arma3PhantomMissionEditorLoader
 		{
 			this.label_datetime.Text = this.date + " | " + this.hour + ":" + this.minute + ":00";
 			this.label_created_by.Text = "Created By " + this.author;
+		}
+
+		private void writeDescriptionExt()
+		{
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, DESCRIPTION)))
+			{
+				sw.WriteLine("overviewPicture = \"images\\loadscreen.jpg\";");
+				sw.WriteLine("author=\"" + this.author + "\";");
+				sw.WriteLine("loadScreen = \"images\\loadscreen.jpg\";");
+				sw.WriteLine(this.onLoadName);
+				sw.WriteLine(this.onLoadMission);
+				sw.WriteLine("debriefing = 1;");
+				sw.WriteLine("");
+				sw.WriteLine("allowFunctionsRecompile = 1;");
+				sw.WriteLine("");
+				sw.WriteLine("class Header");
+				sw.WriteLine("{");
+				sw.WriteLine("  gameType = Coop;");
+				sw.WriteLine("  minPlayers = " + this.minPlayers + ";");
+				sw.WriteLine("  maxPlayers = " + this.maxPlayers + ";");
+				sw.WriteLine("  playerCountMultipleOf = 1;");
+				sw.WriteLine("};");
+				sw.WriteLine("");
+				sw.WriteLine("respawn = \"SIDE\";");
+				sw.WriteLine("respawnDelay = 5;");
+				sw.WriteLine("");
+				sw.WriteLine("class CfgDebriefing");
+				sw.WriteLine("{");
+				sw.WriteLine("	#include \"debriefing.hpp\"");
+				sw.WriteLine("};");
+				sw.WriteLine("");
+				sw.WriteLine("class CfgFunctions {");
+				sw.WriteLine("	#include \"functions\\common.hpp\"");
+				sw.WriteLine("};");
+				if (description_params_checkbox.Checked)
+				{
+					sw.WriteLine("");
+					sw.WriteLine("class Params");
+					sw.WriteLine("{");
+					sw.WriteLine("	#include \"scripts\\parameters.hpp\"");
+					sw.WriteLine("};");
+				}
+				if (description_loadout_checkbox.Checked)
+				{
+					sw.WriteLine("");
+					sw.WriteLine("#include \"scripts\\briefing_loadout.hpp\"");
+				}
+			}
 		}
 	}
 }
