@@ -33,7 +33,7 @@
 			this.description_loadout_checkbox = new System.Windows.Forms.CheckBox();
 			this.description_button = new System.Windows.Forms.Button();
 			this.title_infotext = new System.Windows.Forms.Label();
-			this.summary = new System.Windows.Forms.TextBox();
+			this.infotext_title = new System.Windows.Forms.TextBox();
 			this.label_created_by = new System.Windows.Forms.Label();
 			this.label_datetime = new System.Windows.Forms.Label();
 			this.SuspendLayout();
@@ -95,13 +95,13 @@
 			this.title_infotext.Text = "Info Text Title";
 			this.title_infotext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
-			// summary
+			// infotext_title
 			// 
-			this.summary.Location = new System.Drawing.Point(12, 203);
-			this.summary.Multiline = true;
-			this.summary.Name = "summary";
-			this.summary.Size = new System.Drawing.Size(440, 75);
-			this.summary.TabIndex = 21;
+			this.infotext_title.Location = new System.Drawing.Point(12, 203);
+			this.infotext_title.Multiline = true;
+			this.infotext_title.Name = "infotext_title";
+			this.infotext_title.Size = new System.Drawing.Size(440, 75);
+			this.infotext_title.TabIndex = 21;
 			// 
 			// label_created_by
 			// 
@@ -130,7 +130,7 @@
 			this.ClientSize = new System.Drawing.Size(464, 381);
 			this.Controls.Add(this.label_datetime);
 			this.Controls.Add(this.label_created_by);
-			this.Controls.Add(this.summary);
+			this.Controls.Add(this.infotext_title);
 			this.Controls.Add(this.title_infotext);
 			this.Controls.Add(this.description_button);
 			this.Controls.Add(this.description_loadout_checkbox);
@@ -152,7 +152,7 @@
 		private System.Windows.Forms.CheckBox description_loadout_checkbox;
 		private System.Windows.Forms.Button description_button;
 		private System.Windows.Forms.Label title_infotext;
-		private System.Windows.Forms.TextBox summary;
+		private System.Windows.Forms.TextBox infotext_title;
 		private System.Windows.Forms.Label label_created_by;
 		private System.Windows.Forms.Label label_datetime;
 	}
