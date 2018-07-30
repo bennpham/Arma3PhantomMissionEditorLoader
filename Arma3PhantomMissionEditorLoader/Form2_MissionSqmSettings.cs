@@ -13,6 +13,8 @@ namespace Arma3PhantomMissionEditorLoader
 	public partial class Form2_MissionSqmSettings : Form
 	{
 		private const String MISSION_SQM_BACKUP = "mission.sqm.old";
+		private const String LOADSCREEN = "loadscreen.jpg";
+		private const String FOLDER_IMAGES = "images";
 
 		private String missionSQM;
 		private String missionDirectory;
@@ -182,6 +184,10 @@ namespace Arma3PhantomMissionEditorLoader
 					}
 				}
 			}
+
+			// Copy placeholder loadscreen image to images folder
+			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_IMAGES));
+			System.IO.File.Copy(LOADSCREEN, System.IO.Path.Combine(this.missionDirectory, FOLDER_IMAGES, LOADSCREEN));
 
 			// GoTo Generate infotext Form
 			//		Pick Name of Mission to Display (already have date and Author)
