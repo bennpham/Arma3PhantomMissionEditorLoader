@@ -191,7 +191,11 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// GoTo Generate infotext Form
 			//		Pick Name of Mission to Display (already have date and Author)
-			Environment.Exit(0); // TODO placeholder
+			this.Hide();
+			Form3_Description form3_description = new Form3_Description(this.missionDirectory, date.Text,
+				formatTimeString(this.hour.Value.ToString()), formatTimeString(this.minute.Value.ToString()), 
+				textbox_author.Text);
+			form3_description.ShowDialog();
 		}
 
 		/*===========================================================
@@ -621,6 +625,12 @@ namespace Arma3PhantomMissionEditorLoader
 					this.intelDict["minute"] = true;
 					break;
 			}
+		}
+
+		/* Take a string that is a number, and append an extra 0 in front if its single digit */
+		private String formatTimeString(String time)
+		{
+			return time.Length == 1 ? "0" + time : time;
 		}
 	}
 }
