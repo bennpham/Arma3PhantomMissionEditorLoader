@@ -20,13 +20,21 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String PARAMETERS = "parameters.hpp";
 		private const String BRIEFING_LOADOUT = "briefing_loadout.hpp";
 
+		// Info Text information
 		private String missionDirectory;
 		private String date;
 		private String hour;
 		private String minute;
 		private String author;
 
-		public Form3_Description(String missionDirectory, String date, String hour, String minute, String author)
+		// Description ext information
+		private String onLoadName;
+		private String onLoadMission;
+		private String minPlayers;
+		private String maxPlayers;
+
+		public Form3_Description(String missionDirectory, String date, String hour, String minute, String author, 
+			String onLoadName, String onLoadMission, String minPlayers, String maxPlayers)
 		{
 			InitializeComponent();
 			this.missionDirectory = missionDirectory;
@@ -34,6 +42,11 @@ namespace Arma3PhantomMissionEditorLoader
 			this.hour = hour;
 			this.minute = minute;
 			this.author = author;
+
+			this.onLoadName = onLoadName;
+			this.onLoadMission = onLoadMission;
+			this.minPlayers = minPlayers;
+			this.maxPlayers = maxPlayers;
 
 			initializeInformation();
 		}

@@ -194,7 +194,10 @@ namespace Arma3PhantomMissionEditorLoader
 			this.Hide();
 			Form3_Description form3_description = new Form3_Description(this.missionDirectory, date.Text,
 				formatTimeString(this.hour.Value.ToString()), formatTimeString(this.minute.Value.ToString()), 
-				textbox_author.Text);
+				textbox_author.Text,
+				"OnLoadName = \"" + textBox_onLoadName.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, " ") + "\";",
+				"OnLoadMission =\"" + textBox_onLoadMission.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, " ") + "\";",
+				min_players.ToString(), max_players.ToString());
 			form3_description.ShowDialog();
 		}
 
