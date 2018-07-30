@@ -59,6 +59,9 @@ namespace Arma3PhantomMissionEditorLoader
 			// Create scripts folder 
 			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS));
 
+			// Write infoText
+			writeInfoText();
+
 			Environment.Exit(0); // TODO Placeholder
 		}
 
@@ -115,6 +118,34 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("#include \"scripts\\briefing_loadout.hpp\"");
 				}
 			}
+		}
+
+		private void writeInfoText()
+		{
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, INFOTEXT)))
+			{
+				sw.WriteLine("waitUntil{!(isNil \"BIS_fnc_init\")};");
+				sw.WriteLine("sleep 15;");
+				sw.WriteLine("	[\"" + this.date + "\", \"" + this.hour + ":" + this.minute + ":00\"] call BIS_fnc_infoText;");
+				sw.WriteLine("sleep 3;");
+				sw.WriteLine("	" + parseInfoTextTitle() + " call BIS_fnc_infoText;"); 
+				sw.WriteLine("sleep 3;");
+				sw.WriteLine("	[\"Created by\"," + this.author + "] call BIS_fnc_infoText;");
+			}
+		}
+
+		private String parseInfoTextTitle()
+		{
+			String infoTextResult = "[";
+			String[] infoTextTitles = infotext_title.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+			foreach (String infoTextTitle in infoTextTitles)
+			{
+				String infoTextTitleWithQuotes = "\"" + infoTextTitle + "\"";
+				infoTextResult += infoTextResult.Equals("[") ? infoTextTitleWithQuotes : ", " + infoTextTitleWithQuotes;
+			}
+			infoTextResult += "]";
+
+			return infoTextResult;
 		}
 	}
 }
