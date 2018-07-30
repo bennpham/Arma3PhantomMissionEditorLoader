@@ -833,7 +833,7 @@
 			this.Controls.Add(this.missionsqm_button);
 			this.Controls.Add(this.title_general);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.MinimizeBox = false;
+			this.MaximizeBox = false;
 			this.Name = "Form2_MissionSqmSettings";
 			this.Text = "Arma 3 Phantom Mission Editor Edit Mission.sqm";
 			((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
