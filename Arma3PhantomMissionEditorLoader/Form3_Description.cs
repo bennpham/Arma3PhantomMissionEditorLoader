@@ -59,8 +59,16 @@ namespace Arma3PhantomMissionEditorLoader
 			// Create scripts folder 
 			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS));
 
+			// Write init.sqf
+
 			// Write infoText
 			writeInfoText();
+
+			// Create empty briefing.sqf & debriefing.hpp
+
+			// Create parameters.hpp (if available)
+
+			// Create briefing_loadout.hpp (if available)
 
 			Environment.Exit(0); // TODO Placeholder
 		}
