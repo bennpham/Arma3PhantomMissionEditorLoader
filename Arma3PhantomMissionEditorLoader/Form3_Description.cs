@@ -17,6 +17,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private const String FOLDER_SCRIPTS = "scripts";
 		private const String INFOTEXT = "infotext.sqf";
+		private const String BRIEFING = "briefing.sqf";
 		private const String PARAMETERS = "parameters.hpp";
 		private const String BRIEFING_LOADOUT = "briefing_loadout.hpp";
 
@@ -66,10 +67,13 @@ namespace Arma3PhantomMissionEditorLoader
 			writeInfoText();
 
 			// Create empty briefing.sqf & debriefing.hpp
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING))) { }
 
 			// Create parameters.hpp (if available)
+			writeParametersHPP();
 
 			// Create briefing_loadout.hpp (if available)
+			writeBriefingLoadout();
 
 			Environment.Exit(0); // TODO Placeholder
 		}
@@ -179,6 +183,31 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("	" + parseInfoTextTitle() + " call BIS_fnc_infoText;"); 
 				sw.WriteLine("sleep 3;");
 				sw.WriteLine("	[\"Created by\"," + this.author + "] call BIS_fnc_infoText;");
+			}
+		}
+
+		private void writeParametersHPP()
+		{
+			if (description_params_checkbox.Checked)
+			{
+				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, PARAMETERS)))
+				{
+					sw.WriteLine("class ScalePlayers");
+					sw.WriteLine("{");
+					sw.WriteLine("	title = \"Low Player Count Scale Mode\";");
+					sw.WriteLine("	values[] = {0, 1};");
+					sw.WriteLine("	texts[] = {\"Disable\", \"Enable\"};");
+					sw.WriteLine("	default = 0;");
+					sw.WriteLine("};");
+				}
+			}
+		}
+
+		private void writeBriefingLoadout()
+		{
+			if (description_loadout_checkbox.Checked)
+			{
+				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING_LOADOUT))) {}
 			}
 		}
 
