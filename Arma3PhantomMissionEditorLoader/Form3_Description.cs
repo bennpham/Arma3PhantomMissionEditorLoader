@@ -60,6 +60,7 @@ namespace Arma3PhantomMissionEditorLoader
 			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS));
 
 			// Write init.sqf
+			writeInitSqf();
 
 			// Write infoText
 			writeInfoText();
@@ -125,6 +126,45 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("");
 					sw.WriteLine("#include \"scripts\\briefing_loadout.hpp\"");
 				}
+			}
+		}
+
+		private void writeInitSqf()
+		{
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, INIT)))
+			{
+				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\briefing.sqf\";");
+				if (description_params_checkbox.Checked)
+				{
+					sw.WriteLine("");
+					sw.WriteLine("// Singleplayer handling");
+					sw.WriteLine("if (!isMultiplayer) then {");
+					sw.WriteLine("	// TODO");
+					sw.WriteLine("};");
+					sw.WriteLine("");
+					sw.WriteLine("// Scaled Multiplayer handling for small player count");
+					sw.WriteLine("_ScalePlayers = \"ScalePlayers\" call BIS_fnc_getParamValue;");
+					sw.WriteLine("if (_ScalePlayers == 1 && isServer && isMultiplayer) then {");
+					sw.WriteLine("	// TODO");
+					sw.WriteLine("};");
+					sw.WriteLine("");
+					sw.WriteLine("// Fullhouse Multiplayer Handling");
+					sw.WriteLine("if (_ScalePlayers == 0 && isServer && isMultiplayer) then {");
+					sw.WriteLine("	// TODO");
+					sw.WriteLine("};");
+				}
+				if (init_zeus_checkbox.Checked)
+				{
+					sw.WriteLine("");
+					sw.WriteLine("// Initialize stuff for Zeus on server");
+					sw.WriteLine("if (isMultiplayer && isServer) then {");
+					sw.WriteLine("	{zeus_mod1 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
+					sw.WriteLine("	{zeus_mod2 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
+					sw.WriteLine("	{zeus_mod3 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
+					sw.WriteLine("};");
+				}
+				sw.WriteLine("");
+				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\infotext.sqf\";");
 			}
 		}
 
