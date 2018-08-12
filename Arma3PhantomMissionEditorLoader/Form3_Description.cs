@@ -75,7 +75,10 @@ namespace Arma3PhantomMissionEditorLoader
 			// Create briefing_loadout.hpp (if available)
 			writeBriefingLoadout();
 
-			Environment.Exit(0); // TODO Placeholder
+			// GoTo Scripts Selector Page
+			this.Hide();
+			Form4_Scripts form4_scripts = new Form4_Scripts();
+			form4_scripts.ShowDialog();
 		}
 
 		/* Initialize Date and Author */
