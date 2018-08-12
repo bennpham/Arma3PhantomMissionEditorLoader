@@ -77,7 +77,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// GoTo Scripts Selector Page
 			this.Hide();
-			Form4_Scripts form4_scripts = new Form4_Scripts();
+			Form4_Scripts form4_scripts = new Form4_Scripts(this.missionDirectory);
 			form4_scripts.ShowDialog();
 		}
 
