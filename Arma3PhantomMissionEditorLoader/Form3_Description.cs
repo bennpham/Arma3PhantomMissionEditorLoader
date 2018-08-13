@@ -18,6 +18,7 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String FOLDER_SCRIPTS = "scripts";
 		private const String INFOTEXT = "infotext.sqf";
 		private const String BRIEFING = "briefing.sqf";
+		private const String DEBRIEFING = "debriefing.hpp";
 		private const String PARAMETERS = "parameters.hpp";
 		private const String BRIEFING_LOADOUT = "briefing_loadout.hpp";
 
@@ -68,6 +69,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// Create empty briefing.sqf & debriefing.hpp
 			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING))) { }
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, DEBRIEFING))) { }
 
 			// Create parameters.hpp (if available)
 			writeParametersHPP();
