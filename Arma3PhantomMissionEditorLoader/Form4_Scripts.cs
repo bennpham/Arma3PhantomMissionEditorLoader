@@ -36,26 +36,26 @@ namespace Arma3PhantomMissionEditorLoader
 			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, COMMON_HPP)))
 			{
 				// Initialize Default common.hpp
-				sw.Write("#define INTERNAL_FUNCTION(x)				\\");
-				sw.Write("	class x									\\");
-				sw.Write("	{										\\");
-				sw.Write("		description = \"Internal Function\";	\\");
-				sw.Write("	};");
-				sw.Write("");
-				sw.Write("#define EXPORTED_FUNCTION(x,y)				\\");
-				sw.Write("	class x									\\");
-				sw.Write("	{										\\");
-				sw.Write("		description = y;					\\");
-				sw.Write("	};");
-				sw.Write("");
-				sw.Write("class FHQ");
-				sw.Write("{");
+				sw.WriteLine("#define INTERNAL_FUNCTION(x)				\\");
+				sw.WriteLine("	class x									\\");
+				sw.WriteLine("	{										\\");
+				sw.WriteLine("		description = \"Internal Function\";	\\");
+				sw.WriteLine("	};");
+				sw.WriteLine("");
+				sw.WriteLine("#define EXPORTED_FUNCTION(x,y)				\\");
+				sw.WriteLine("	class x									\\");
+				sw.WriteLine("	{										\\");
+				sw.WriteLine("		description = y;					\\");
+				sw.WriteLine("	};");
+				sw.WriteLine("");
+				sw.WriteLine("class FHQ");
+				sw.WriteLine("{");
 				
 				// Generate FHQ Task Tracker by default
-				sw.Write("	#include \"fhq_tasktracker.hpp\"");
+				sw.WriteLine("	#include \"fhq_tasktracker.hpp\"");
 				generateScript_FHQ_TaskTracker();
 
-				sw.Write("};");
+				sw.WriteLine("};");
 			}
 
 			Environment.Exit(0); // TODO Placeholder
