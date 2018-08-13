@@ -63,8 +63,10 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void generateScript_FHQ_TaskTracker()
 		{
-			System.IO.File.Copy(SCRIPT_FHQ_TASKTRACKER, System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, SCRIPT_FHQ_TASKTRACKER));
-			// TODO Copy Directory
+			System.IO.File.Copy(System.IO.Path.Combine(FOLDER_FUNCTION, SCRIPT_FHQ_TASKTRACKER), 
+				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, SCRIPT_FHQ_TASKTRACKER));
+			Helper.copyDirectory(System.IO.Path.Combine(FOLDER_FUNCTION, SCRIPT_FOLDER_FHQ_TASKTRACKER),
+				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, SCRIPT_FOLDER_FHQ_TASKTRACKER));
 		}
 	}
 }

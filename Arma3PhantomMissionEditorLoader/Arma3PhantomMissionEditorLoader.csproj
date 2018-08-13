@@ -69,6 +69,7 @@
     <Compile Include="Form4_Scripts.Designer.cs">
       <DependentUpon>Form4_Scripts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
