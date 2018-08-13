@@ -17,6 +17,10 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String COMMON_HPP = "common.hpp";
 
 		// Constants Scripts to Choose
+		private const String SCRIPT_FHQ_MARKERPATROL = "fhq_markerPatrol.hpp";
+		private const String SCRIPT_FOLDER_FHQ_MARKERPATROL = "FHQ_markerPatrol";
+		private const String SCRIPT_FHQ_SAFEADDLOADOUT = "fhq_safeAddLoadout.hpp";
+		private const String SCRIPT_FOLDER_FHQ_SAFEADDLOADOUT = "FHQ_safeAddLoadout";
 		private const String SCRIPT_FHQ_TASKTRACKER = "fhq_tasktracker.hpp";
 		private const String SCRIPT_FOLDER_FHQ_TASKTRACKER = "FHQ_tasktracker";
 
@@ -50,10 +54,24 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("");
 				sw.WriteLine("class FHQ");
 				sw.WriteLine("{");
-				
+
+				// Generate FHQ Marker Patrol
+				if (FHQ_marker_patrol_checkbox.Checked)
+				{
+					sw.WriteLine("	#include \"fhq_markerPatrol.hpp\"");
+					generateScript(SCRIPT_FHQ_MARKERPATROL, SCRIPT_FOLDER_FHQ_MARKERPATROL);
+				}
+
+				// Generate FHQ Safe Add Loadout
+				if (FHQ_safe_add_loadout_checkbox.Checked)
+				{
+					sw.WriteLine("	#include \"fhq_safeAddLoadout.hpp\"");
+					generateScript(SCRIPT_FHQ_SAFEADDLOADOUT, SCRIPT_FOLDER_FHQ_SAFEADDLOADOUT);
+				}
+
 				// Generate FHQ Task Tracker by default
 				sw.WriteLine("	#include \"fhq_tasktracker.hpp\"");
-				generateScript_FHQ_TaskTracker();
+				generateScript(SCRIPT_FHQ_TASKTRACKER, SCRIPT_FOLDER_FHQ_TASKTRACKER);
 
 				sw.WriteLine("};");
 			}
@@ -61,12 +79,12 @@ namespace Arma3PhantomMissionEditorLoader
 			Environment.Exit(0); // TODO Placeholder
 		}
 
-		private void generateScript_FHQ_TaskTracker()
+		private void generateScript(String script, String scriptFolder)
 		{
-			System.IO.File.Copy(System.IO.Path.Combine(FOLDER_FUNCTION, SCRIPT_FHQ_TASKTRACKER), 
-				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, SCRIPT_FHQ_TASKTRACKER));
-			Helper.copyDirectory(System.IO.Path.Combine(FOLDER_FUNCTION, SCRIPT_FOLDER_FHQ_TASKTRACKER),
-				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, SCRIPT_FOLDER_FHQ_TASKTRACKER));
+			System.IO.File.Copy(System.IO.Path.Combine(FOLDER_FUNCTION, script),
+				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, script));
+			Helper.copyDirectory(System.IO.Path.Combine(FOLDER_FUNCTION, scriptFolder),
+				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, scriptFolder));
 		}
 	}
 }
