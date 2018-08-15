@@ -78,9 +78,10 @@
 			this.textbox_classname.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textbox_classname.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textbox_classname.Location = new System.Drawing.Point(12, 71);
 			this.textbox_classname.Name = "textbox_classname";
-			this.textbox_classname.Size = new System.Drawing.Size(539, 20);
+			this.textbox_classname.Size = new System.Drawing.Size(539, 24);
 			this.textbox_classname.TabIndex = 8;
 			// 
 			// titleLabel
@@ -102,18 +103,19 @@
 			this.textbox_title.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textbox_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textbox_title.Location = new System.Drawing.Point(12, 131);
 			this.textbox_title.Name = "textbox_title";
-			this.textbox_title.Size = new System.Drawing.Size(680, 20);
+			this.textbox_title.Size = new System.Drawing.Size(680, 24);
 			this.textbox_title.TabIndex = 10;
 			// 
 			// button_win
 			// 
 			this.button_win.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_win.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_win.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button_win.Location = new System.Drawing.Point(558, 67);
 			this.button_win.Name = "button_win";
-			this.button_win.Size = new System.Drawing.Size(64, 24);
+			this.button_win.Size = new System.Drawing.Size(64, 28);
 			this.button_win.TabIndex = 11;
 			this.button_win.Text = "Win";
 			this.button_win.UseVisualStyleBackColor = true;
@@ -121,10 +123,10 @@
 			// button_lose
 			// 
 			this.button_lose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button_lose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.button_lose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.button_lose.Location = new System.Drawing.Point(628, 67);
 			this.button_lose.Name = "button_lose";
-			this.button_lose.Size = new System.Drawing.Size(64, 24);
+			this.button_lose.Size = new System.Drawing.Size(64, 28);
 			this.button_lose.TabIndex = 12;
 			this.button_lose.Text = "Lose";
 			this.button_lose.UseVisualStyleBackColor = true;
@@ -148,9 +150,10 @@
 			this.textbox_subtitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textbox_subtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textbox_subtitle.Location = new System.Drawing.Point(12, 190);
 			this.textbox_subtitle.Name = "textbox_subtitle";
-			this.textbox_subtitle.Size = new System.Drawing.Size(680, 20);
+			this.textbox_subtitle.Size = new System.Drawing.Size(680, 24);
 			this.textbox_subtitle.TabIndex = 14;
 			// 
 			// descriptionLabel
@@ -172,6 +175,7 @@
 			this.textbox_description.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textbox_description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textbox_description.Location = new System.Drawing.Point(12, 247);
 			this.textbox_description.Multiline = true;
 			this.textbox_description.Name = "textbox_description";
@@ -195,9 +199,10 @@
 			// 
 			this.textbox_pictureBackground.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textbox_pictureBackground.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textbox_pictureBackground.Location = new System.Drawing.Point(12, 375);
 			this.textbox_pictureBackground.Name = "textbox_pictureBackground";
-			this.textbox_pictureBackground.Size = new System.Drawing.Size(680, 20);
+			this.textbox_pictureBackground.Size = new System.Drawing.Size(680, 24);
 			this.textbox_pictureBackground.TabIndex = 18;
 			this.textbox_pictureBackground.Text = "images\\loadScreen.jpg";
 			// 
