@@ -76,7 +76,10 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("};");
 			}
 
-			Environment.Exit(0); // TODO Placeholder
+			// Go to Form 5 Debriefing Page
+			this.Hide(); 
+			Form5_Debrief form2_missionsqm = new Form5_Debrief(this.missionDirectory); 
+			form2_missionsqm.ShowDialog(); 
 		}
 
 		private void generateScript(String script, String scriptFolder)

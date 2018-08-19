@@ -80,7 +80,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void button_complete_Click(object sender, EventArgs e)
 		{
-
+			Environment.Exit(0); // TODO Placeholder
 		}
 	}
 }
