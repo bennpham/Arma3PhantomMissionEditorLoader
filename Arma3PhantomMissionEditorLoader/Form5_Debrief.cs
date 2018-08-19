@@ -52,7 +52,7 @@ namespace Arma3PhantomMissionEditorLoader
 			{
 				this.classNames.Add(textbox_classname.Text.Trim());
 
-				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, DEBRIEFING)))
+				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, DEBRIEFING), true))
 				{
 					sw.WriteLine("class " + textbox_classname.Text.Trim());
 					sw.WriteLine("{");
