@@ -119,6 +119,7 @@
 			this.button_win.TabIndex = 11;
 			this.button_win.Text = "Win";
 			this.button_win.UseVisualStyleBackColor = true;
+			this.button_win.Click += new System.EventHandler(this.button_win_Click);
 			// 
 			// button_lose
 			// 
@@ -130,6 +131,7 @@
 			this.button_lose.TabIndex = 12;
 			this.button_lose.Text = "Lose";
 			this.button_lose.UseVisualStyleBackColor = true;
+			this.button_lose.Click += new System.EventHandler(this.button_lose_Click);
 			// 
 			// subtitleLabel
 			// 
@@ -204,7 +206,7 @@
 			this.textbox_pictureBackground.Name = "textbox_pictureBackground";
 			this.textbox_pictureBackground.Size = new System.Drawing.Size(680, 24);
 			this.textbox_pictureBackground.TabIndex = 18;
-			this.textbox_pictureBackground.Text = "images\\loadScreen.jpg";
+			this.textbox_pictureBackground.Text = "images\\loadscreen.jpg";
 			// 
 			// button_complete
 			// 
@@ -216,6 +218,7 @@
 			this.button_complete.TabIndex = 19;
 			this.button_complete.Text = "COMPLETE";
 			this.button_complete.UseVisualStyleBackColor = true;
+			this.button_complete.Click += new System.EventHandler(this.button_complete_Click);
 			// 
 			// button_add
 			// 
@@ -227,6 +230,7 @@
 			this.button_add.TabIndex = 20;
 			this.button_add.Text = "ADD";
 			this.button_add.UseVisualStyleBackColor = true;
+			this.button_add.Click += new System.EventHandler(this.button_add_Click);
 			// 
 			// Form5_Debrief
 			// 
