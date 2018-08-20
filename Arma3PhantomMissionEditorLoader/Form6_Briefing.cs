@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Arma3PhantomMissionEditorLoader
+{
+	public partial class Form6_Briefing : Form
+	{
+		// Constants
+		private const String BRIEFING = "briefing.sqf";
+		private const String FOLDER_SCRIPTS = "scripts";
+
+		private String missionDirectory;
+
+		public Form6_Briefing(String missionDirectory)
+		{
+			InitializeComponent();
+			this.missionDirectory = missionDirectory;
+			initializeBriefing();
+		}
+
+		private void button_add_Click(object sender, EventArgs e)
+		{
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING), true))
+			{
+				// TODO
+			}
+		}
+
+		private void button_complete_Click(object sender, EventArgs e)
+		{
+			Environment.Exit(0);
+		}
+
+		private void initializeBriefing()
+		{
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING)))
+			{
+				sw.WriteLine("_color = [\"GUI\", \"BCG_RGB\"] call BIS_fnc_displayColorGet;");
+				sw.WriteLine("_htmlcolor = _color call BIS_fnc_colorRGBAtoHTML;");
+				sw.WriteLine("");
+				sw.WriteLine("#define __color_link(marker, text) \"<font color='\" + _htmlcolor + \"'><marker name='\" + marker + \"'>\" + text + \"</marker></font>\"");
+				sw.WriteLine("#define __color_text(text) \"<font color='\" + _htmlcolor + \"'>\" + text + \"</font>\"");
+				sw.WriteLine("#define __color_clink(colour, marker, text) \"<font color='\" + colour + \"'><marker name='\" + marker + \"'>\" + text + \"</marker></font>\"");
+				sw.WriteLine("#define __color_ctext(colour, text) \"<font color='\" + colour + \"'>\" + text + \"</font>\"");
+				sw.WriteLine("");
+				sw.WriteLine("/* Briefing");
+				sw.WriteLine(" * The briefing can be defined by calling FHQ_TT_addBriefing.");
+				sw.WriteLine(" * The array is built like this.");
+				sw.WriteLine(" * The first element should be a filter (side, group, faction, or a piece of script)");
+				sw.WriteLine(" * This is followed by pairs of strings, a head line, and an actual text.");
+				sw.WriteLine(" * Briefings are added in the order in which they appear for any unit that matches");
+				sw.WriteLine(" * the last filter.");
+				sw.WriteLine(" */");
+				sw.WriteLine("[");
+				sw.WriteLine("	{true}, ");
+			}
+		}
+	}
+}

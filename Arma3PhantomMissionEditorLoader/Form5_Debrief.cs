@@ -80,7 +80,10 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void button_complete_Click(object sender, EventArgs e)
 		{
-			Environment.Exit(0); // TODO Placeholder
+			// Go to Form 6 Briefing Page
+			this.Hide();
+			Form6_Briefing new_form = new Form6_Briefing(this.missionDirectory);
+			new_form.ShowDialog();
 		}
 	}
 }
