@@ -17,11 +17,13 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String FOLDER_SCRIPTS = "scripts";
 
 		private String missionDirectory;
+		private bool firstItemAdded;
 
 		public Form6_Briefing(String missionDirectory)
 		{
 			InitializeComponent();
 			this.missionDirectory = missionDirectory;
+			firstItemAdded = false;
 			initializeBriefing();
 		}
 
@@ -29,12 +31,36 @@ namespace Arma3PhantomMissionEditorLoader
 		{
 			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING), true))
 			{
-				// TODO
+				if (String.IsNullOrWhiteSpace(textbox_title.Text))
+				{
+					MessageBox.Show("ERROR: Briefing Title Cannot be Blank!",
+						"Empty Title",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				else
+				{
+					// Append , after end of briefing description to separate new briefing description
+					//	if new briefing description isn't the first item
+					if (firstItemAdded)
+					{
+						sw.WriteLine(",");
+						sw.WriteLine("");
+					}
+					sw.WriteLine("		[\"" + textbox_title.Text.Replace("\"", "\"\"") + "\",");
+					sw.Write("			\"" + textbox_description.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, "<br/>") + "\"]"); 
+					firstItemAdded = true;
+				}
 			}
 		}
 
 		private void button_complete_Click(object sender, EventArgs e)
 		{
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING), true))
+			{
+				sw.WriteLine("");
+				sw.WriteLine("");
+				sw.WriteLine("] call FHQ_fnc_ttAddBriefing;");
+			}
 			Environment.Exit(0);
 		}
 

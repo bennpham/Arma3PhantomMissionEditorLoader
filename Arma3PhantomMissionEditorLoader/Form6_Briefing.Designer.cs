@@ -35,11 +35,6 @@
 			this.textbox_description = new System.Windows.Forms.TextBox();
 			this.button_add = new System.Windows.Forms.Button();
 			this.button_complete = new System.Windows.Forms.Button();
-			this.label_hotkey_description = new System.Windows.Forms.Label();
-			this.label_color_text2 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.label_color_text1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// title_briefing
@@ -131,67 +126,11 @@
 			this.button_complete.UseVisualStyleBackColor = true;
 			this.button_complete.Click += new System.EventHandler(this.button_complete_Click);
 			// 
-			// label_hotkey_description
-			// 
-			this.label_hotkey_description.AutoSize = true;
-			this.label_hotkey_description.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_hotkey_description.Location = new System.Drawing.Point(17, 388);
-			this.label_hotkey_description.Name = "label_hotkey_description";
-			this.label_hotkey_description.Size = new System.Drawing.Size(584, 15);
-			this.label_hotkey_description.TabIndex = 23;
-			this.label_hotkey_description.Text = "The following texts are commands. Be sure to separate each parameter with a comma" +
-    " and double quotes.";
-			// 
-			// label_color_text2
-			// 
-			this.label_color_text2.AutoSize = true;
-			this.label_color_text2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_color_text2.Location = new System.Drawing.Point(644, 409);
-			this.label_color_text2.Name = "label_color_text2";
-			this.label_color_text2.Size = new System.Drawing.Size(130, 15);
-			this.label_color_text2.TabIndex = 24;
-			this.label_color_text2.Text = "@color(\"Text to Color\")";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(40, 424);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(244, 15);
-			this.label1.TabIndex = 25;
-			this.label1.Text = "@marker(\"marker_name\", \"Text of Marker\")";
-			// 
-			// label_color_text1
-			// 
-			this.label_color_text1.AutoSize = true;
-			this.label_color_text1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_color_text1.Location = new System.Drawing.Point(40, 406);
-			this.label_color_text1.Name = "label_color_text1";
-			this.label_color_text1.Size = new System.Drawing.Size(193, 15);
-			this.label_color_text1.TabIndex = 26;
-			this.label_color_text1.Text = "@color(\"#FFFFFF\", \"Text to Color\")";
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(433, 424);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(341, 15);
-			this.label2.TabIndex = 27;
-			this.label2.Text = "@marker_color(\"#FFFFFF\", \"marker_name\", \"Text of Marker\")";
-			// 
 			// Form6_Briefing
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(824, 501);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.label_color_text1);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.label_color_text2);
-			this.Controls.Add(this.label_hotkey_description);
 			this.Controls.Add(this.button_add);
 			this.Controls.Add(this.button_complete);
 			this.Controls.Add(this.textbox_description);
@@ -215,10 +154,5 @@
 		private System.Windows.Forms.TextBox textbox_description;
 		private System.Windows.Forms.Button button_add;
 		private System.Windows.Forms.Button button_complete;
-		private System.Windows.Forms.Label label_hotkey_description;
-		private System.Windows.Forms.Label label_color_text2;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label_color_text1;
-		private System.Windows.Forms.Label label2;
 	}
 }
