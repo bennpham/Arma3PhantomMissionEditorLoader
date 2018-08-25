@@ -88,5 +88,79 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("	{true}, ");
 			}
 		}
+
+		// Create font color tag default in description
+		private void button_color_text_Click(object sender, EventArgs e)
+		{
+			textbox_description.Text += "<font color='\" + " + "_htmlcolor" + " + \"'>" + custom_text.Text.Replace("\"", "\"\"") + "</font>";
+		}
+
+		// Create font color tag custom color in description
+		private void button_color_ctext_Click(object sender, EventArgs e)
+		{
+			if (Helper.isColorHexidecimal(custom_color.Text))
+			{
+				textbox_description.Text += "<font color='" + custom_color.Text + "'>" + custom_text.Text.Replace("\"", "\"\"") + "</font>";
+			}
+			else
+			{
+				displayHexidecimalColorError();
+			}
+		}
+
+		// Create default color marker link in description
+		private void button_link_Click(object sender, EventArgs e)
+		{
+			if (containsAnyQuotes()) 
+			{
+				displayMarkerNameContainQuotes();
+			}
+			else 
+			{
+				textbox_description.Text += "<font color='\" + " + "_htmlcolor" + " + \"'><marker name='"+ custom_marker.Text + "'>" + custom_text.Text.Replace("\"", "\"\"") + "</marker></font>";
+			}
+		}
+
+		// Create custom color marker link in description
+		private void button_clink_Click(object sender, EventArgs e)
+		{
+			if (!Helper.isColorHexidecimal(custom_color.Text))
+			{
+				displayHexidecimalColorError();
+			}
+			else if (containsAnyQuotes()) 
+			{
+				displayMarkerNameContainQuotes();
+			}
+			else
+			{
+				textbox_description.Text += "<font color='" + custom_color.Text + "'><marker name='" + custom_marker.Text + "'>" + custom_text.Text.Replace("\"", "\"\"") + "</marker></font>";
+			}
+		}
+
+		/*======================
+		 * Helper functions 
+		 =======================*/
+		 // Return error message pop-up if color input isn't proper hexidecimal
+		 private void displayHexidecimalColorError()
+		 {
+			 MessageBox.Show("ERROR: Color in hexidecimal format is required! Please input a string like #FF0000 to define the color.",
+					"Invalid Color",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+		 }
+
+		// Return error message pop-up for marker name containing quotes
+		private void displayMarkerNameContainQuotes()
+		{
+			MessageBox.Show("ERROR: Marker name must not contain any quotes whether they're ' or \".",
+					"Quotes not Allowed",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+		}
+
+		// Return true if marker name contains quotes or double quotes
+		private bool containsAnyQuotes()
+		{
+			return custom_marker.Text.Contains("'") || custom_marker.Text.Contains("\"");
+		}
 	}
 }

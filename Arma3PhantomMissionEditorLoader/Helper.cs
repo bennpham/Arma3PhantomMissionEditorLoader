@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Arma3PhantomMissionEditorLoader
 {
@@ -27,6 +28,13 @@ namespace Arma3PhantomMissionEditorLoader
 			{
 				System.IO.File.Copy(fileName, System.IO.Path.Combine(destinationDir, fileName.Substring(sourceDir.Length + 1)));
 			}
+		}
+
+		/* Check to make sure string is in hexidecimal format */
+		public static bool isColorHexidecimal(String color)
+		{
+			Regex rx = new Regex("^#[a-fA-F0-9]{6}$");
+			return rx.IsMatch(color);
 		}
 	}
 }
