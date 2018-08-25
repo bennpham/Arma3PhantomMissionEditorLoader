@@ -251,6 +251,7 @@
 			this.Controls.Add(this.textbox_classname);
 			this.Controls.Add(this.classNameLabel);
 			this.Controls.Add(this.title_debriefing);
+			this.MinimumSize = new System.Drawing.Size(720, 512);
 			this.Name = "Form5_Debrief";
 			this.Text = "Form5_Debrief";
 			this.ResumeLayout(false);
