@@ -187,7 +187,7 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("sleep 3;");
 				sw.WriteLine("	" + parseInfoTextTitle() + " call BIS_fnc_infoText;"); 
 				sw.WriteLine("sleep 3;");
-				sw.WriteLine("	[\"Created by\"," + this.author + "] call BIS_fnc_infoText;");
+				sw.WriteLine("	[\"Created by\"," + "\"" + this.author + "\"] call BIS_fnc_infoText;");
 			}
 		}
 
