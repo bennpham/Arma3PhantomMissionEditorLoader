@@ -61,7 +61,10 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("");
 				sw.WriteLine("] call FHQ_fnc_ttAddBriefing;");
 			}
-			Environment.Exit(0);
+			// Go to Form 7 Briefing Task Page
+			this.Hide();
+			Form7_Briefing_Task new_form = new Form7_Briefing_Task(this.missionDirectory);
+			new_form.ShowDialog();
 		}
 
 		private void initializeBriefing()

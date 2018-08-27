@@ -81,6 +81,12 @@
     <Compile Include="Form6_Briefing.Designer.cs">
       <DependentUpon>Form6_Briefing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form7_Briefing_Task.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form7_Briefing_Task.Designer.cs">
+      <DependentUpon>Form7_Briefing_Task.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form6_Briefing.resx">
       <DependentUpon>Form6_Briefing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form7_Briefing_Task.resx">
+      <DependentUpon>Form7_Briefing_Task.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
