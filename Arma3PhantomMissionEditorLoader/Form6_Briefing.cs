@@ -47,7 +47,7 @@ namespace Arma3PhantomMissionEditorLoader
 						sw.WriteLine("");
 					}
 					sw.WriteLine("		[\"" + textbox_title.Text.Replace("\"", "\"\"") + "\",");
-					sw.Write("			\"" + textbox_description.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, "<br/>") + "\"]"); 
+					sw.Write("			\"" + textbox_description.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, "<br/>").Replace("'\"\" + _htmlcolor + \"\"'", "'\" + _htmlcolor + \"'") + "\"]"); 
 					firstItemAdded = true;
 				}
 			}
