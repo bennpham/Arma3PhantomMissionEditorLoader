@@ -9,13 +9,13 @@ An application to modify my Arma 3 <b>mission.sqm</b> file to set the settings t
 * Run the Mission Editor Loader and select the path to your new mission folder that contains just the unbinarize <b>mission.sqm</b> file and click new
 ### Editing Mission.sqm
 * Fill out all of the information on the first form that appears
-* This form should modify some information on your <b>mission.sqm</b> and <b>description.ext</b> including author information, mission overview text, Multiplayer settings, misison summary, weather settings, and etc. 
+* This form should modify some information on your <b>mission.sqm</b> and <b>description.ext</b> including author information, mission overview text, Multiplayer settings, mission summary, weather settings, and etc. 
 * By default, this application is <b>SIDE</b> respawn only and is meant for no respawn/revive type of coop gameplay.
 * Click okay when you are done
 ### Editing Description.ext & Infotext Script
-* Check off <b>Descrition Params</b> if you want in game parameters to scale units or other settings for the players in game (you'll need to do that manually through the <b>init.sqf</b> or <b>triggers</b>)
+* Check off <b>Description Params</b> if you want in game parameters to scale units or other settings for the players in game (you'll need to do that manually through the <b>init.sqf</b> or <b>triggers</b>)
 * Check out <b>Description Loadout</b> if you want to setup briefing loadouts. This is for Singleplayer only and you'll have to handle those manually in <b>scripts/briefing_loadout.hpp</b>
-* Check off <b>Init Zeus</b> if you want to have all units placed in the editor be controllable by zeus players. You can place 3 zeus slots named zeus_mod1, zeus_mod2, zeus_mod3 yourself or you can place them in via my mission composition
+* Check off <b>Init Zeus</b> if you want to have all units placed in the editor is controllable by zeus players. You can place 3 zeus slots named zeus_mod1, zeus_mod2, zeus_mod3 yourself or you can place them in via my mission composition
 * The default info text will display the date and time, followed by the text you inputted in the text box, then your name (as the author)
 ### Scripts to Enable
 * By default, FHQ TaskTracker will always be enabled. You can choose to enable additional scripts here.
@@ -35,7 +35,7 @@ An application to modify my Arma 3 <b>mission.sqm</b> file to set the settings t
 
 ## Notes
 * If you break your <b>mission.sqm</b> in any way, you can delete it and rename the <b>mission.sqm.old</b> (which is the backup of your old <b>mission.sqm</b> before editing)
-* If you made a few mistakes with your initial setups with using this tool, you can manually go back and change them in the mission editor if it is a weather setting or other setting ingame OR open the files that you would like to modify with your favorite text editor.
+* If you made a few mistakes with your initial setups with using this tool, you can manually go back and change them in the mission editor if it is a weather setting or other setting in game OR open the files that you would like to modify with your favorite text editor.
 
 ## Credits
 * <a href="http://ciahome.net/">Comrades in Arms</a>
