@@ -81,7 +81,8 @@ namespace Arma3PhantomMissionEditorLoader
 					// Write Task to briefing.sqf
 					sw.WriteLine("    	[\"" + textbox_taskname.Text + "\", // Task name");
 					sw.WriteLine("		 \"" + textbox_description.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, "<br/>").Replace("'\"\" + _htmlcolor + \"\"'", "'\" + _htmlcolor + \"'") + "\", // Task Description");
-					sw.WriteLine("		 \"" + textbox_tasktitle.Text.Replace("\"", "\"\"") + "\", // Waypoint text");
+					sw.WriteLine("		 \"" + textbox_tasktitle.Text.Replace("\"", "\"\"") + "\", // Task title in briefing");
+					sw.WriteLine("		 \"" + textbox_waypoint_text.Text.Replace("\"", "\"\"") + "\", // Waypoint text");
 					sw.WriteLine("		 getmarkerpos \"" + textbox_taskmarkername.Text + "\", // Optional: Position or object");
 					sw.WriteLine("		 \"" + comboBox_taskState.Text + "\", // Optional: Task State Status");
 					sw.WriteLine("		 \"" + comboBox_taskType.Text + "\" // Optional: Task Type");
