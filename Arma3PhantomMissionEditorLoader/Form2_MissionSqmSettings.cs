@@ -303,7 +303,7 @@ namespace Arma3PhantomMissionEditorLoader
 		private void handleScenarioDataHeader(System.IO.StreamReader sr, System.IO.StreamWriter sw, String line) 
 		{
 			bool editingScenarioHeaderData = true; 
-			if (line == null)
+			if (line == null || line.Equals("	class Header"))
 			{
 				line = sr.ReadLine();
 			}
