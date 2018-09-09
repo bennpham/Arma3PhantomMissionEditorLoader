@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -141,7 +141,7 @@ namespace Arma3PhantomMissionEditorLoader
 						{
 							if (!scenarioDataDict[unusedCmd])
 							{
-								writeScenarioData(sr, sw, unusedCmd);
+								writeScenarioData(sr, sw, unusedCmd, null);
 								if (unusedCmd.Equals("class Header"))
 								{
 									sw.WriteLine("	{");
@@ -219,7 +219,7 @@ namespace Arma3PhantomMissionEditorLoader
 					if (cmd.Equals((line.Trim().Split('='))[0]))
 					{
 						cmdNotAvail = false;
-						writeScenarioData(sr, sw, cmd);
+						writeScenarioData(sr, sw, cmd, line);
 					}
 				}
 				// Checks unmarked ScenarioData items, fill them in, then exit the loop
@@ -231,7 +231,7 @@ namespace Arma3PhantomMissionEditorLoader
 					{
 						if (!scenarioDataDict[unusedCmd])
 						{
-							writeScenarioData(sr, sw, unusedCmd);
+							writeScenarioData(sr, sw, unusedCmd, line);
 						}
 					}
 					sw.WriteLine("};");
@@ -247,7 +247,7 @@ namespace Arma3PhantomMissionEditorLoader
 		}
 
 		// Helper function to write scenarioData information to mission.sqm
-		private void writeScenarioData(System.IO.StreamReader sr, System.IO.StreamWriter sw, String cmd)
+		private void writeScenarioData(System.IO.StreamReader sr, System.IO.StreamWriter sw, String cmd, String line)
 		{
 			switch (cmd)
 			{
@@ -293,20 +293,28 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("	class Header");
 					// Loop through Header for ScenarioData and fill out gameType to Coop
 					//	then fill out minplayer and maxplayer
-					handleScenarioDataHeader(sr, sw);
+					handleScenarioDataHeader(sr, sw, line);
 					this.scenarioDataDict["class Header"] = true;
 					break;
 			}
 		}
 
 		// Handles calling functions for ScenarioData Header section
-		private void handleScenarioDataHeader(System.IO.StreamReader sr, System.IO.StreamWriter sw)
+		private void handleScenarioDataHeader(System.IO.StreamReader sr, System.IO.StreamWriter sw, String line) 
 		{
-			String line = null;
 			bool editingScenarioHeaderData = true; 
-
-			while (editingScenarioHeaderData && (line = sr.ReadLine()) != null)
+			if (line == null)
 			{
+				line = sr.ReadLine();
+			}
+			while (editingScenarioHeaderData && line != null)
+			{
+				// Add closing brackets if Header was barely created
+				if (line.Equals("};"))
+				{
+					sw.WriteLine("	{");
+				}
+
 				bool cmd2NotAvail = true;
 				List<string> keys2 = new List<string>(scenarioDataHeaderDict.Keys);
 				foreach (String cmd2 in keys2)
@@ -318,7 +326,7 @@ namespace Arma3PhantomMissionEditorLoader
 					}
 				}
 				// Checks unmarked ScenarioData Header items, fill them in, then exit the loop
-				if (line.Equals("	};"))
+				if (line.Equals("	};") || line.Equals("};"))
 				{
 					cmd2NotAvail = false;
 					List<string> unusedKeys2 = new List<string>(scenarioDataHeaderDict.Keys);
@@ -336,6 +344,10 @@ namespace Arma3PhantomMissionEditorLoader
 				if (cmd2NotAvail)
 				{
 					sw.WriteLine(line);
+				}
+				if (editingScenarioHeaderData)
+				{
+					line = sr.ReadLine();
 				}
 			}
 		}
