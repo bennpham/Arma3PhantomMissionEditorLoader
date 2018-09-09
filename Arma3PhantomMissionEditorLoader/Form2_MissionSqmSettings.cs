@@ -197,7 +197,7 @@ namespace Arma3PhantomMissionEditorLoader
 				textbox_author.Text,
 				"OnLoadName = \"" + textBox_onLoadName.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, " ") + "\";",
 				"OnLoadMission =\"" + textBox_onLoadMission.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, " ") + "\";",
-				min_players.ToString(), max_players.ToString());
+				min_players.Value.ToString(), max_players.Value.ToString());
 			form3_description.ShowDialog();
 		}
 
