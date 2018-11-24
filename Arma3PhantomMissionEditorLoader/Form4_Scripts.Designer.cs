@@ -33,6 +33,7 @@
 			this.FHQ_marker_patrol_checkbox = new System.Windows.Forms.CheckBox();
 			this.FHQ_safe_add_loadout_checkbox = new System.Windows.Forms.CheckBox();
 			this.scripts_button = new System.Windows.Forms.Button();
+			this.FHQ_force_tracker_checkbox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// title_extra_scripts
@@ -60,7 +61,7 @@
 			// 
 			this.FHQ_marker_patrol_checkbox.AutoSize = true;
 			this.FHQ_marker_patrol_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FHQ_marker_patrol_checkbox.Location = new System.Drawing.Point(17, 70);
+			this.FHQ_marker_patrol_checkbox.Location = new System.Drawing.Point(17, 102);
 			this.FHQ_marker_patrol_checkbox.Name = "FHQ_marker_patrol_checkbox";
 			this.FHQ_marker_patrol_checkbox.Size = new System.Drawing.Size(160, 24);
 			this.FHQ_marker_patrol_checkbox.TabIndex = 12;
@@ -71,7 +72,7 @@
 			// 
 			this.FHQ_safe_add_loadout_checkbox.AutoSize = true;
 			this.FHQ_safe_add_loadout_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FHQ_safe_add_loadout_checkbox.Location = new System.Drawing.Point(17, 100);
+			this.FHQ_safe_add_loadout_checkbox.Location = new System.Drawing.Point(17, 132);
 			this.FHQ_safe_add_loadout_checkbox.Name = "FHQ_safe_add_loadout_checkbox";
 			this.FHQ_safe_add_loadout_checkbox.Size = new System.Drawing.Size(196, 24);
 			this.FHQ_safe_add_loadout_checkbox.TabIndex = 13;
@@ -89,11 +90,23 @@
 			this.scripts_button.UseVisualStyleBackColor = true;
 			this.scripts_button.Click += new System.EventHandler(this.scripts_button_Click);
 			// 
+			// FHQ_force_tracker_checkbox
+			// 
+			this.FHQ_force_tracker_checkbox.AutoSize = true;
+			this.FHQ_force_tracker_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.FHQ_force_tracker_checkbox.Location = new System.Drawing.Point(18, 70);
+			this.FHQ_force_tracker_checkbox.Name = "FHQ_force_tracker_checkbox";
+			this.FHQ_force_tracker_checkbox.Size = new System.Drawing.Size(164, 24);
+			this.FHQ_force_tracker_checkbox.TabIndex = 15;
+			this.FHQ_force_tracker_checkbox.Text = "FHQ Force Tracker";
+			this.FHQ_force_tracker_checkbox.UseVisualStyleBackColor = true;
+			// 
 			// Form4_Scripts
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(304, 381);
+			this.Controls.Add(this.FHQ_force_tracker_checkbox);
 			this.Controls.Add(this.scripts_button);
 			this.Controls.Add(this.FHQ_safe_add_loadout_checkbox);
 			this.Controls.Add(this.FHQ_marker_patrol_checkbox);
@@ -115,5 +128,6 @@
 		private System.Windows.Forms.CheckBox FHQ_marker_patrol_checkbox;
 		private System.Windows.Forms.CheckBox FHQ_safe_add_loadout_checkbox;
 		private System.Windows.Forms.Button scripts_button;
+		private System.Windows.Forms.CheckBox FHQ_force_tracker_checkbox;
 	}
 }

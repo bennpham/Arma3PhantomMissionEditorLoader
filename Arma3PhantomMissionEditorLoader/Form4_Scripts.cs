@@ -17,6 +17,8 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String COMMON_HPP = "common.hpp";
 
 		// Constants Scripts to Choose
+		private const String SCRIPT_FHQ_FORCETRACKER = "fhq_forcetracker.hpp";
+		private const String SCRIPT_FOLDER_FHQ_FORCETRACKER = "FHQ_forcetracker";
 		private const String SCRIPT_FHQ_MARKERPATROL = "fhq_markerPatrol.hpp";
 		private const String SCRIPT_FOLDER_FHQ_MARKERPATROL = "FHQ_markerPatrol";
 		private const String SCRIPT_FHQ_SAFEADDLOADOUT = "fhq_safeAddLoadout.hpp";
@@ -54,6 +56,13 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("");
 				sw.WriteLine("class FHQ");
 				sw.WriteLine("{");
+
+				// Generate FHQ Force Tracker
+				if (FHQ_force_tracker_checkbox.Checked)
+				{
+					sw.WriteLine("	#include \"fhq_forcetracker.hpp\"");
+					generateScript(SCRIPT_FHQ_FORCETRACKER, SCRIPT_FOLDER_FHQ_FORCETRACKER);
+				}
 
 				// Generate FHQ Marker Patrol
 				if (FHQ_marker_patrol_checkbox.Checked)
