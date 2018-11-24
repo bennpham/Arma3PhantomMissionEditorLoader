@@ -12,6 +12,8 @@ namespace Arma3PhantomMissionEditorLoader
 {
 	public partial class Form6_Briefing : Form
 	{
+		private ColorDialog colorDiaglog;
+
 		// Constants
 		private const String BRIEFING = "briefing.sqf";
 		private const String FOLDER_SCRIPTS = "scripts";
@@ -24,6 +26,10 @@ namespace Arma3PhantomMissionEditorLoader
 			InitializeComponent();
 			this.missionDirectory = missionDirectory;
 			firstItemAdded = false;
+
+			// Setup color dialog
+			this.colorDiaglog = new ColorDialog();
+
 			initializeBriefing();
 		}
 
@@ -141,11 +147,18 @@ namespace Arma3PhantomMissionEditorLoader
 			}
 		}
 
+		private void colorButton_Click(object sender, EventArgs e)
+		{
+			DialogResult result = this.colorDiaglog.ShowDialog();
+			colorButton.BackColor = this.colorDiaglog.Color;
+			custom_color.Text = Helper.hexConverter(this.colorDiaglog.Color);
+		}
+
 		/*======================
 		 * Helper functions 
 		 =======================*/
-		 // Return error message pop-up if color input isn't proper hexidecimal
-		 private void displayHexidecimalColorError()
+		// Return error message pop-up if color input isn't proper hexidecimal
+		private void displayHexidecimalColorError()
 		 {
 			 MessageBox.Show("ERROR: Color in hexidecimal format is required! Please input a string like #FF0000 to define the color.",
 					"Invalid Color",

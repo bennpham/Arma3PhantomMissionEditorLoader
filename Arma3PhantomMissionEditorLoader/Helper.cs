@@ -36,5 +36,12 @@ namespace Arma3PhantomMissionEditorLoader
 			Regex rx = new Regex("^#[a-fA-F0-9]{6}$");
 			return rx.IsMatch(color);
 		}
+
+		// From https://stackoverflow.com/a/2395708/9463774
+		/* Returns C# Color into hexidecimal string format */
+		public static string hexConverter(System.Drawing.Color color)
+		{
+			return "#" + color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
+		}
 	}
 }

@@ -12,6 +12,8 @@ namespace Arma3PhantomMissionEditorLoader
 {
 	public partial class Form7_Briefing_Task : Form
 	{
+		private ColorDialog colorDiaglog;
+
 		// Constants
 		private const String BRIEFING = "briefing.sqf";
 		private const String FOLDER_SCRIPTS = "scripts";
@@ -28,6 +30,9 @@ namespace Arma3PhantomMissionEditorLoader
 			firstItemAdded = false;
 			firstAssignedTaskStateFound = false;
 			taskNames = new HashSet<string>();
+
+			// Setup color dialog
+			this.colorDiaglog = new ColorDialog();
 
 			// Set taskState combobox to default to "Created" as the first item
 			comboBox_taskState.SelectedIndex = 0;
@@ -163,8 +168,15 @@ namespace Arma3PhantomMissionEditorLoader
 			}
 		}
 
+		private void colorButton_Click(object sender, EventArgs e)
+		{
+			DialogResult result = this.colorDiaglog.ShowDialog();
+			colorButton.BackColor = this.colorDiaglog.Color;
+			custom_color.Text = Helper.hexConverter(this.colorDiaglog.Color);
+		}
+
 		/*======================
-		 * Helper functions 
+		 * Helper functions
 		 =======================*/
 		// Return error message pop-up if color input isn't proper hexidecimal
 		private void displayHexidecimalColorError()

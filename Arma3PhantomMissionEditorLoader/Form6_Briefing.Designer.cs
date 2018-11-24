@@ -45,6 +45,7 @@
 			this.button_color_ctext = new System.Windows.Forms.Button();
 			this.button_link = new System.Windows.Forms.Button();
 			this.button_clink = new System.Windows.Forms.Button();
+			this.colorButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// title_briefing
@@ -248,11 +249,22 @@
 			this.button_clink.UseVisualStyleBackColor = true;
 			this.button_clink.Click += new System.EventHandler(this.button_clink_Click);
 			// 
+			// colorButton
+			// 
+			this.colorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.colorButton.Location = new System.Drawing.Point(171, 460);
+			this.colorButton.Name = "colorButton";
+			this.colorButton.Size = new System.Drawing.Size(26, 23);
+			this.colorButton.TabIndex = 53;
+			this.colorButton.UseVisualStyleBackColor = true;
+			this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+			// 
 			// Form6_Briefing
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(824, 601);
+			this.Controls.Add(this.colorButton);
 			this.Controls.Add(this.button_clink);
 			this.Controls.Add(this.button_link);
 			this.Controls.Add(this.button_color_ctext);
@@ -297,5 +309,6 @@
 		private System.Windows.Forms.Button button_color_ctext;
 		private System.Windows.Forms.Button button_link;
 		private System.Windows.Forms.Button button_clink;
+		private System.Windows.Forms.Button colorButton;
 	}
 }

@@ -55,6 +55,7 @@
 			this.textbox_taskmarkername = new System.Windows.Forms.TextBox();
 			this.comboBox_taskState = new System.Windows.Forms.ComboBox();
 			this.comboBox_taskType = new System.Windows.Forms.ComboBox();
+			this.colorButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// title_task
@@ -458,11 +459,22 @@
 			this.comboBox_taskType.Size = new System.Drawing.Size(173, 26);
 			this.comboBox_taskType.TabIndex = 51;
 			// 
+			// colorButton
+			// 
+			this.colorButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.colorButton.Location = new System.Drawing.Point(176, 344);
+			this.colorButton.Name = "colorButton";
+			this.colorButton.Size = new System.Drawing.Size(26, 23);
+			this.colorButton.TabIndex = 52;
+			this.colorButton.UseVisualStyleBackColor = true;
+			this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+			// 
 			// Form7_Briefing_Task
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(824, 601);
+			this.Controls.Add(this.colorButton);
 			this.Controls.Add(this.comboBox_taskType);
 			this.Controls.Add(this.comboBox_taskState);
 			this.Controls.Add(this.textbox_taskmarkername);
@@ -527,5 +539,6 @@
 		private System.Windows.Forms.TextBox textbox_taskmarkername;
 		private System.Windows.Forms.ComboBox comboBox_taskState;
 		private System.Windows.Forms.ComboBox comboBox_taskType;
+		private System.Windows.Forms.Button colorButton;
 	}
 }
