@@ -179,6 +179,7 @@
 			this.custom_color.Name = "custom_color";
 			this.custom_color.Size = new System.Drawing.Size(94, 24);
 			this.custom_color.TabIndex = 26;
+			this.custom_color.TextChanged += new System.EventHandler(this.custom_color_TextChanged);
 			// 
 			// label_custom_marker
 			// 

@@ -175,6 +175,14 @@ namespace Arma3PhantomMissionEditorLoader
 			custom_color.Text = Helper.hexConverter(this.colorDiaglog.Color);
 		}
 
+		private void custom_color_TextChanged(object sender, EventArgs e)
+		{
+			if (Helper.isColorHexidecimal(custom_color.Text))
+			{
+				colorButton.BackColor = ColorTranslator.FromHtml(custom_color.Text);
+			}
+		}
+
 		/*======================
 		 * Helper functions
 		 =======================*/
