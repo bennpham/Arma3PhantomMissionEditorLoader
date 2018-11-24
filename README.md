@@ -1,7 +1,7 @@
 # Arma 3 Phantom Mission Editor Loader
 
 <p align="center">
-<a href="https://github.com/bennpham/Arma3PhantomMissionEditorLoader/releases/tag/v0.9.1-beta"><img src="https://img.shields.io/badge/Version-0.9.1-blue.svg" alt="Download Mission Loader" /></a>
+<a href="https://github.com/bennpham/Arma3PhantomMissionEditorLoader/releases/tag/v1.0.0"><img src="https://img.shields.io/badge/Version-1.0.0-blue.svg" alt="Download Mission Loader" /></a>
 </p>
 
 An application to modify my Arma 3 <b>mission.sqm</b> file to set the settings that I need in one go and generate some basic scripts to help me focus on unit placement and making the missions rather than copying over the same files for my template and modifying them separately instead. 
