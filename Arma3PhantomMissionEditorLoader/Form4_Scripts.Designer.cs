@@ -34,6 +34,8 @@
 			this.FHQ_safe_add_loadout_checkbox = new System.Windows.Forms.CheckBox();
 			this.scripts_button = new System.Windows.Forms.Button();
 			this.FHQ_force_tracker_checkbox = new System.Windows.Forms.CheckBox();
+			this.FHQ_weather_effect_checkbox = new System.Windows.Forms.CheckBox();
+			this.TAW_view_distance_checkbox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// title_extra_scripts
@@ -101,11 +103,37 @@
 			this.FHQ_force_tracker_checkbox.Text = "FHQ Force Tracker";
 			this.FHQ_force_tracker_checkbox.UseVisualStyleBackColor = true;
 			// 
+			// FHQ_weather_effect_checkbox
+			// 
+			this.FHQ_weather_effect_checkbox.AutoSize = true;
+			this.FHQ_weather_effect_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.FHQ_weather_effect_checkbox.Location = new System.Drawing.Point(17, 162);
+			this.FHQ_weather_effect_checkbox.Name = "FHQ_weather_effect_checkbox";
+			this.FHQ_weather_effect_checkbox.Size = new System.Drawing.Size(174, 24);
+			this.FHQ_weather_effect_checkbox.TabIndex = 16;
+			this.FHQ_weather_effect_checkbox.Text = "FHQ Weather Effect";
+			this.FHQ_weather_effect_checkbox.UseVisualStyleBackColor = true;
+			// 
+			// TAW_view_distance_checkbox
+			// 
+			this.TAW_view_distance_checkbox.AutoSize = true;
+			this.TAW_view_distance_checkbox.Checked = true;
+			this.TAW_view_distance_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.TAW_view_distance_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.TAW_view_distance_checkbox.Location = new System.Drawing.Point(17, 192);
+			this.TAW_view_distance_checkbox.Name = "TAW_view_distance_checkbox";
+			this.TAW_view_distance_checkbox.Size = new System.Drawing.Size(168, 24);
+			this.TAW_view_distance_checkbox.TabIndex = 17;
+			this.TAW_view_distance_checkbox.Text = "TAW View Distance";
+			this.TAW_view_distance_checkbox.UseVisualStyleBackColor = true;
+			// 
 			// Form4_Scripts
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(304, 381);
+			this.Controls.Add(this.TAW_view_distance_checkbox);
+			this.Controls.Add(this.FHQ_weather_effect_checkbox);
 			this.Controls.Add(this.FHQ_force_tracker_checkbox);
 			this.Controls.Add(this.scripts_button);
 			this.Controls.Add(this.FHQ_safe_add_loadout_checkbox);
@@ -129,5 +157,7 @@
 		private System.Windows.Forms.CheckBox FHQ_safe_add_loadout_checkbox;
 		private System.Windows.Forms.Button scripts_button;
 		private System.Windows.Forms.CheckBox FHQ_force_tracker_checkbox;
+		private System.Windows.Forms.CheckBox FHQ_weather_effect_checkbox;
+		private System.Windows.Forms.CheckBox TAW_view_distance_checkbox;
 	}
 }
