@@ -27,11 +27,13 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String SCRIPT_FOLDER_FHQ_TASKTRACKER = "FHQ_tasktracker";
 
 		private String missionDirectory;
+		private Dictionary<String, Object> parameters;
 
-		public Form4_Scripts(String missionDirectory)
+		public Form4_Scripts(String missionDirectory, Dictionary<String, Object> parameters)
 		{
 			InitializeComponent();
 			this.missionDirectory = missionDirectory;
+			this.parameters = parameters;
 		}
 
 		private void scripts_button_Click(object sender, EventArgs e)
@@ -85,10 +87,28 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("};");
 			}
 
-			// Go to Form 5 Debriefing Page
-			this.Hide(); 
-			Form5_Debrief new_form = new Form5_Debrief(this.missionDirectory); 
-			new_form.ShowDialog(); 
+			// Load parameters to add into init if needed
+			if (FHQ_weather_effect_checkbox.Checked)
+			{
+				this.parameters.Add("FHQ_Weather_Script", new List<String>());
+			}
+			if (TAW_view_distance_checkbox.Checked)
+			{
+				this.parameters.Add("TAW_View_Distance", new List<String>());
+			}
+
+			// Go to Form 5 Debriefing Page or scripts settings
+			this.Hide();
+			if (FHQ_weather_effect_checkbox.Checked)
+			{
+				Form4a_FHQ_Weather_Effect new_form = new Form4a_FHQ_Weather_Effect(this.missionDirectory, this.parameters);
+				new_form.ShowDialog();
+			}
+			else
+			{
+				Form5_Debrief new_form = new Form5_Debrief(this.missionDirectory, this.parameters);
+				new_form.ShowDialog();
+			}
 		}
 
 		private void generateScript(String script, String scriptFolder)
