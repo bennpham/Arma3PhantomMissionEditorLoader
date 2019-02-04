@@ -13,7 +13,6 @@ namespace Arma3PhantomMissionEditorLoader
 	public partial class Form3_Description : Form
 	{
 		private const String DESCRIPTION = "description.ext";
-		private const String INIT = "init.sqf";
 
 		private const String FOLDER_SCRIPTS = "scripts";
 		private const String INFOTEXT = "infotext.sqf";
@@ -35,6 +34,9 @@ namespace Arma3PhantomMissionEditorLoader
 		private String minPlayers;
 		private String maxPlayers;
 
+		// Parameters to set init.sqf later
+		private Dictionary<String, Object> parameters;
+
 		public Form3_Description(String missionDirectory, String date, String hour, String minute, String author, 
 			String onLoadName, String onLoadMission, String minPlayers, String maxPlayers)
 		{
@@ -50,6 +52,9 @@ namespace Arma3PhantomMissionEditorLoader
 			this.minPlayers = minPlayers;
 			this.maxPlayers = maxPlayers;
 
+			this.parameters["description_params"] = description_params_checkbox.Checked;
+			this.parameters["init_zeus"] = init_zeus_checkbox.Checked;
+
 			initializeInformation();
 		}
 
@@ -60,9 +65,6 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// Create scripts folder 
 			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS));
-
-			// Write init.sqf
-			writeInitSqf();
 
 			// Write infoText
 			writeInfoText();
@@ -79,7 +81,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// GoTo Scripts Selector Page
 			this.Hide();
-			Form4_Scripts form4_scripts = new Form4_Scripts(this.missionDirectory);
+			Form4_Scripts form4_scripts = new Form4_Scripts(this.missionDirectory, this.parameters);
 			form4_scripts.ShowDialog();
 		}
 
@@ -135,45 +137,6 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("");
 					sw.WriteLine("#include \"scripts\\briefing_loadout.hpp\"");
 				}
-			}
-		}
-
-		private void writeInitSqf()
-		{
-			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, INIT)))
-			{
-				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\briefing.sqf\";");
-				if (description_params_checkbox.Checked)
-				{
-					sw.WriteLine("");
-					sw.WriteLine("// Singleplayer handling");
-					sw.WriteLine("if (!isMultiplayer) then {");
-					sw.WriteLine("	// TODO");
-					sw.WriteLine("};");
-					sw.WriteLine("");
-					sw.WriteLine("// Scaled Multiplayer handling for small player count");
-					sw.WriteLine("_ScalePlayers = \"ScalePlayers\" call BIS_fnc_getParamValue;");
-					sw.WriteLine("if (_ScalePlayers == 1 && isServer && isMultiplayer) then {");
-					sw.WriteLine("	// TODO");
-					sw.WriteLine("};");
-					sw.WriteLine("");
-					sw.WriteLine("// Fullhouse Multiplayer Handling");
-					sw.WriteLine("if (_ScalePlayers == 0 && isServer && isMultiplayer) then {");
-					sw.WriteLine("	// TODO");
-					sw.WriteLine("};");
-				}
-				if (init_zeus_checkbox.Checked)
-				{
-					sw.WriteLine("");
-					sw.WriteLine("// Initialize stuff for Zeus on server");
-					sw.WriteLine("if (isMultiplayer && isServer) then {");
-					sw.WriteLine("	{zeus_mod1 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
-					sw.WriteLine("	{zeus_mod2 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
-					sw.WriteLine("	{zeus_mod3 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
-					sw.WriteLine("};");
-				}
-				sw.WriteLine("");
-				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\infotext.sqf\";");
 			}
 		}
 

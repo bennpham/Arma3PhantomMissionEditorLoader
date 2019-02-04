@@ -14,14 +14,17 @@ namespace Arma3PhantomMissionEditorLoader
 	{
 		// Constants
 		private const String DEBRIEFING = "debriefing.hpp";
+		private const String INIT = "init.sqf";
 
 		private String missionDirectory;
 		private HashSet<String> classNames;
+		private Dictionary<String, Object> parameters;
 
-		public Form5_Debrief(String missionDirectory)
+		public Form5_Debrief(String missionDirectory, Dictionary<String, Object> parameters)
 		{
 			InitializeComponent();
 			this.missionDirectory = missionDirectory;
+			this.parameters = parameters;
 			classNames = new HashSet<string>();
 		}
 
@@ -84,6 +87,57 @@ namespace Arma3PhantomMissionEditorLoader
 			this.Hide();
 			Form6_Briefing new_form = new Form6_Briefing(this.missionDirectory);
 			new_form.ShowDialog();
+		}
+
+		private void writeInitSqf()
+		{
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, INIT)))
+			{
+				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\briefing.sqf\";");
+				if (this.parameters.ContainsKey("TAW_View_Distance"))
+				{
+					sw.WriteLine("");
+					foreach (var parameter in (List<String>)this.parameters["TAW_View_Distance"])
+					{
+						sw.WriteLine(parameter);
+					}
+				}
+				if ((bool)this.parameters["description_params"])
+				{
+					sw.WriteLine("");
+					sw.WriteLine("// Singleplayer handling");
+					sw.WriteLine("if (!isMultiplayer) then {");
+					sw.WriteLine("	// TODO");
+					sw.WriteLine("};");
+					sw.WriteLine("");
+					sw.WriteLine("// Scaled Multiplayer handling for small player count");
+					sw.WriteLine("_ScalePlayers = \"ScalePlayers\" call BIS_fnc_getParamValue;");
+					sw.WriteLine("if (_ScalePlayers == 1 && isServer && isMultiplayer) then {");
+					sw.WriteLine("	// TODO");
+					sw.WriteLine("};");
+					sw.WriteLine("");
+					sw.WriteLine("// Fullhouse Multiplayer Handling");
+					sw.WriteLine("if (_ScalePlayers == 0 && isServer && isMultiplayer) then {");
+					sw.WriteLine("	// TODO");
+					sw.WriteLine("};");
+				}
+				if ((bool)this.parameters["init_zeus"])
+				{
+					sw.WriteLine("");
+					sw.WriteLine("// Initialize stuff for Zeus on server");
+					sw.WriteLine("if (isMultiplayer && isServer) then {");
+					sw.WriteLine("	{zeus_mod1 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
+					sw.WriteLine("	{zeus_mod2 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
+					sw.WriteLine("	{zeus_mod3 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
+					sw.WriteLine("};");
+				}
+				sw.WriteLine("");
+				if (this.parameters.ContainsKey("FHQ_Weather_Script"))
+				{
+					sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\weatherScript.sqf\";");
+				}
+				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\infotext.sqf\";");
+			}
 		}
 	}
 }
