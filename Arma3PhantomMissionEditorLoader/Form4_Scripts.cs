@@ -90,11 +90,11 @@ namespace Arma3PhantomMissionEditorLoader
 			// Load parameters to add into init if needed
 			if (FHQ_weather_effect_checkbox.Checked)
 			{
-				this.parameters.Add("FHQ_Weather_Script", new List<String>());
+				this.parameters.Add("init_FHQ_Weather_Script", "call compile preProcessFileLineNumbers \"scripts\\weatherScript.sqf\";");
 			}
 			if (TAW_view_distance_checkbox.Checked)
 			{
-				this.parameters.Add("TAW_View_Distance", new List<String>());
+				this.parameters.Add("init_TAW_View_Distance", new List<String>());
 			}
 
 			// Go to Form 5 Debriefing Page or scripts settings

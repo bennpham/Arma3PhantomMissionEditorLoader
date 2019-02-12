@@ -12,8 +12,6 @@ namespace Arma3PhantomMissionEditorLoader
 {
 	public partial class Form3_Description : Form
 	{
-		private const String DESCRIPTION = "description.ext";
-
 		private const String FOLDER_SCRIPTS = "scripts";
 		private const String INFOTEXT = "infotext.sqf";
 		private const String BRIEFING = "briefing.sqf";
@@ -54,15 +52,22 @@ namespace Arma3PhantomMissionEditorLoader
 
 			this.parameters["description_params"] = description_params_checkbox.Checked;
 			this.parameters["init_zeus"] = init_zeus_checkbox.Checked;
+			this.parameters["description"] = new Dictionary<String, Object>
+			{
+				{"author", author},
+				{"onLoadName", onLoadName},
+				{"onLoadMission", onLoadMission},
+				{"minPlayers", minPlayers},
+				{"maxPlayers", maxPlayers},
+				{"descriptionParams", description_params_checkbox.Checked},
+				{"descriptionLoadout", description_loadout_checkbox.Checked}
+			};
 
 			initializeInformation();
 		}
 
 		private void description_button_Click(object sender, EventArgs e)
 		{
-			// Write description.ext
-			writeDescriptionExt();
-
 			// Create scripts folder 
 			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS));
 
@@ -90,54 +95,6 @@ namespace Arma3PhantomMissionEditorLoader
 		{
 			this.label_datetime.Text = this.date + " | " + this.hour + ":" + this.minute + ":00";
 			this.label_created_by.Text = "Created By " + this.author;
-		}
-
-		private void writeDescriptionExt()
-		{
-			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, DESCRIPTION)))
-			{
-				sw.WriteLine("overviewPicture = \"images\\loadscreen.jpg\";");
-				sw.WriteLine("author=\"" + this.author + "\";");
-				sw.WriteLine("loadScreen = \"images\\loadscreen.jpg\";");
-				sw.WriteLine(this.onLoadName);
-				sw.WriteLine(this.onLoadMission);
-				sw.WriteLine("debriefing = 1;");
-				sw.WriteLine("");
-				sw.WriteLine("allowFunctionsRecompile = 1;");
-				sw.WriteLine("");
-				sw.WriteLine("class Header");
-				sw.WriteLine("{");
-				sw.WriteLine("  gameType = Coop;");
-				sw.WriteLine("  minPlayers = " + this.minPlayers + ";");
-				sw.WriteLine("  maxPlayers = " + this.maxPlayers + ";");
-				sw.WriteLine("  playerCountMultipleOf = 1;");
-				sw.WriteLine("};");
-				sw.WriteLine("");
-				sw.WriteLine("respawn = \"SIDE\";");
-				sw.WriteLine("respawnDelay = 5;");
-				sw.WriteLine("");
-				sw.WriteLine("class CfgDebriefing");
-				sw.WriteLine("{");
-				sw.WriteLine("	#include \"debriefing.hpp\"");
-				sw.WriteLine("};");
-				sw.WriteLine("");
-				sw.WriteLine("class CfgFunctions {");
-				sw.WriteLine("	#include \"functions\\common.hpp\"");
-				sw.WriteLine("};");
-				if (description_params_checkbox.Checked)
-				{
-					sw.WriteLine("");
-					sw.WriteLine("class Params");
-					sw.WriteLine("{");
-					sw.WriteLine("	#include \"scripts\\parameters.hpp\"");
-					sw.WriteLine("};");
-				}
-				if (description_loadout_checkbox.Checked)
-				{
-					sw.WriteLine("");
-					sw.WriteLine("#include \"scripts\\briefing_loadout.hpp\"");
-				}
-			}
 		}
 
 		private void writeInfoText()

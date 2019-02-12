@@ -14,6 +14,7 @@ namespace Arma3PhantomMissionEditorLoader
 	{
 		// Constants
 		private const String DEBRIEFING = "debriefing.hpp";
+		private const String DESCRIPTION = "description.ext";
 		private const String INIT = "init.sqf";
 
 		private String missionDirectory;
@@ -83,10 +84,70 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void button_complete_Click(object sender, EventArgs e)
 		{
+			// Write description.ext
+			writeDescriptionExt();
+
+			// Write init.sqf
+			writeInitSqf();
+
 			// Go to Form 6 Briefing Page
 			this.Hide();
 			Form6_Briefing new_form = new Form6_Briefing(this.missionDirectory);
 			new_form.ShowDialog();
+		}
+
+		private void writeDescriptionExt()
+		{
+			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, DESCRIPTION)))
+			{
+				Dictionary<String, Object> parameters = (Dictionary<String, Object>) this.parameters["description"];
+
+				sw.WriteLine("overviewPicture = \"images\\loadscreen.jpg\";");
+				sw.WriteLine("author=\"" + parameters["author"].ToString() + "\";");
+				sw.WriteLine("loadScreen = \"images\\loadscreen.jpg\";");
+				sw.WriteLine(parameters["onLoadName"].ToString());
+				sw.WriteLine(parameters["onLoadMission"].ToString());
+				sw.WriteLine("debriefing = 1;");
+				sw.WriteLine("");
+				sw.WriteLine("allowFunctionsRecompile = 1;");
+				sw.WriteLine("");
+				sw.WriteLine("class Header");
+				sw.WriteLine("{");
+				sw.WriteLine("  gameType = Coop;");
+				sw.WriteLine("  minPlayers = " + parameters["minPlayers"].ToString() + ";");
+				sw.WriteLine("  maxPlayers = " + parameters["maxPlayers"].ToString() + ";");
+				sw.WriteLine("  playerCountMultipleOf = 1;");
+				sw.WriteLine("};");
+				sw.WriteLine("");
+				sw.WriteLine("respawn = \"SIDE\";");
+				sw.WriteLine("respawnDelay = 5;");
+				sw.WriteLine("");
+				sw.WriteLine("class CfgDebriefing");
+				sw.WriteLine("{");
+				sw.WriteLine("	#include \"debriefing.hpp\"");
+				sw.WriteLine("};");
+				sw.WriteLine("");
+				if (this.parameters.ContainsKey("TAW_View_Distance"))
+				{
+					sw.WriteLine("#include \"functions\\taw_vd\\GUI.h\"");
+				}
+				sw.WriteLine("class CfgFunctions {");
+				sw.WriteLine("	#include \"functions\\common.hpp\"");
+				sw.WriteLine("};");
+				if ((bool)parameters["descriptionParams"])
+				{
+					sw.WriteLine("");
+					sw.WriteLine("class Params");
+					sw.WriteLine("{");
+					sw.WriteLine("	#include \"scripts\\parameters.hpp\"");
+					sw.WriteLine("};");
+				}
+				if ((bool)parameters["descriptionLoadout"])
+				{
+					sw.WriteLine("");
+					sw.WriteLine("#include \"scripts\\briefing_loadout.hpp\"");
+				}
+			}
 		}
 
 		private void writeInitSqf()

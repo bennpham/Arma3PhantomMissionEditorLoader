@@ -114,6 +114,9 @@
     <EmbeddedResource Include="Form4a_FHQ_Weather_Effect.resx">
       <DependentUpon>Form4a_FHQ_Weather_Effect.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form4a_TAW_View_Distance.resx">
+      <DependentUpon>Form4a_TAW_View_Distance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form4_Scripts.resx">
       <DependentUpon>Form4_Scripts.cs</DependentUpon>
     </EmbeddedResource>

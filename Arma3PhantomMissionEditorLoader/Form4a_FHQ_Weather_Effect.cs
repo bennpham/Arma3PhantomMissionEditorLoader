@@ -93,7 +93,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// Go to Form 5 or next Form 4 Scripts
 			this.Hide();
-			if (this.parameters.ContainsKey("TAW_View_Distance"))
+			if (this.parameters.ContainsKey("init_TAW_View_Distance"))
 			{
 				Form4a_TAW_View_Distance new_form = new Form4a_TAW_View_Distance(this.missionDirectory, this.parameters);
 				new_form.ShowDialog();
