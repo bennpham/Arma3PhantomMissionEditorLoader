@@ -25,6 +25,10 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String SCRIPT_FOLDER_FHQ_SAFEADDLOADOUT = "FHQ_safeAddLoadout";
 		private const String SCRIPT_FHQ_TASKTRACKER = "fhq_tasktracker.hpp";
 		private const String SCRIPT_FOLDER_FHQ_TASKTRACKER = "FHQ_tasktracker";
+		private const String SCRIPT_FHQ_WEATHEREFFECT = "fhq_weatherEffects.hpp";
+		private const String SCRIPT_FHQ_WEATHEREFFECT_FSM = "weatherEffects.fsm";
+		private const String SCRIPT_FOLDER_FHQ_WEATHEREFFECT = "FHQ_WeatherEffect";
+		private const String SCRIPT_FOLDER_TAW_VD = "taw_vd";
 
 		private String missionDirectory;
 		private Dictionary<String, Object> parameters;
@@ -56,6 +60,14 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("		description = y;					\\");
 				sw.WriteLine("	};");
 				sw.WriteLine("");
+				
+				// Generate TAW View Distance
+				if (TAW_view_distance_checkbox.Checked)
+				{
+					sw.WriteLine("#include \"taw_vd\\CfgFunctions.hpp\"");
+					sw.WriteLine("");
+				}
+
 				sw.WriteLine("class FHQ");
 				sw.WriteLine("{");
 
@@ -78,6 +90,14 @@ namespace Arma3PhantomMissionEditorLoader
 				{
 					sw.WriteLine("	#include \"fhq_safeAddLoadout.hpp\"");
 					generateScript(SCRIPT_FHQ_SAFEADDLOADOUT, SCRIPT_FOLDER_FHQ_SAFEADDLOADOUT);
+				}
+
+				// Generate FHQ Weather Effect
+				if (FHQ_weather_effect_checkbox.Checked)
+				{
+					sw.WriteLine("	#include \"fhq_weatherEffect.hpp\"");
+					generateScript(SCRIPT_FHQ_WEATHEREFFECT, SCRIPT_FOLDER_FHQ_WEATHEREFFECT);
+					copyExtraFile(SCRIPT_FHQ_WEATHEREFFECT_FSM);
 				}
 
 				// Generate FHQ Task Tracker by default
@@ -117,6 +137,12 @@ namespace Arma3PhantomMissionEditorLoader
 				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, script));
 			Helper.copyDirectory(System.IO.Path.Combine(FOLDER_FUNCTION, scriptFolder),
 				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, scriptFolder));
+		}
+
+		private void copyExtraFile(String file)
+		{
+			System.IO.File.Copy(System.IO.Path.Combine(FOLDER_FUNCTION, file),
+				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, file));
 		}
 	}
 }
