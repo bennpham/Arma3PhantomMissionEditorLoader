@@ -36,6 +36,7 @@
 			this.FHQ_force_tracker_checkbox = new System.Windows.Forms.CheckBox();
 			this.FHQ_weather_effect_checkbox = new System.Windows.Forms.CheckBox();
 			this.TAW_view_distance_checkbox = new System.Windows.Forms.CheckBox();
+			this.FHQ_detected_by_checkbox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// title_extra_scripts
@@ -63,7 +64,7 @@
 			// 
 			this.FHQ_marker_patrol_checkbox.AutoSize = true;
 			this.FHQ_marker_patrol_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FHQ_marker_patrol_checkbox.Location = new System.Drawing.Point(17, 102);
+			this.FHQ_marker_patrol_checkbox.Location = new System.Drawing.Point(17, 131);
 			this.FHQ_marker_patrol_checkbox.Name = "FHQ_marker_patrol_checkbox";
 			this.FHQ_marker_patrol_checkbox.Size = new System.Drawing.Size(160, 24);
 			this.FHQ_marker_patrol_checkbox.TabIndex = 12;
@@ -74,7 +75,7 @@
 			// 
 			this.FHQ_safe_add_loadout_checkbox.AutoSize = true;
 			this.FHQ_safe_add_loadout_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FHQ_safe_add_loadout_checkbox.Location = new System.Drawing.Point(17, 132);
+			this.FHQ_safe_add_loadout_checkbox.Location = new System.Drawing.Point(17, 161);
 			this.FHQ_safe_add_loadout_checkbox.Name = "FHQ_safe_add_loadout_checkbox";
 			this.FHQ_safe_add_loadout_checkbox.Size = new System.Drawing.Size(196, 24);
 			this.FHQ_safe_add_loadout_checkbox.TabIndex = 13;
@@ -96,7 +97,7 @@
 			// 
 			this.FHQ_force_tracker_checkbox.AutoSize = true;
 			this.FHQ_force_tracker_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FHQ_force_tracker_checkbox.Location = new System.Drawing.Point(18, 70);
+			this.FHQ_force_tracker_checkbox.Location = new System.Drawing.Point(18, 99);
 			this.FHQ_force_tracker_checkbox.Name = "FHQ_force_tracker_checkbox";
 			this.FHQ_force_tracker_checkbox.Size = new System.Drawing.Size(164, 24);
 			this.FHQ_force_tracker_checkbox.TabIndex = 15;
@@ -107,7 +108,7 @@
 			// 
 			this.FHQ_weather_effect_checkbox.AutoSize = true;
 			this.FHQ_weather_effect_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FHQ_weather_effect_checkbox.Location = new System.Drawing.Point(17, 162);
+			this.FHQ_weather_effect_checkbox.Location = new System.Drawing.Point(17, 192);
 			this.FHQ_weather_effect_checkbox.Name = "FHQ_weather_effect_checkbox";
 			this.FHQ_weather_effect_checkbox.Size = new System.Drawing.Size(174, 24);
 			this.FHQ_weather_effect_checkbox.TabIndex = 16;
@@ -120,18 +121,30 @@
 			this.TAW_view_distance_checkbox.Checked = true;
 			this.TAW_view_distance_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.TAW_view_distance_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.TAW_view_distance_checkbox.Location = new System.Drawing.Point(17, 192);
+			this.TAW_view_distance_checkbox.Location = new System.Drawing.Point(17, 222);
 			this.TAW_view_distance_checkbox.Name = "TAW_view_distance_checkbox";
 			this.TAW_view_distance_checkbox.Size = new System.Drawing.Size(168, 24);
 			this.TAW_view_distance_checkbox.TabIndex = 17;
 			this.TAW_view_distance_checkbox.Text = "TAW View Distance";
 			this.TAW_view_distance_checkbox.UseVisualStyleBackColor = true;
 			// 
+			// FHQ_detected_by_checkbox
+			// 
+			this.FHQ_detected_by_checkbox.AutoSize = true;
+			this.FHQ_detected_by_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.FHQ_detected_by_checkbox.Location = new System.Drawing.Point(19, 70);
+			this.FHQ_detected_by_checkbox.Name = "FHQ_detected_by_checkbox";
+			this.FHQ_detected_by_checkbox.Size = new System.Drawing.Size(154, 24);
+			this.FHQ_detected_by_checkbox.TabIndex = 18;
+			this.FHQ_detected_by_checkbox.Text = "FHQ Detected By";
+			this.FHQ_detected_by_checkbox.UseVisualStyleBackColor = true;
+			// 
 			// Form4_Scripts
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(304, 381);
+			this.Controls.Add(this.FHQ_detected_by_checkbox);
 			this.Controls.Add(this.TAW_view_distance_checkbox);
 			this.Controls.Add(this.FHQ_weather_effect_checkbox);
 			this.Controls.Add(this.FHQ_force_tracker_checkbox);
@@ -159,5 +172,6 @@
 		private System.Windows.Forms.CheckBox FHQ_force_tracker_checkbox;
 		private System.Windows.Forms.CheckBox FHQ_weather_effect_checkbox;
 		private System.Windows.Forms.CheckBox TAW_view_distance_checkbox;
+		private System.Windows.Forms.CheckBox FHQ_detected_by_checkbox;
 	}
 }

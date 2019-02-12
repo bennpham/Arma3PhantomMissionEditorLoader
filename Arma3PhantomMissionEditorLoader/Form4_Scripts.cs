@@ -108,6 +108,26 @@ namespace Arma3PhantomMissionEditorLoader
 			}
 
 			// Load parameters to add into init if needed
+			if (FHQ_detected_by_checkbox.Checked)
+			{
+				this.parameters.Add("init_FHQ_Detected_By", 
+					"// FHQ detection script\n" +
+					"FHQ_fnc_detectedBy = {\n" +
+					"	private _detectList = _this select 0;\n" +
+					"	private _triggerList = _this select 1;\n" +
+					"\n" +
+					"	private _knowledge = 0;" +
+					"\n" +
+					"	{\n" +
+					"		private _unit = _x;\n" +
+					"		if (alive _unit) then {\n" +
+					"			_knowledge = _knowledge + ({(_unit knowsAbout _x) > 0} count _detectList);\n" +
+					"		};\n" +
+					"	} forEach _triggerList;\n" +
+					"\n" +
+					"	_knowledge > 0\n" +
+					"};");
+			}
 			if (FHQ_weather_effect_checkbox.Checked)
 			{
 				this.parameters.Add("init_FHQ_Weather_Script", "call compile preProcessFileLineNumbers \"scripts\\weatherScript.sqf\";");

@@ -155,6 +155,11 @@ namespace Arma3PhantomMissionEditorLoader
 			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, INIT)))
 			{
 				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\briefing.sqf\";");
+				if (this.parameters.ContainsKey("init_FHQ_Detected_By"))
+				{
+					sw.WriteLine("");
+					sw.WriteLine((String)this.parameters["init_FHQ_Detected_By"]);
+				}
 				if (this.parameters.ContainsKey("TAW_View_Distance"))
 				{
 					sw.WriteLine("");
