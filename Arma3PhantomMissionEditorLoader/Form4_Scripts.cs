@@ -66,6 +66,7 @@ namespace Arma3PhantomMissionEditorLoader
 				{
 					sw.WriteLine("#include \"taw_vd\\CfgFunctions.hpp\"");
 					sw.WriteLine("");
+					copyFolder(SCRIPT_FOLDER_TAW_VD);
 				}
 
 				sw.WriteLine("class FHQ");
@@ -97,7 +98,7 @@ namespace Arma3PhantomMissionEditorLoader
 				{
 					sw.WriteLine("	#include \"fhq_weatherEffect.hpp\"");
 					generateScript(SCRIPT_FHQ_WEATHEREFFECT, SCRIPT_FOLDER_FHQ_WEATHEREFFECT);
-					copyExtraFile(SCRIPT_FHQ_WEATHEREFFECT_FSM);
+					copyFile(SCRIPT_FHQ_WEATHEREFFECT_FSM);
 				}
 
 				// Generate FHQ Task Tracker by default
@@ -153,16 +154,20 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void generateScript(String script, String scriptFolder)
 		{
-			System.IO.File.Copy(System.IO.Path.Combine(FOLDER_FUNCTION, script),
-				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, script));
-			Helper.copyDirectory(System.IO.Path.Combine(FOLDER_FUNCTION, scriptFolder),
-				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, scriptFolder));
+			copyFile(script);
+			copyFolder(scriptFolder);
 		}
 
-		private void copyExtraFile(String file)
+		private void copyFile(String file)
 		{
 			System.IO.File.Copy(System.IO.Path.Combine(FOLDER_FUNCTION, file),
 				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, file));
+		}
+
+		private void copyFolder(String folder)
+		{
+			Helper.copyDirectory(System.IO.Path.Combine(FOLDER_FUNCTION, folder),
+				System.IO.Path.Combine(this.missionDirectory, FOLDER_FUNCTION, folder));
 		}
 	}
 }
