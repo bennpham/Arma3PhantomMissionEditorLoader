@@ -50,17 +50,21 @@ namespace Arma3PhantomMissionEditorLoader
 			this.minPlayers = minPlayers;
 			this.maxPlayers = maxPlayers;
 
-			this.parameters["description_params"] = description_params_checkbox.Checked;
-			this.parameters["init_zeus"] = init_zeus_checkbox.Checked;
-			this.parameters["description"] = new Dictionary<String, Object>
+			this.parameters = new Dictionary<String, Object>
 			{
-				{"author", author},
-				{"onLoadName", onLoadName},
-				{"onLoadMission", onLoadMission},
-				{"minPlayers", minPlayers},
-				{"maxPlayers", maxPlayers},
-				{"descriptionParams", description_params_checkbox.Checked},
-				{"descriptionLoadout", description_loadout_checkbox.Checked}
+				{"description_params", description_params_checkbox.Checked},
+				{"init_zeus", init_zeus_checkbox.Checked},
+				{"description", new Dictionary<String, Object>
+					{
+						{"author", author},
+						{"onLoadName", onLoadName},
+						{"onLoadMission", onLoadMission},
+						{"minPlayers", minPlayers},
+						{"maxPlayers", maxPlayers},
+						{"descriptionParams", description_params_checkbox.Checked},
+						{"descriptionLoadout", description_loadout_checkbox.Checked}
+					}
+				}
 			};
 
 			initializeInformation();

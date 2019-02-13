@@ -25,7 +25,7 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String SCRIPT_FOLDER_FHQ_SAFEADDLOADOUT = "FHQ_safeAddLoadout";
 		private const String SCRIPT_FHQ_TASKTRACKER = "fhq_tasktracker.hpp";
 		private const String SCRIPT_FOLDER_FHQ_TASKTRACKER = "FHQ_tasktracker";
-		private const String SCRIPT_FHQ_WEATHEREFFECT = "fhq_weatherEffects.hpp";
+		private const String SCRIPT_FHQ_WEATHEREFFECT = "fhq_weatherEffect.hpp";
 		private const String SCRIPT_FHQ_WEATHEREFFECT_FSM = "weatherEffects.fsm";
 		private const String SCRIPT_FOLDER_FHQ_WEATHEREFFECT = "FHQ_WeatherEffect";
 		private const String SCRIPT_FOLDER_TAW_VD = "taw_vd";
