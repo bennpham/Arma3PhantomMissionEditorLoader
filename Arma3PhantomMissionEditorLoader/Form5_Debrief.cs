@@ -127,7 +127,7 @@ namespace Arma3PhantomMissionEditorLoader
 				sw.WriteLine("	#include \"debriefing.hpp\"");
 				sw.WriteLine("};");
 				sw.WriteLine("");
-				if (this.parameters.ContainsKey("TAW_View_Distance"))
+				if (this.parameters.ContainsKey("init_TAW_View_Distance"))
 				{
 					sw.WriteLine("#include \"functions\\taw_vd\\GUI.h\"");
 				}
@@ -160,13 +160,10 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("");
 					sw.WriteLine((String)this.parameters["init_FHQ_Detected_By"]);
 				}
-				if (this.parameters.ContainsKey("TAW_View_Distance"))
+				if (this.parameters.ContainsKey("init_TAW_View_Distance"))
 				{
 					sw.WriteLine("");
-					foreach (var parameter in (List<String>)this.parameters["TAW_View_Distance"])
-					{
-						sw.WriteLine(parameter);
-					}
+					sw.Write(this.parameters["init_TAW_View_Distance"].ToString());
 				}
 				if ((bool)this.parameters["description_params"])
 				{

@@ -67,6 +67,8 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("#include \"taw_vd\\CfgFunctions.hpp\"");
 					sw.WriteLine("");
 					copyFolder(SCRIPT_FOLDER_TAW_VD);
+
+					this.parameters.Add("init_TAW_View_Distance", "");
 				}
 
 				sw.WriteLine("class FHQ");
@@ -99,6 +101,8 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("	#include \"fhq_weatherEffect.hpp\"");
 					generateScript(SCRIPT_FHQ_WEATHEREFFECT, SCRIPT_FOLDER_FHQ_WEATHEREFFECT);
 					copyFile(SCRIPT_FHQ_WEATHEREFFECT_FSM);
+
+					this.parameters.Add("init_FHQ_Weather_Script", "call compile preProcessFileLineNumbers \"scripts\\weatherScript.sqf\";");
 				}
 
 				// Generate FHQ Task Tracker by default
@@ -128,14 +132,6 @@ namespace Arma3PhantomMissionEditorLoader
 					"\n" +
 					"	_knowledge > 0\n" +
 					"};");
-			}
-			if (FHQ_weather_effect_checkbox.Checked)
-			{
-				this.parameters.Add("init_FHQ_Weather_Script", "call compile preProcessFileLineNumbers \"scripts\\weatherScript.sqf\";");
-			}
-			if (TAW_view_distance_checkbox.Checked)
-			{
-				this.parameters.Add("init_TAW_View_Distance", new List<String>());
 			}
 
 			// Go to Form 5 Debriefing Page or scripts settings

@@ -24,15 +24,15 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void scripts_button_Click(object sender, EventArgs e)
 		{
-			List<String> init_TAW_View_Distance = (List<String>) this.parameters["init_TAW_View_Distance"];
+			String init_TAW_View_Distance = this.parameters["init_TAW_View_Distance"].ToString();
 			// Setup parameters
 			if (disableNone_checkbox.Checked)
 			{
-				init_TAW_View_Distance.Add("tawvd_disablenone = true;");
+				init_TAW_View_Distance += "tawvd_disablenone = true;\n";
 			}
 			if (enableMaxRange_checkBox.Checked)
 			{
-				init_TAW_View_Distance.Add("tawvd_maxRange = " + maxRange.Value.ToString() + ";");
+				init_TAW_View_Distance += "tawvd_maxRange = " + maxRange.Value.ToString() + ";\n";
 			}
 			this.parameters["init_TAW_View_Distance"] = init_TAW_View_Distance;
 

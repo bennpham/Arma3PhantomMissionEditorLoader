@@ -128,6 +128,7 @@
 			// 
 			// fogInterval
 			// 
+			this.fogInterval.DecimalPlaces = 10;
 			this.fogInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.fogInterval.Increment = new decimal(new int[] {
             1,
@@ -151,6 +152,7 @@
 			// 
 			// sandInterval
 			// 
+			this.sandInterval.DecimalPlaces = 10;
 			this.sandInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sandInterval.Increment = new decimal(new int[] {
             1,
@@ -174,6 +176,7 @@
 			// 
 			// snowInterval
 			// 
+			this.snowInterval.DecimalPlaces = 10;
 			this.snowInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.snowInterval.Increment = new decimal(new int[] {
             1,
@@ -197,6 +200,7 @@
 			// 
 			// windInterval
 			// 
+			this.windInterval.DecimalPlaces = 10;
 			this.windInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.windInterval.Increment = new decimal(new int[] {
             1,
