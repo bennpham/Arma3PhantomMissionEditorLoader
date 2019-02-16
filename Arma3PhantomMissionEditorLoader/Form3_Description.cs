@@ -12,9 +12,6 @@ namespace Arma3PhantomMissionEditorLoader
 {
 	public partial class Form3_Description : Form
 	{
-		private const String DESCRIPTION = "description.ext";
-		private const String INIT = "init.sqf";
-
 		private const String FOLDER_SCRIPTS = "scripts";
 		private const String INFOTEXT = "infotext.sqf";
 		private const String BRIEFING = "briefing.sqf";
@@ -35,6 +32,9 @@ namespace Arma3PhantomMissionEditorLoader
 		private String minPlayers;
 		private String maxPlayers;
 
+		// Parameters to set init.sqf later
+		private Dictionary<String, Object> parameters;
+
 		public Form3_Description(String missionDirectory, String date, String hour, String minute, String author, 
 			String onLoadName, String onLoadMission, String minPlayers, String maxPlayers)
 		{
@@ -50,19 +50,30 @@ namespace Arma3PhantomMissionEditorLoader
 			this.minPlayers = minPlayers;
 			this.maxPlayers = maxPlayers;
 
+			this.parameters = new Dictionary<String, Object>
+			{
+				{"description_params", description_params_checkbox.Checked},
+				{"init_zeus", init_zeus_checkbox.Checked},
+				{"description", new Dictionary<String, Object>
+					{
+						{"author", author},
+						{"onLoadName", onLoadName},
+						{"onLoadMission", onLoadMission},
+						{"minPlayers", minPlayers},
+						{"maxPlayers", maxPlayers},
+						{"descriptionParams", description_params_checkbox.Checked},
+						{"descriptionLoadout", description_loadout_checkbox.Checked}
+					}
+				}
+			};
+
 			initializeInformation();
 		}
 
 		private void description_button_Click(object sender, EventArgs e)
 		{
-			// Write description.ext
-			writeDescriptionExt();
-
 			// Create scripts folder 
 			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS));
-
-			// Write init.sqf
-			writeInitSqf();
 
 			// Write infoText
 			writeInfoText();
@@ -79,7 +90,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 			// GoTo Scripts Selector Page
 			this.Hide();
-			Form4_Scripts form4_scripts = new Form4_Scripts(this.missionDirectory);
+			Form4_Scripts form4_scripts = new Form4_Scripts(this.missionDirectory, this.parameters);
 			form4_scripts.ShowDialog();
 		}
 
@@ -88,93 +99,6 @@ namespace Arma3PhantomMissionEditorLoader
 		{
 			this.label_datetime.Text = this.date + " | " + this.hour + ":" + this.minute + ":00";
 			this.label_created_by.Text = "Created By " + this.author;
-		}
-
-		private void writeDescriptionExt()
-		{
-			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, DESCRIPTION)))
-			{
-				sw.WriteLine("overviewPicture = \"images\\loadscreen.jpg\";");
-				sw.WriteLine("author=\"" + this.author + "\";");
-				sw.WriteLine("loadScreen = \"images\\loadscreen.jpg\";");
-				sw.WriteLine(this.onLoadName);
-				sw.WriteLine(this.onLoadMission);
-				sw.WriteLine("debriefing = 1;");
-				sw.WriteLine("");
-				sw.WriteLine("allowFunctionsRecompile = 1;");
-				sw.WriteLine("");
-				sw.WriteLine("class Header");
-				sw.WriteLine("{");
-				sw.WriteLine("  gameType = Coop;");
-				sw.WriteLine("  minPlayers = " + this.minPlayers + ";");
-				sw.WriteLine("  maxPlayers = " + this.maxPlayers + ";");
-				sw.WriteLine("  playerCountMultipleOf = 1;");
-				sw.WriteLine("};");
-				sw.WriteLine("");
-				sw.WriteLine("respawn = \"SIDE\";");
-				sw.WriteLine("respawnDelay = 5;");
-				sw.WriteLine("");
-				sw.WriteLine("class CfgDebriefing");
-				sw.WriteLine("{");
-				sw.WriteLine("	#include \"debriefing.hpp\"");
-				sw.WriteLine("};");
-				sw.WriteLine("");
-				sw.WriteLine("class CfgFunctions {");
-				sw.WriteLine("	#include \"functions\\common.hpp\"");
-				sw.WriteLine("};");
-				if (description_params_checkbox.Checked)
-				{
-					sw.WriteLine("");
-					sw.WriteLine("class Params");
-					sw.WriteLine("{");
-					sw.WriteLine("	#include \"scripts\\parameters.hpp\"");
-					sw.WriteLine("};");
-				}
-				if (description_loadout_checkbox.Checked)
-				{
-					sw.WriteLine("");
-					sw.WriteLine("#include \"scripts\\briefing_loadout.hpp\"");
-				}
-			}
-		}
-
-		private void writeInitSqf()
-		{
-			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, INIT)))
-			{
-				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\briefing.sqf\";");
-				if (description_params_checkbox.Checked)
-				{
-					sw.WriteLine("");
-					sw.WriteLine("// Singleplayer handling");
-					sw.WriteLine("if (!isMultiplayer) then {");
-					sw.WriteLine("	// TODO");
-					sw.WriteLine("};");
-					sw.WriteLine("");
-					sw.WriteLine("// Scaled Multiplayer handling for small player count");
-					sw.WriteLine("_ScalePlayers = \"ScalePlayers\" call BIS_fnc_getParamValue;");
-					sw.WriteLine("if (_ScalePlayers == 1 && isServer && isMultiplayer) then {");
-					sw.WriteLine("	// TODO");
-					sw.WriteLine("};");
-					sw.WriteLine("");
-					sw.WriteLine("// Fullhouse Multiplayer Handling");
-					sw.WriteLine("if (_ScalePlayers == 0 && isServer && isMultiplayer) then {");
-					sw.WriteLine("	// TODO");
-					sw.WriteLine("};");
-				}
-				if (init_zeus_checkbox.Checked)
-				{
-					sw.WriteLine("");
-					sw.WriteLine("// Initialize stuff for Zeus on server");
-					sw.WriteLine("if (isMultiplayer && isServer) then {");
-					sw.WriteLine("	{zeus_mod1 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
-					sw.WriteLine("	{zeus_mod2 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
-					sw.WriteLine("	{zeus_mod3 addCuratorEditableObjects [[_x],true]} forEach allUnits;");
-					sw.WriteLine("};");
-				}
-				sw.WriteLine("");
-				sw.WriteLine("call compile preProcessFileLineNumbers \"scripts\\infotext.sqf\";");
-			}
 		}
 
 		private void writeInfoText()
