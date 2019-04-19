@@ -50,6 +50,12 @@ namespace Arma3PhantomMissionEditorLoader
 			this.minPlayers = minPlayers;
 			this.maxPlayers = maxPlayers;
 
+			initializeInformation();
+		}
+
+		private void description_button_Click(object sender, EventArgs e)
+		{
+			// Set parameters information once button is click to get checkbox latest state
 			this.parameters = new Dictionary<String, Object>
 			{
 				{"description_params", description_params_checkbox.Checked},
@@ -67,11 +73,6 @@ namespace Arma3PhantomMissionEditorLoader
 				}
 			};
 
-			initializeInformation();
-		}
-
-		private void description_button_Click(object sender, EventArgs e)
-		{
 			// Create scripts folder 
 			System.IO.Directory.CreateDirectory(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS));
 
