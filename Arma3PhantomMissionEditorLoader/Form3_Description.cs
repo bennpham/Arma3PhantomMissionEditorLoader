@@ -58,7 +58,7 @@ namespace Arma3PhantomMissionEditorLoader
 			// Set parameters information once button is click to get checkbox latest state
 			this.parameters = new Dictionary<String, Object>
 			{
-				{"description_params", description_params_checkbox.Checked},
+				{"description_params", description_params_scale_players_checkbox.Checked},
 				{"init_zeus", init_zeus_checkbox.Checked},
 				{"description", new Dictionary<String, Object>
 					{
@@ -67,7 +67,7 @@ namespace Arma3PhantomMissionEditorLoader
 						{"onLoadMission", onLoadMission},
 						{"minPlayers", minPlayers},
 						{"maxPlayers", maxPlayers},
-						{"descriptionParams", description_params_checkbox.Checked},
+						{"descriptionParams", description_params_scale_players_checkbox.Checked},
 						{"descriptionLoadout", description_loadout_checkbox.Checked}
 					}
 				}
@@ -118,7 +118,7 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void writeParametersHPP()
 		{
-			if (description_params_checkbox.Checked)
+			if (description_params_scale_players_checkbox.Checked)
 			{
 				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, PARAMETERS)))
 				{

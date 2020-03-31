@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.title_description = new System.Windows.Forms.Label();
-			this.description_params_checkbox = new System.Windows.Forms.CheckBox();
+			this.description_params_scale_players_checkbox = new System.Windows.Forms.CheckBox();
 			this.description_loadout_checkbox = new System.Windows.Forms.CheckBox();
 			this.description_button = new System.Windows.Forms.Button();
 			this.title_infotext = new System.Windows.Forms.Label();
@@ -38,6 +38,7 @@
 			this.label_datetime = new System.Windows.Forms.Label();
 			this.init_zeus_checkbox = new System.Windows.Forms.CheckBox();
 			this.init_zeus_label = new System.Windows.Forms.Label();
+			this.description_params_difficulty_checkbox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// title_description
@@ -51,24 +52,24 @@
 			this.title_description.Text = "Description";
 			this.title_description.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
-			// description_params_checkbox
+			// description_params_scale_players_checkbox
 			// 
-			this.description_params_checkbox.AutoSize = true;
-			this.description_params_checkbox.Checked = true;
-			this.description_params_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.description_params_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.description_params_checkbox.Location = new System.Drawing.Point(17, 41);
-			this.description_params_checkbox.Name = "description_params_checkbox";
-			this.description_params_checkbox.Size = new System.Drawing.Size(314, 24);
-			this.description_params_checkbox.TabIndex = 11;
-			this.description_params_checkbox.Text = "Description Params (Player Count Scale)";
-			this.description_params_checkbox.UseVisualStyleBackColor = true;
+			this.description_params_scale_players_checkbox.AutoSize = true;
+			this.description_params_scale_players_checkbox.Checked = true;
+			this.description_params_scale_players_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.description_params_scale_players_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.description_params_scale_players_checkbox.Location = new System.Drawing.Point(17, 41);
+			this.description_params_scale_players_checkbox.Name = "description_params_scale_players_checkbox";
+			this.description_params_scale_players_checkbox.Size = new System.Drawing.Size(314, 24);
+			this.description_params_scale_players_checkbox.TabIndex = 11;
+			this.description_params_scale_players_checkbox.Text = "Description Params (Player Count Scale)";
+			this.description_params_scale_players_checkbox.UseVisualStyleBackColor = true;
 			// 
 			// description_loadout_checkbox
 			// 
 			this.description_loadout_checkbox.AutoSize = true;
 			this.description_loadout_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.description_loadout_checkbox.Location = new System.Drawing.Point(17, 71);
+			this.description_loadout_checkbox.Location = new System.Drawing.Point(17, 101);
 			this.description_loadout_checkbox.Name = "description_loadout_checkbox";
 			this.description_loadout_checkbox.Size = new System.Drawing.Size(306, 24);
 			this.description_loadout_checkbox.TabIndex = 12;
@@ -78,7 +79,7 @@
 			// description_button
 			// 
 			this.description_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.description_button.Location = new System.Drawing.Point(176, 376);
+			this.description_button.Location = new System.Drawing.Point(176, 407);
 			this.description_button.Name = "description_button";
 			this.description_button.Size = new System.Drawing.Size(147, 38);
 			this.description_button.TabIndex = 13;
@@ -90,7 +91,7 @@
 			// 
 			this.title_infotext.AutoSize = true;
 			this.title_infotext.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.title_infotext.Location = new System.Drawing.Point(12, 172);
+			this.title_infotext.Location = new System.Drawing.Point(12, 203);
 			this.title_infotext.Name = "title_infotext";
 			this.title_infotext.Size = new System.Drawing.Size(174, 29);
 			this.title_infotext.TabIndex = 14;
@@ -99,7 +100,7 @@
 			// 
 			// infotext_title
 			// 
-			this.infotext_title.Location = new System.Drawing.Point(12, 248);
+			this.infotext_title.Location = new System.Drawing.Point(12, 279);
 			this.infotext_title.Multiline = true;
 			this.infotext_title.Name = "infotext_title";
 			this.infotext_title.Size = new System.Drawing.Size(440, 75);
@@ -109,7 +110,7 @@
 			// 
 			this.label_created_by.AutoSize = true;
 			this.label_created_by.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_created_by.Location = new System.Drawing.Point(13, 335);
+			this.label_created_by.Location = new System.Drawing.Point(13, 366);
 			this.label_created_by.Name = "label_created_by";
 			this.label_created_by.Size = new System.Drawing.Size(174, 20);
 			this.label_created_by.TabIndex = 22;
@@ -119,7 +120,7 @@
 			// 
 			this.label_datetime.AutoSize = true;
 			this.label_datetime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_datetime.Location = new System.Drawing.Point(12, 215);
+			this.label_datetime.Location = new System.Drawing.Point(12, 246);
 			this.label_datetime.Name = "label_datetime";
 			this.label_datetime.Size = new System.Drawing.Size(199, 20);
 			this.label_datetime.TabIndex = 23;
@@ -131,7 +132,7 @@
 			this.init_zeus_checkbox.Checked = true;
 			this.init_zeus_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.init_zeus_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.init_zeus_checkbox.Location = new System.Drawing.Point(17, 112);
+			this.init_zeus_checkbox.Location = new System.Drawing.Point(17, 143);
 			this.init_zeus_checkbox.Name = "init_zeus_checkbox";
 			this.init_zeus_checkbox.Size = new System.Drawing.Size(306, 24);
 			this.init_zeus_checkbox.TabIndex = 24;
@@ -142,17 +143,31 @@
 			// 
 			this.init_zeus_label.AutoSize = true;
 			this.init_zeus_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.init_zeus_label.Location = new System.Drawing.Point(12, 139);
+			this.init_zeus_label.Location = new System.Drawing.Point(12, 170);
 			this.init_zeus_label.Name = "init_zeus_label";
 			this.init_zeus_label.Size = new System.Drawing.Size(427, 17);
 			this.init_zeus_label.TabIndex = 25;
 			this.init_zeus_label.Text = "Need to name the zeus slots zeus_mod1, zeus_mod2, zeus_mod3";
 			// 
+			// description_params_difficulty_checkbox
+			// 
+			this.description_params_difficulty_checkbox.AutoSize = true;
+			this.description_params_difficulty_checkbox.Checked = true;
+			this.description_params_difficulty_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.description_params_difficulty_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.description_params_difficulty_checkbox.Location = new System.Drawing.Point(17, 71);
+			this.description_params_difficulty_checkbox.Name = "description_params_difficulty_checkbox";
+			this.description_params_difficulty_checkbox.Size = new System.Drawing.Size(278, 24);
+			this.description_params_difficulty_checkbox.TabIndex = 26;
+			this.description_params_difficulty_checkbox.Text = "Description Params (FHQ Difficulty)";
+			this.description_params_difficulty_checkbox.UseVisualStyleBackColor = true;
+			// 
 			// Form3_Description
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(464, 421);
+			this.ClientSize = new System.Drawing.Size(464, 457);
+			this.Controls.Add(this.description_params_difficulty_checkbox);
 			this.Controls.Add(this.init_zeus_label);
 			this.Controls.Add(this.init_zeus_checkbox);
 			this.Controls.Add(this.label_datetime);
@@ -161,7 +176,7 @@
 			this.Controls.Add(this.title_infotext);
 			this.Controls.Add(this.description_button);
 			this.Controls.Add(this.description_loadout_checkbox);
-			this.Controls.Add(this.description_params_checkbox);
+			this.Controls.Add(this.description_params_scale_players_checkbox);
 			this.Controls.Add(this.title_description);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
@@ -175,7 +190,7 @@
 		#endregion
 
 		private System.Windows.Forms.Label title_description;
-		private System.Windows.Forms.CheckBox description_params_checkbox;
+		private System.Windows.Forms.CheckBox description_params_scale_players_checkbox;
 		private System.Windows.Forms.CheckBox description_loadout_checkbox;
 		private System.Windows.Forms.Button description_button;
 		private System.Windows.Forms.Label title_infotext;
@@ -184,5 +199,6 @@
 		private System.Windows.Forms.Label label_datetime;
 		private System.Windows.Forms.CheckBox init_zeus_checkbox;
 		private System.Windows.Forms.Label init_zeus_label;
+		private System.Windows.Forms.CheckBox description_params_difficulty_checkbox;
 	}
 }
