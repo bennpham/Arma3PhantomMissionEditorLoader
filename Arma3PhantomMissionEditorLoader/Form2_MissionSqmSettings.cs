@@ -208,7 +208,7 @@ namespace Arma3PhantomMissionEditorLoader
 		private String formatDateForInfoText(String date)
 		{
 			String[] dateArray = date.Split(',');
-			String formattedDate = "{dateArray[1]}, {dateArray[2]}";
+			String formattedDate = dateArray[1].Trim() + "," + dateArray[2];
 			
 			return formattedDate;
 		}
