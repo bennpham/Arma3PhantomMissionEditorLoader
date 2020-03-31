@@ -39,6 +39,9 @@
 			this.init_zeus_checkbox = new System.Windows.Forms.CheckBox();
 			this.init_zeus_label = new System.Windows.Forms.Label();
 			this.description_params_difficulty_checkbox = new System.Windows.Forms.CheckBox();
+			this.init_ace_label = new System.Windows.Forms.Label();
+			this.init_ace_checkbox = new System.Windows.Forms.CheckBox();
+			this.init_ace_label2 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// title_description
@@ -79,7 +82,7 @@
 			// description_button
 			// 
 			this.description_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.description_button.Location = new System.Drawing.Point(176, 407);
+			this.description_button.Location = new System.Drawing.Point(176, 467);
 			this.description_button.Name = "description_button";
 			this.description_button.Size = new System.Drawing.Size(147, 38);
 			this.description_button.TabIndex = 13;
@@ -91,7 +94,7 @@
 			// 
 			this.title_infotext.AutoSize = true;
 			this.title_infotext.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.title_infotext.Location = new System.Drawing.Point(12, 203);
+			this.title_infotext.Location = new System.Drawing.Point(12, 263);
 			this.title_infotext.Name = "title_infotext";
 			this.title_infotext.Size = new System.Drawing.Size(174, 29);
 			this.title_infotext.TabIndex = 14;
@@ -100,7 +103,7 @@
 			// 
 			// infotext_title
 			// 
-			this.infotext_title.Location = new System.Drawing.Point(12, 279);
+			this.infotext_title.Location = new System.Drawing.Point(12, 339);
 			this.infotext_title.Multiline = true;
 			this.infotext_title.Name = "infotext_title";
 			this.infotext_title.Size = new System.Drawing.Size(440, 75);
@@ -110,7 +113,7 @@
 			// 
 			this.label_created_by.AutoSize = true;
 			this.label_created_by.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_created_by.Location = new System.Drawing.Point(13, 366);
+			this.label_created_by.Location = new System.Drawing.Point(13, 426);
 			this.label_created_by.Name = "label_created_by";
 			this.label_created_by.Size = new System.Drawing.Size(174, 20);
 			this.label_created_by.TabIndex = 22;
@@ -120,7 +123,7 @@
 			// 
 			this.label_datetime.AutoSize = true;
 			this.label_datetime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label_datetime.Location = new System.Drawing.Point(12, 246);
+			this.label_datetime.Location = new System.Drawing.Point(12, 306);
 			this.label_datetime.Name = "label_datetime";
 			this.label_datetime.Size = new System.Drawing.Size(199, 20);
 			this.label_datetime.TabIndex = 23;
@@ -132,7 +135,7 @@
 			this.init_zeus_checkbox.Checked = true;
 			this.init_zeus_checkbox.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.init_zeus_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.init_zeus_checkbox.Location = new System.Drawing.Point(17, 143);
+			this.init_zeus_checkbox.Location = new System.Drawing.Point(17, 208);
 			this.init_zeus_checkbox.Name = "init_zeus_checkbox";
 			this.init_zeus_checkbox.Size = new System.Drawing.Size(306, 24);
 			this.init_zeus_checkbox.TabIndex = 24;
@@ -143,7 +146,7 @@
 			// 
 			this.init_zeus_label.AutoSize = true;
 			this.init_zeus_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.init_zeus_label.Location = new System.Drawing.Point(12, 170);
+			this.init_zeus_label.Location = new System.Drawing.Point(14, 235);
 			this.init_zeus_label.Name = "init_zeus_label";
 			this.init_zeus_label.Size = new System.Drawing.Size(427, 17);
 			this.init_zeus_label.TabIndex = 25;
@@ -162,11 +165,45 @@
 			this.description_params_difficulty_checkbox.Text = "Description Params (FHQ Difficulty)";
 			this.description_params_difficulty_checkbox.UseVisualStyleBackColor = true;
 			// 
+			// init_ace_label
+			// 
+			this.init_ace_label.AutoSize = true;
+			this.init_ace_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.init_ace_label.Location = new System.Drawing.Point(14, 169);
+			this.init_ace_label.Name = "init_ace_label";
+			this.init_ace_label.Size = new System.Drawing.Size(416, 17);
+			this.init_ace_label.TabIndex = 28;
+			this.init_ace_label.Text = "Use vestContainer _unit or uniformContainer _unit or _ammobox ";
+			// 
+			// init_ace_checkbox
+			// 
+			this.init_ace_checkbox.AutoSize = true;
+			this.init_ace_checkbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.init_ace_checkbox.Location = new System.Drawing.Point(17, 142);
+			this.init_ace_checkbox.Name = "init_ace_checkbox";
+			this.init_ace_checkbox.Size = new System.Drawing.Size(441, 24);
+			this.init_ace_checkbox.TabIndex = 27;
+			this.init_ace_checkbox.Text = "Init ACE extra (for adding extra ace items to players or box)";
+			this.init_ace_checkbox.UseVisualStyleBackColor = true;
+			// 
+			// init_ace_label2
+			// 
+			this.init_ace_label2.AutoSize = true;
+			this.init_ace_label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.init_ace_label2.Location = new System.Drawing.Point(14, 186);
+			this.init_ace_label2.Name = "init_ace_label2";
+			this.init_ace_label2.Size = new System.Drawing.Size(347, 17);
+			this.init_ace_label2.TabIndex = 29;
+			this.init_ace_label2.Text = "addItemCargoGlobal [\"ACE_bloodIV\", 2]; or something";
+			// 
 			// Form3_Description
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(464, 457);
+			this.ClientSize = new System.Drawing.Size(464, 517);
+			this.Controls.Add(this.init_ace_label2);
+			this.Controls.Add(this.init_ace_label);
+			this.Controls.Add(this.init_ace_checkbox);
 			this.Controls.Add(this.description_params_difficulty_checkbox);
 			this.Controls.Add(this.init_zeus_label);
 			this.Controls.Add(this.init_zeus_checkbox);
@@ -200,5 +237,8 @@
 		private System.Windows.Forms.CheckBox init_zeus_checkbox;
 		private System.Windows.Forms.Label init_zeus_label;
 		private System.Windows.Forms.CheckBox description_params_difficulty_checkbox;
+		private System.Windows.Forms.Label init_ace_label;
+		private System.Windows.Forms.CheckBox init_ace_checkbox;
+		private System.Windows.Forms.Label init_ace_label2;
 	}
 }
