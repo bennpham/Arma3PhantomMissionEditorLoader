@@ -59,6 +59,7 @@ namespace Arma3PhantomMissionEditorLoader
 			this.parameters = new Dictionary<String, Object>
 			{
 				{"description_params", description_params_scale_players_checkbox.Checked},
+				{"init_ace", init_ace_checkbox.Checked},
 				{"init_zeus", init_zeus_checkbox.Checked},
 				{"description", new Dictionary<String, Object>
 					{

@@ -184,6 +184,16 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("	// TODO");
 					sw.WriteLine("};");
 				}
+				if ((bool)this.parameters["init_ace"])
+				{
+					sw.WriteLine("");
+					sw.WriteLine("// Adds extra ace equipments to player's uniforms or vests.");
+					sw.WriteLine("//	Example 1: ammobox1 addItemCargoGlobal [\"ACE_bloodIV\", 2];");
+					sw.WriteLine("//	Example 2: uniformContainer p1 addMagazineCargoGlobal [\"ACE_M84\", 6];");
+					sw.WriteLine("if (isServer && isClass (configFile >> \"CfgMods\" >> \"ace\")) then {");
+					sw.WriteLine("	// TODO");
+					sw.WriteLine("};");
+				}
 				if ((bool)this.parameters["init_zeus"])
 				{
 					sw.WriteLine("");
