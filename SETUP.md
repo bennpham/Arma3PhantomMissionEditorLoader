@@ -14,7 +14,7 @@ In **init.sqf**, there should be the following code block:
 ```
 // Adds extra ace equipments to player's uniforms or vests.
 //	Example 1: ammobox1 addItemCargoGlobal ["ACE_bloodIV", 2];
-//	Example 2: uniformContainer p1 addMagazineCargoGlobal [\"ACE_M84\", 6];
+//	Example 2: uniformContainer p1 addMagazineCargoGlobal ["ACE_M84", 6];
 if (isServer && isClass (configFile >> "CfgMods" >> "ace")) then {
     // TODO
 };
