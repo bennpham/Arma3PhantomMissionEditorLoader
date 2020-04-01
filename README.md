@@ -1,7 +1,7 @@
 # Arma 3 Phantom Mission Editor Loader
 
 <p align="center">
-<a href="https://github.com/bennpham/Arma3PhantomMissionEditorLoader/releases/tag/v1.1.1"><img src="https://img.shields.io/badge/Version-1.1.1-blue.svg" alt="Download Mission Loader" /></a>
+<a href="https://github.com/bennpham/Arma3PhantomMissionEditorLoader/releases/tag/v1.2.0"><img src="https://img.shields.io/badge/Version-1.2.0-blue.svg" alt="Download Mission Loader" /></a>
 </p>
 
 An application to modify my Arma 3 <b>mission.sqm</b> file to set the settings that I need in one go and generate some basic scripts to help me focus on unit placement and making the missions rather than copying over the same files for my template and modifying them separately instead. 
@@ -18,9 +18,17 @@ An application to modify my Arma 3 <b>mission.sqm</b> file to set the settings t
 * By default, this application is <b>SIDE</b> respawn only and is meant for no respawn/revive type of coop gameplay.
 * Click okay when you are done
 ### Editing Description.ext & Infotext Script
-* Check off <b>Description Params</b> if you want in game parameters to scale units or other settings for the players in game (you'll need to do that manually through the <b>init.sqf</b> or <b>triggers</b>)
-* Check out <b>Description Loadout</b> if you want to setup briefing loadouts. This is for Singleplayer only and you'll have to handle those manually in <b>scripts/briefing_loadout.hpp</b>
-* Check off <b>Init Zeus</b> if you want to have all units placed in the editor is controllable by zeus players. You can place 3 zeus slots named zeus_mod1, zeus_mod2, zeus_mod3 yourself or you can place them in via my mission composition
+* Check off <b>Description Params (Player Count Scale)</b> if you want in game parameters to scale units or other settings for the players in game.
+	* You'll need to do that manually through the <b>init.sqf</b> or <b>triggers</b>
+* Check off <b>Description Params (FHQ Difficulty)</b> if you want to delete units base on MP difficulty settings.
+	* You can do that manually or use [FHQ Eden Tool](http://ciahome.net/forum/showthread.php?tid=3935) which is highly recommended for this step.
+* Check out <b>Description Loadout</b> if you want to setup briefing loadouts. 
+	* This is for Singleplayer only and you'll have to handle those manually in <b>scripts/briefing_loadout.hpp</b>.
+* Check off <b>Init ACE Extra</b> if you want to add extra equipments to units, vehicles, or ammoboxes if the server or player has ACE loaded.
+	* You'll need to that manually in the ACE condition block in <b>init.sqf</b>.
+	* You'll also want to refer to [ACE 3 Mod Classname Wiki](https://ace3mod.com/wiki/class-names.html).
+* Check off <b>Init Zeus</b> if you want to have all units placed in the editor is controllable by zeus players. 
+	* You can place 3 zeus slots named `zeus_mod1`, `zeus_mod2`, `zeus_mod3` yourself or you can place them in via my mission composition.
 * The default info text will display the date and time, followed by the text you inputted in the text box, then your name (as the author)
 ### Scripts to Enable
 * By default, FHQ TaskTracker will always be enabled. You can choose to enable additional scripts here.
