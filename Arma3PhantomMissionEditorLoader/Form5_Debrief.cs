@@ -17,9 +17,12 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String DESCRIPTION = "description.ext";
 		private const String INIT = "init.sqf";
 
+		private const String ERROR_NO_DEBRIEFING = "Please add at least one debriefing.";
+
 		private String missionDirectory;
 		private HashSet<String> classNames;
 		private Dictionary<String, Object> parameters;
+		private Boolean hasAtLeastOneDebriefing;
 
 		public Form5_Debrief(String missionDirectory, Dictionary<String, Object> parameters)
 		{
@@ -27,6 +30,7 @@ namespace Arma3PhantomMissionEditorLoader
 			this.missionDirectory = missionDirectory;
 			this.parameters = parameters;
 			classNames = new HashSet<string>();
+			hasAtLeastOneDebriefing = false;
 		}
 
 		private void button_add_Click(object sender, EventArgs e)
@@ -54,6 +58,7 @@ namespace Arma3PhantomMissionEditorLoader
 			// Note: No sanitizing picture Background for now. So either use existing loadscreen.jpg or get the path right.
 			else
 			{
+				hasAtLeastOneDebriefing = true;
 				this.classNames.Add(textbox_classname.Text.Trim());
 
 				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, DEBRIEFING), true))
@@ -84,6 +89,12 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void button_complete_Click(object sender, EventArgs e)
 		{
+			if (!hasAtLeastOneDebriefing)
+			{
+				MessageBox.Show(ERROR_NO_DEBRIEFING);
+				return;
+			}
+
 			// Write description.ext
 			writeDescriptionExt();
 

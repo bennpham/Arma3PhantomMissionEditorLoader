@@ -18,10 +18,13 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String BRIEFING = "briefing.sqf";
 		private const String FOLDER_SCRIPTS = "scripts";
 
+		private const String ERROR_NO_TASK = "Please add at least one task.";
+
 		private String missionDirectory;
 		private bool firstItemAdded;
 		private bool firstAssignedTaskStateFound;
 		private HashSet<string> taskNames;
+		private Boolean hasAtLeastOneTask;
 
 		public Form7_Briefing_Task(String missionDirectory)
 		{
@@ -30,6 +33,7 @@ namespace Arma3PhantomMissionEditorLoader
 			firstItemAdded = false;
 			firstAssignedTaskStateFound = false;
 			taskNames = new HashSet<string>();
+			hasAtLeastOneTask = false;
 
 			// Setup color dialog
 			this.colorDiaglog = new ColorDialog();
@@ -95,12 +99,19 @@ namespace Arma3PhantomMissionEditorLoader
 
 					taskNames.Add(textbox_taskname.Text.Trim().ToLower());
 					firstItemAdded = true;
+					hasAtLeastOneTask = true;
 				}
 			}
 		}
 
 		private void button_complete_Click(object sender, EventArgs e)
 		{
+			if (!hasAtLeastOneTask)
+			{
+				MessageBox.Show(ERROR_NO_TASK);
+				return;
+			}
+
 			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING), true))
 			{
 				sw.WriteLine("");
