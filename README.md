@@ -24,8 +24,8 @@ An application to modify my Arma 3 <b>mission.sqm</b> file to set the settings t
 	* You can do that manually or use [FHQ Eden Tool](http://ciahome.net/forum/showthread.php?tid=3935) which is highly recommended for this step.
 * Check out <b>Description Loadout</b> if you want to setup briefing loadouts. 
 	* This is for Singleplayer only and you'll have to handle those manually in <b>scripts/briefing_loadout.hpp</b>.
-* Check off <b>Init ACE Extra</b> if you want to add extra equipments to units, vehicles, or ammoboxes if the server or player has ACE loaded.
-	* You'll need to that manually in the ACE condition block in <b>init.sqf</b>.
+* Check off <b>Init ACE Extra</b> if you want to add extra equipment to units, vehicles, or ammoboxes if the server or player has ACE loaded.
+	* You'll need to do that manually in the ACE condition block in <b>init.sqf</b>.
 	* You'll also want to refer to [ACE 3 Mod Classname Wiki](https://ace3mod.com/wiki/class-names.html).
 * Check off <b>Init Zeus</b> if you want to have all units placed in the editor is controllable by zeus players. 
 	* You can place 3 zeus slots named `zeus_mod1`, `zeus_mod2`, `zeus_mod3` yourself or you can place them in via my mission composition.
