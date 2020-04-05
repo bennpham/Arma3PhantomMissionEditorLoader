@@ -61,7 +61,7 @@ This is useful for attempting to scale units back base on player counts if you e
 
 ```
 {
-	if (_x getVariable ["FHQ_TagA", true]) then {
+	if (_x getVariable ["FHQ_TagA", false]) then {
 		deleteVehicle _x;
 	};
 } foreach allUnits;
