@@ -58,7 +58,8 @@ namespace Arma3PhantomMissionEditorLoader
 			// Set parameters information once button is click to get checkbox latest state
 			this.parameters = new Dictionary<String, Object>
 			{
-				{"description_params", description_params_checkbox.Checked},
+				{"description_params", description_params_scale_players_checkbox.Checked},
+				{"init_ace", init_ace_checkbox.Checked},
 				{"init_zeus", init_zeus_checkbox.Checked},
 				{"description", new Dictionary<String, Object>
 					{
@@ -67,7 +68,7 @@ namespace Arma3PhantomMissionEditorLoader
 						{"onLoadMission", onLoadMission},
 						{"minPlayers", minPlayers},
 						{"maxPlayers", maxPlayers},
-						{"descriptionParams", description_params_checkbox.Checked},
+						{"descriptionParams", description_params_scale_players_checkbox.Checked},
 						{"descriptionLoadout", description_loadout_checkbox.Checked}
 					}
 				}
@@ -118,17 +119,30 @@ namespace Arma3PhantomMissionEditorLoader
 
 		private void writeParametersHPP()
 		{
-			if (description_params_checkbox.Checked)
+			if (descriptionParametersIsEnabled())
 			{
 				using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, PARAMETERS)))
 				{
-					sw.WriteLine("class ScalePlayers");
-					sw.WriteLine("{");
-					sw.WriteLine("	title = \"Low Player Count Scale Mode\";");
-					sw.WriteLine("	values[] = {0, 1};");
-					sw.WriteLine("	texts[] = {\"Disable\", \"Enable\"};");
-					sw.WriteLine("	default = 0;");
-					sw.WriteLine("};");
+					if (description_params_scale_players_checkbox.Checked)
+					{
+						sw.WriteLine("class ScalePlayers");
+						sw.WriteLine("{");
+						sw.WriteLine("	title = \"Low Player Count Scale Mode\";");
+						sw.WriteLine("	values[] = {0, 1};");
+						sw.WriteLine("	texts[] = {\"Disable\", \"Enable\"};");
+						sw.WriteLine("	default = 0;");
+						sw.WriteLine("};");
+					}
+					if (description_params_scale_players_checkbox.Checked)
+					{
+						sw.WriteLine("class FHQ_Difficulty");
+						sw.WriteLine("{");
+						sw.WriteLine("	title = \"Difficulty\";");
+						sw.WriteLine("	values[] = {0, 1, 2};");
+						sw.WriteLine("	texts[] = {\"Easy\", \"Normal\", \"Hard\"};");
+						sw.WriteLine("	default = 1;");
+						sw.WriteLine("};");
+					}
 				}
 			}
 		}
@@ -153,6 +167,11 @@ namespace Arma3PhantomMissionEditorLoader
 			infoTextResult += "]";
 
 			return infoTextResult;
+		}
+
+		private Boolean descriptionParametersIsEnabled()
+		{
+			return description_params_scale_players_checkbox.Checked || description_params_scale_players_checkbox.Checked;
 		}
 	}
 }

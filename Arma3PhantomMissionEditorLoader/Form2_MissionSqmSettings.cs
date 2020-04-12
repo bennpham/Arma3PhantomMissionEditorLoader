@@ -192,13 +192,25 @@ namespace Arma3PhantomMissionEditorLoader
 			// GoTo Generate infotext Form
 			//		Pick Name of Mission to Display (already have date and Author)
 			this.Hide();
-			Form3_Description form3_description = new Form3_Description(this.missionDirectory, date.Text,
-				formatTimeString(this.hour.Value.ToString()), formatTimeString(this.minute.Value.ToString()), 
+			Form3_Description form3_description = new Form3_Description(this.missionDirectory, 
+				formatDateForInfoText(date.Text),
+				formatTimeString(this.hour.Value.ToString()), 
+				formatTimeString(this.minute.Value.ToString()), 
 				textbox_author.Text,
 				"OnLoadName = \"" + textBox_onLoadName.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, " ") + "\";",
 				"OnLoadMission =\"" + textBox_onLoadMission.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, " ") + "\";",
-				min_players.Value.ToString(), max_players.Value.ToString());
+				min_players.Value.ToString(), 
+				max_players.Value.ToString());
 			form3_description.ShowDialog();
+		}
+
+		// Helper function to strip out day for Date to avoid infotext from going off the screen
+		private String formatDateForInfoText(String date)
+		{
+			String[] dateArray = date.Split(',');
+			String formattedDate = dateArray[1].Trim() + "," + dateArray[2];
+			
+			return formattedDate;
 		}
 
 		/*===========================================================

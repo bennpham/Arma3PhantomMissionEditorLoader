@@ -18,14 +18,18 @@ namespace Arma3PhantomMissionEditorLoader
 		private const String BRIEFING = "briefing.sqf";
 		private const String FOLDER_SCRIPTS = "scripts";
 
+		private const String ERROR_NO_BRIEFING = "Please add at least one briefing.";
+
 		private String missionDirectory;
 		private bool firstItemAdded;
+		private Boolean hasAtLeastOneBriefing;
 
 		public Form6_Briefing(String missionDirectory)
 		{
 			InitializeComponent();
 			this.missionDirectory = missionDirectory;
 			firstItemAdded = false;
+			hasAtLeastOneBriefing = false;
 
 			// Setup color dialog
 			this.colorDiaglog = new ColorDialog();
@@ -55,12 +59,19 @@ namespace Arma3PhantomMissionEditorLoader
 					sw.WriteLine("		[\"" + textbox_title.Text.Replace("\"", "\"\"") + "\",");
 					sw.Write("			\"" + textbox_description.Text.Replace("\"", "\"\"").Replace(Environment.NewLine, "<br/>").Replace("'\"\" + _htmlcolor + \"\"'", "'\" + _htmlcolor + \"'") + "\"]"); 
 					firstItemAdded = true;
+					hasAtLeastOneBriefing = true;
 				}
 			}
 		}
 
 		private void button_complete_Click(object sender, EventArgs e)
 		{
+			if (!hasAtLeastOneBriefing)
+			{
+				MessageBox.Show(ERROR_NO_BRIEFING);
+				return;
+			}
+
 			using (System.IO.StreamWriter sw = new System.IO.StreamWriter(System.IO.Path.Combine(this.missionDirectory, FOLDER_SCRIPTS, BRIEFING), true))
 			{
 				sw.WriteLine("");
